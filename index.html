@@ -341,7 +341,7 @@ const courseTeachingProfiles = {
   hidroloji: {kind:'water', intro:'Hidroloji, suyun atmosfer, yüzey, zemin ve akarsu sistemi içindeki dolaşımını inceler. Mühendislikte yağıştan akışa dönüşümün, havza tepkisinin ve taşkın büyüklüğünün tahmin edilmesi için kullanılır.', prereq:'Birim dönüşümü, alan-hacim-zaman ilişkisi, temel olasılık ve grafik okuma.', method:'Havzayı sınırla; veri kaynağı ve zaman adımını tanımla; yağış/akım serilerini kontrol et; kayıp süreçlerini değerlendir; uygun model veya istatistiksel yöntemi seç; sonuçları tasarım amacı ve belirsizlikle birlikte raporla.', eq:'Su bütçesi: P = Q + ET + ΔS (havza sınırına göre diğer terimler eklenebilir)', eqnote:'P yağış, Q dışarı çıkan akış, ET evapotranspirasyon, ΔS depolama değişimidir. İşaretler ve alan/zaman ölçeği baştan tanımlanmalıdır.', app:'Taşkın tahmini, baraj işletmesi, drenaj tasarımı, sulama, su kaynakları planlaması ve kuraklık değerlendirmesi.', pitfalls:['Yağış derinliğini debiyle birim dönüşümü yapmadan karşılaştırmak.','Havza alanı ve zaman adımını belirtmemek.','Birim hidroğrafı her havza ve koşul için değişmez saymak.','Gözlem verisinin eksikliği ve ölçüm belirsizliğini göz ardı etmek.']},
   sayisal: {kind:'math', intro:'Sayısal çözümleme, analitik çözümü bulunmayan veya hesap yükü yüksek mühendislik problemlerine yaklaşık çözüm üretir. Yaklaşımın kalitesi hata, tolerans, yakınsama ve algoritmanın kararlılığıyla değerlendirilir.', prereq:'Türev, integral, lineer cebir, temel programlama mantığı ve hata hesabı.', method:'Problemi matematiksel forma getir; yöntemin varsayım ve yakınsama koşullarını incele; başlangıç değeri ve toleransı tanımla; iterasyonları hesapla; durdurma ölçütünü kontrol et; sonucu bağımsız bir kestirimle doğrula.', eq:'e_a=|x_k−x_{k−1}|;  e_r=e_a/max(|x_k|,ε)', eqnote:'Yaklaşık hata ardışık iterasyon farkından izlenebilir. Gerçek bağıl hata için gerçek çözüm gerekir; sıfıra yakın köklerde ölçek seçimi önemlidir.', app:'Lineer sistemler, zemin/akış modelleri, yapı analiz yazılımları, optimizasyon ve deney verisi uydurma.', pitfalls:['Toleransın neye göre tanımlandığını yazmamak.','Yakınsama görüldü diye çözümün doğru olduğunu varsaymak.','Newton yönteminde türevin sıfıra yakın olmasını kontrol etmemek.','Yuvarlama hatasını ve başlangıç tahmininin etkisini yok saymak.']},
   ekolojik: {kind:'sustainability', intro:'Ekolojik yapılar, bir yapının yalnız kullanım anındaki enerji tüketimini değil, malzeme üretimi, yapım, işletme, bakım ve kullanım ömrü sonundaki etkilerini birlikte değerlendirir.', prereq:'Yapı malzemeleri, temel enerji-su kavramları, çevresel etki ve yaşam döngüsü düşüncesi.', method:'Sistem sınırını tanımla; işlevsel birimi belirle; malzeme/enerji/su girdilerini ve atıkları envanterle; yaşam döngüsü aşamalarını karşılaştır; alternatiflerin performansını aynı varsayımla değerlendir.', eq:'Yaşam döngüsü etkisi = üretim + taşıma + yapım + kullanım + bakım + ömür sonu', eqnote:'Bu bir toplamsal muhasebe çerçevesidir; aşamaların kapsamı ve veri kalitesi karşılaştırma sonucunu belirler.', app:'Düşük karbonlu beton, geri dönüştürülmüş malzeme, enerji etkin bina, su verimli tasarım ve yeşil bina değerlendirmesi.', pitfalls:['Yalnız işletme enerjisine odaklanmak.','İşlevsel birim veya sistem sınırını tanımlamamak.','Geri dönüştürülebilirliği otomatik olarak sıfır çevresel etki saymak.','Malzeme dayanıklılığı ve bakım ihtiyacını hesaba katmamak.']},
-  yalıtım: {kind:'buildingphysics', intro:'Yapıların yalıtımı ve korunması, ısı, su, su buharı, ses ve kimyasal etkilerin yapı elemanlarında oluşturduğu performans kayıplarını önlemeyi amaçlar. Katmanlar birlikte çalışır; yanlış detay, doğru malzemeyi bile etkisiz kılabilir.', prereq:'Isı ve nem temel kavramları, malzeme özellikleri, yapı elemanı katmanları ve temel geometri.', method:'İç/dış ortam koşullarını belirle; yapı katmanlarını sırala; ısı ve nem geçiş yolunu çiz; süreklilik ve birleşim detaylarını kontrol et; suyun drenaj yolunu göster; malzeme ve uygulama şartlarını teknik dokümanla doğrula.', eq:'Isıl direnç: R=d/λ;  ısı geçiş katsayısı U=1/R_toplam (basitleştirilmiş tek boyutlu durum)', eqnote:'d katman kalınlığı, λ ısıl iletkenliktir. Yüzey dirençleri ve katmanlar arası etkiler toplam dirence eklenmelidir.', app:'Dış cephe, temel/perde su yalıtımı, çatı, bodrum, ıslak hacim, yoğuşma kontrolü ve yapı elemanı dayanıklılığı.', pitfalls:['Isı yalıtımını su yalıtımıyla aynı işlev saymak.','Buhar dengeleyici katmanın konumunu iklim ve katmanlara göre incelememek.','Isı köprülerini ve birleşim detaylarını göz ardı etmek.','Ürün kalınlığı kadar uygulama sürekliliğini de kontrol etmemek.']},
+  yalitim: {kind:'buildingphysics', intro:'Yapıların yalıtımı ve korunması, ısı, su, su buharı, ses ve kimyasal etkilerin yapı elemanlarında oluşturduğu performans kayıplarını önlemeyi amaçlar. Katmanlar birlikte çalışır; yanlış detay, doğru malzemeyi bile etkisiz kılabilir.', prereq:'Isı ve nem temel kavramları, malzeme özellikleri, yapı elemanı katmanları ve temel geometri.', method:'İç/dış ortam koşullarını belirle; yapı katmanlarını sırala; ısı ve nem geçiş yolunu çiz; süreklilik ve birleşim detaylarını kontrol et; suyun drenaj yolunu göster; malzeme ve uygulama şartlarını teknik dokümanla doğrula.', eq:'Isıl direnç: R=d/λ;  ısı geçiş katsayısı U=1/R_toplam (basitleştirilmiş tek boyutlu durum)', eqnote:'d katman kalınlığı, λ ısıl iletkenliktir. Yüzey dirençleri ve katmanlar arası etkiler toplam dirence eklenmelidir.', app:'Dış cephe, temel/perde su yalıtımı, çatı, bodrum, ıslak hacim, yoğuşma kontrolü ve yapı elemanı dayanıklılığı.', pitfalls:['Isı yalıtımını su yalıtımıyla aynı işlev saymak.','Buhar dengeleyici katmanın konumunu iklim ve katmanlara göre incelememek.','Isı köprülerini ve birleşim detaylarını göz ardı etmek.','Ürün kalınlığı kadar uygulama sürekliliğini de kontrol etmemek.']},
   toprak: {kind:'earthworks', intro:'Toprak işleri, doğal zeminin kazı, taşıma, serme ve sıkıştırma süreçleriyle proje kotlarına getirilmesidir. Hacim hesabı kadar zemin davranışı, su koşulu, şev güvenliği, ekipman ve iş sırası da önemlidir.', prereq:'Ölçme bilgisi, kesit/alan hesabı, zemin sınıflaması, yoğunluk ve yüzde hesabı.', method:'Mevcut ve proje yüzeyini tanımla; kazı/dolgu sınırını kesitlerle belirle; doğal-kazılmış-serilmiş hacim farklarını ayır; şev ve drenaj koşullarını kontrol et; ekipman kapasitesi ve çevrimini planla; sıkışma kontrol sonuçlarını kaydet.', eq:'Ortalama uç alan: V≈(A₁+A₂)L/2', eqnote:'A₁ ve A₂ ardışık enkesit alanları, L kesitler arası mesafedir. Kesit aralığı ve yüzey değişiminin düzgünlüğü doğruluğu etkiler.', app:'Yol/demiryolu yarma-dolgu, bina temel kazısı, platform, şev düzenleme, depo sahası ve altyapı hendekleri.', pitfalls:['Kabarmış hacim ile doğal zemin hacmini aynı kabul etmek.','Kazı taban kotunu ölçü kontrolü yapmadan ekskavatör göz kararıyla tutturmak.','Şev stabilitesi, yeraltı suyu ve iksa gereksinimini atlamak.','Serme kalınlığı ve sıkışma enerjisini kontrol etmemek.']},
   ulasimplan: {kind:'transport', intro:'Ulaşım planlaması, insanların ve yüklerin nereden nereye, hangi amaçla ve hangi ulaşım türüyle hareket ettiğini inceler. Plan kararları yalnız yol kapasitesi değil; arazi kullanımı, erişilebilirlik, güvenlik, çevre ve maliyet ile birlikte ele alınır.', prereq:'Temel istatistik, harita okuma, nüfus/alan kavramları ve grafik yorumlama.', method:'Planlama alanını ve hedef yılı tanımla; mevcut durumu ve ulaşım talebini veriyle analiz et; alternatifleri geliştir; erişilebilirlik, güvenlik, çevre ve maliyet etkilerini karşılaştır; uygulama ve izleme göstergeleri belirle.', eq:'Dört aşamalı model: yolculuk üretimi → dağıtımı → tür seçimi → ağ ataması', eqnote:'Modelin aşamaları ardışık ancak geri beslemeli ilişkilere sahip olabilir. Kalibrasyon ve veri kalitesi tahmin sonuçlarını belirler.', app:'Kent ulaşım ana planı, kampüs erişimi, demiryolu/karayolu bağlantıları, toplu taşıma, yaya ve bisiklet ağları.', pitfalls:['Ulaşım talebini yalnız araç sayısıyla ölçmek.','Arazi kullanımı ve erişilebilirlik ilişkisini atlamak.','Model parametrelerini yerel veriyle kalibre etmemek.','Alternatifleri güvenlik ve çevresel etki olmadan yalnız hızla karşılaştırmak.']},
   kentulasim: {kind:'transport', intro:'Kent içi ulaşım sistemleri, yol kullanıcılarının, araçların ve toplu taşımanın aynı kentsel ağ üzerinde nasıl etkileştiğini inceler. Akım, kapasite ve hizmet düzeyi kavramları tasarım kadar işletme ve güvenlik kararlarını da etkiler.', prereq:'Temel trafik kavramları, hız-zaman-mesafe ilişkisi, basit istatistik ve grafik okuma.', method:'Yol kesimini veya kavşağı tanımla; ölçüm dönemini seç; hacim, hız ve yoğunluğu tutarlı birimlerle hesapla; kapasite ve hizmet koşullarını değerlendir; yaya/toplu taşıma etkisini de kapsayan alternatif üret.', eq:'Trafik akımı: q=k·v', eqnote:'q akım (araç/saat), k yoğunluk (araç/km), v ortalama hız (km/saat) ise birimler tutarlı olmalıdır. Bu ilişki aynı kesit ve zaman aralığına ait ortalama değerlerle kullanılır.', app:'Kent içi yol, sinyalize kavşak, toplu taşıma hattı, yaya geçidi, bisiklet altyapısı ve trafik güvenliği uygulamaları.', pitfalls:['Akım, hız ve yoğunluk kavramlarını karıştırmak.','Pik saat ve günlük ortalamayı aynı tasarım girdisi gibi kullanmak.','Yaya ve bisiklet kullanıcılarını kapasite analizinden dışlamak.','Kapasiteyi sabit, koşullardan bağımsız bir sayı kabul etmek.']},
@@ -427,6 +427,12 @@ function topicRule(c,t,i){
  const id=c.id, n=t.toLocaleLowerCase('tr');
  const arr=topicFormulaRules[id]||[];
  if(id==='muk2') return arr[i]||arr[0];
+ if(id==='yalitim'){
+   if(/yoğuşma|buhar|nem/.test(n)) return arr[3]||arr[0];
+   if(/ısı geçiş|ısı yalıtım|ısı iletim|u değeri/.test(n)) return /toplam|u değeri/.test(n)?arr[1]||arr[0]:arr[0];
+   if(/su yalıtım|drenaj|su girişi/.test(n)) return ['Su yalıtımı ve drenaj kontrolü','Katman sürekliliği + suyun güvenli uzaklaştırılması','Su yalıtımı suyun yapı elemanına geçişini engeller; drenaj suyu kontrollü biçimde uzaklaştırır. Derz, penetrasyon ve bitiş detayları sistemin kritik noktalarıdır.','Bir bodrum perdesinde membran sürekliliği, düşey koruma levhası ve drenaj borusu birlikte düşünülür; yalnız membran türünü seçmek yeterli değildir.'];
+   return arr[0];
+ }
  if(arr.length){
    if(/ortalama|merkezi|mean/.test(n)) return arr[0];
    if(/standart sapma|varyans/.test(n)) return arr[1]||arr[0];
@@ -608,7 +614,7 @@ function topicSpecificFocus(c,t,i){
    [/su verimliliği|gri su/,'Su verimliliği armatür, kaçak kontrolü, yağmur suyu hasadı ve uygun yerde gri su kullanımını içerebilir. Gri su sisteminde sağlık, çapraz bağlantı ve bakım güvenliği esastır.'],
    [/yeşil bina/,'Yeşil bina sistemleri enerji, su, malzeme, iç ortam kalitesi, ulaşım ve işletme süreçlerini puan/şartlar üzerinden inceler. Sertifika kriterlerinin güncel versiyonu kontrol edilmelidir.']
   ],
-  yalıtım:[
+  yalitim:[
    [/ısı geçişi|yapı fiziği/,'Isı iletim, taşınım ve ışınım yoluyla geçer. Yapı bileşenlerinde katmanların ısıl direnci ve yüzey koşulları toplam ısı geçişini belirler.'],
    [/ısı yalıtım malzeme/,'Isı yalıtım malzemeleri ısıl iletkenlik, kalınlık, buhar davranışı, yangın, basınç dayanımı, su emme ve uygulama uygunluğu birlikte değerlendirilerek seçilir.'],
    [/su yalıtımı|drenaj/,'Su yalıtımı suyun yapı elemanına girişini engelleyen katman ve detaylardan oluşur. Drenaj ise suyu kontrollü biçimde uzaklaştırır; birleşim, derz ve penetrasyon detayları kritiktir.'],
@@ -737,6 +743,79 @@ for(const c of courses){for(let i=0;i<c.topics.length;i++){
  ];
  if(!d.sourceNote)d.sourceNote='Bu konu anlatımı öğrenme desteğidir. Öğretim elemanının ders notu, sınav kapsamı ve kullanılan sembol/işaret konvansiyonu ile karşılaştırılmalıdır.';
 }}
+
+
+ // Konu sayfalarında beş aşamalı aktif hatırlama: kavram, yöntem, varsayım, doğrulama ve uygulama.
+ for(const c of courses){if(c.id==='muk1')continue;for(let i=0;i<c.topics.length;i++){
+  const d=deepLessonData[c.id+'_'+i];if(!d)continue;
+  if(!Array.isArray(d.practice))d.practice=[];
+  const profile=courseTeachingProfiles[c.id]||{};
+  let q4,a4,q5,a5;
+  if(profile.kind==='language'){
+   q4='Bu konudaki teknik terimi bir şartname veya laboratuvar cümlesinde kullanırken sayı, birim ve yükümlülük anlamını nasıl korursun?';
+   a4='Önce terimin cümledeki görevini belirle; ölçü, tolerans, standart numarası ve shall/must/may gibi yükümlülük ifadelerini aynen koru; çeviriyi teknik bağlamda kontrol et.';
+   q5='Konunun kelimelerini yalnız ezberlemek yerine nasıl kalıcı öğrenirsin?';
+   a5='Terimi tanımla, teknik cümlede kullan, benzer terimlerden ayır, Türkçeye çevir ve kendi teknik cümleni kur.';
+  }else if(profile.kind==='career'){
+   q4='Bu konudaki bir yetkinliği CV veya mülakatta nasıl kanıtlarsın?';
+   a4='Yetkinliği somut bir ders projesi, çizim, hesap raporu, staj görevi veya ölçülebilir çıktı ile desteklersin; seviyeni olduğundan yüksek göstermezsin.';
+   q5='Bu konuyu kişisel gelişim planına nasıl dönüştürürsün?';
+   a5='Hedef, yapılacak faaliyet, tarih, kaynak ve gözlenebilir başarı ölçütü tanımlarsın.';
+  }else if(profile.kind==='law'||profile.kind==='policy'||c.id==='suhukuk'||c.id==='supolitika'){
+   q4='Bu konudaki mevzuat veya kurum yetkisini nasıl doğrularsın?';
+   a4='Yürürlükteki resmî mevzuat metnini, Resmî Gazete’yi ve yetkili kurumun güncel duyurularını kontrol eder; yürürlük tarihi ve geçiş hükümlerini ayırırsın.';
+   q5='Teknik bulgu ile hukuki/politik değerlendirmeyi neden ayrı yazmalısın?';
+   a5='Ölçüm ve mühendislik hesabı teknik bulguyu gösterir; izin, yetki ve kamu politikası değerlendirmesi farklı kaynak ve ölçütlere dayanır.';
+  }else if(profile.kind==='history'||c.id==='sumuh'){
+   q4='Tarihsel bir yapı veya olay hakkındaki bilgiyi hangi kaynaklarla doğrularsın?';
+   a4='Envanter/koruma kaydı, arşiv, müze yayını ve akademik çalışmaları karşılaştırır; kaynaklar çelişirse tarih veya ölçüyü kesin bilgi gibi sunmazsın.';
+   q5='Tarihsel su yapısını mühendislik açısından incelerken hangi fiziksel unsurları belgelersin?';
+   a5='Kaynak ve hedef kotu, güzergâh, eğim, kesit, malzeme, yapım tekniği, suyun giriş-çıkış düzeni ve bakım izlerini kaydedersin.';
+  }else if(profile.kind==='buildingphysics'||c.id==='yalitim'){
+   q4='Isı yalıtımı hesabında yalnız malzemenin λ değerine bakmak neden yeterli değildir?';
+   a4='Katman kalınlığı, toplam ısıl direnç, yüzey dirençleri, ısı köprüleri, birleşim detayları ve uygulama sürekliliği toplam performansı belirler.';
+   q5='Yoğuşma ve su yalıtımı kontrolünde hangi iki farklı taşıma mekanizmasını ayırmalısın?';
+   a5='Sıvı suyun yapı içine girişi ile su buharının difüzyonu/yoğuşması farklı olaylardır; drenaj, membran ve buhar kontrol katmanı ayrı işlevlere sahiptir.';
+  }else if(profile.kind==='earthworks'||c.id==='toprak'){
+   q4='Kazı hacmiyle nakliye hacmi neden aynı olmayabilir?';
+   a4='Kazı sonrası kabarma hacmi artırabilir; serme ve sıkıştırma hacmi azaltabilir. Doğal, gevşek ve sıkışmış zemin hacimleri ayrı katsayılarla değerlendirilir.';
+   q5='Enkesitlerden hacim hesabında hangi kontrolü yapmalısın?';
+   a5='Kesit alanları, istasyon aralığı, birimler ve yüzey değişiminin kesit aralığı içinde temsil edilip edilmediğini kontrol etmelisin.';
+  }else if(profile.kind==='transport'||c.id==='ulasimplan'||c.id==='kentulasim'){
+   q4='Trafik sayım verisini genellemeden önce hangi bilgileri doğrulamalısın?';
+   a4='Sayım noktası, yön, araç sınıfı, zaman aralığı, gün tipi ve ölçüm koşullarını eşleştirmelisin; kısa süreli sayımı doğrudan günlük/yıllık değere çevirmemelisin.';
+   q5='Alternatif ulaşım çözümlerini hangi ölçütlerle karşılaştırırsın?';
+   a5='Kapasite, gecikme, erişilebilirlik, güvenlik, maliyet, çevresel etki ve kullanıcı gruplarına erişim ölçütlerini aynı çerçevede değerlendirirsin.';
+  }else if(profile.kind==='water'||c.id==='hidroloji'||c.id==='suiklim'){
+   q4='Yağış yüksekliği ile akarsu debisini neden doğrudan eşitleyemezsin?';
+   a4='Yağışın bir bölümü sızar, buharlaşır veya depolanır; havza alanı, zaman adımı, arazi örtüsü ve akış gecikmesi debi hidroğrafını belirler.';
+   q5='Su bütçesi kurarken hangi sınırları açıkça yazmalısın?';
+   a5='Havza sınırı, dönem, yağış, akış giriş-çıkışı, evapotranspirasyon ve depolama değişimini aynı birim ve zaman aralığında tanımlamalısın.';
+  }else if(profile.kind==='fluid'||c.id==='akiskan'||c.id==='hidrolik'){
+   q4='Enerji denklemi kurarken gerçek akışta hangi etkileri ayrıca değerlendirmelisin?';
+   a4='Boru sürtünmesi, yerel kayıplar, pompa/türbin işi ve kesitler arasındaki kot farkı dikkate alınmalıdır.';
+   q5='Bulduğun basınç ve hız değerinin fiziksel olarak makul olup olmadığını nasıl kontrol edersin?';
+   a5='Süreklilik, enerji yükü, basınç referansı (mutlak/gösterge), akış yönü ve birim dönüşümlerini bağımsız olarak kontrol edersin.';
+  }else if(profile.kind==='materials'||c.id==='malzeme'||c.id==='yapimalz'){
+   q4='Bir malzeme deneyinde sonucu etkileyebilecek numune ve işlem koşulları nelerdir?';
+   a4='Numune geometrisi, hazırlama, kür/şartlandırma, deney yaşı, cihaz kalibrasyonu, yükleme hızı ve standarda uygunluk kaydedilmelidir.';
+   q5='Malzeme dayanımı ile dayanıklılığını nasıl ayırırsın?';
+   a5='Dayanım belirli yükleme altında taşıma kapasitesini; dayanıklılık ise çevresel etkiler ve zaman boyunca performansını koruma yeteneğini ifade eder.';
+  }else if(profile.kind==='math'||['istatistik','diferansiyel','lineer','muhmat','sayisal'].includes(c.id)){
+   q4='Seçtiğin matematiksel yöntemin uygulanma koşulunu nasıl kontrol edersin?';
+   a4='Denklemin biçimini, başlangıç/sınır koşullarını, matrisin tekillik/koşul durumunu veya sayısal yöntemin yakınsama koşulunu kontrol edersin.';
+   q5='Bir matematiksel veya sayısal sonucu nasıl doğrularsın?';
+   a5='Çözümü başlangıç denklemine geri koyar, başlangıç koşullarını kontrol eder; sayısal yöntemde artık, hata ve tolerans ölçütlerini incelersin.';
+  }else{
+   q4='Bu konudaki model veya yöntemin hangi varsayımlar altında geçerli olduğunu nasıl kontrol edersin?';
+   a4=d.eq_note||profile.method||'Sistem sınırı, veriler, birimler ve model kabulleri açıkça yazılmalı; seçilen yöntemin problem koşullarıyla uyumu kontrol edilmelidir.';
+   q5='Bu konudan aldığın sonucu bağımsız olarak nasıl doğrularsın?';
+   a5=d.engineering||profile.app||'Sonucu birim, büyüklük, sınır koşulu ve gerçek mühendislik uygulaması bakımından kontrol etmelisin.';
+  }
+  const have=new Set(d.practice.map(x=>x.q));
+  if(d.practice.length<4&&!have.has(q4))d.practice.push({q:q4,a:a4});
+  if(d.practice.length<5&&!have.has(q5))d.practice.push({q:q5,a:a5});
+ }}
 
 // Her konu için kısa/orta düzey aktif hatırlama sorularını ana sınav bankasına da ekle.
 function addTopicPracticeQuestions(){
