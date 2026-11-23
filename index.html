@@ -842,14 +842,7 @@ for(const c of courses){for(let i=0;i<c.topics.length;i++){
    text:variant===0?`“${t}” için sistem sınırını ve verileri tanımla; ${d.eq_note||profile.method||'uygun bağıntı ve varsayımları'} kullanarak çözüm sırasını kur. Sonucu birim, işaret ve fiziksel anlam kontrolünden geçir.`:`“${t}” konusunda bulduğun sonucu sınır koşulu, ölçüm kapanması veya yerine koyma kontrolüyle doğrula. ${d.engineering||profile.app||'Uygulama koşullarını'} açıklayarak çözümün hangi şartlarda geçerli olduğunu belirt.`
   };
  }
- for(const c of courses){if(c.id==='muk1')continue;for(let i=0;i<c.topics.length;i++){
-  const d=deepLessonData[c.id+'_'+i];if(!d)continue;
-  if(!Array.isArray(d.examples))d.examples=[];
-  const profile=courseTeachingProfiles[c.id]||{};
-  const countNeeded=2-d.examples.length;
-  for(let n=0;n<countNeeded;n++)d.examples.push(buildCourseWorkedExample(c,c.topics[i],d,n));
- }}
-
+ 
 
  // Her ders alanı için çözümlü transfer uygulamaları; ana örnekle beraber en az üç uygulama gösterilir.
  function addCourseTransferExamples(c,t,d,variant){
