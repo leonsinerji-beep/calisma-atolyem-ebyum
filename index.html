@@ -745,6 +745,107 @@ for(const c of courses){for(let i=0;i<c.topics.length;i++){
 }}
 
 
+
+ function buildCourseTransferExample(c,t,d,variant){
+  const profile=courseTeachingProfiles[c.id]||{};
+  const kind=profile.kind||'general';
+  const examples={
+   mechanics:[
+    ['Euler burkulma yükü','İki ucu mafsallı L=3 m kolon için E=200 GPa ve I=8×10⁻⁶ m⁴ olsun. P_cr=π²EI/L²≈1,755×10⁶ N=1755 kN bulunur. Gerçek tasarımda başlangıç kusuru, eksantriklik ve yönetmelik şartları ayrıca kontrol edilir.'],
+    ['Sehim sınır koşulu','Basit mesnetli kirişte v(0)=0 ve v(L)=0 koşulları geçerlidir. Elastik eğriyi integrasyonla bulduğunda sabitleri bu sınır koşullarıyla belirle; moment-eğrilik ilişkisini yerine koyarak kontrol et.']
+   ],
+   dynamics:[
+    ['Sabit ivmeli hareket','v₀=4 m/s, a=2 m/s² ve t=3 s için s=v₀t+½at²=21 m; son hız v=10 m/s olur. İşaret seçimini hareket yönüyle tutarlı yap.'],
+    ['İş-enerji','m=2 kg cisim 4 m/s hızla giderken T=16 J’dir. Cisme net 12 J iş yapılırsa T₂=28 J ve v₂=√28≈5,29 m/s olur. İşin işaretini kuvvet ve yer değiştirme yönüne göre belirle.']
+   ],
+   fluid:[
+    ['Boru daralmasında hız','Q=0,020 m³/s debi D₁=0,20 m borudan D₂=0,10 m boruya geçsin. V₁≈0,637 m/s ve V₂≈2,546 m/s bulunur. Sıkıştırılamaz akışta çap yarıya düşünce hız dört katına çıkar.'],
+    ['Darcy–Weisbach kaybı','L=50 m, D=0,10 m, V=2 m/s, f=0,025 için h_f=f(L/D)V²/(2g)≈2,55 m olur. Vana/dirsek gibi yerel kayıplar ayrıca eklenir; Darcy katsayısını Fanning katsayısıyla karıştırma.']
+   ],
+   materials:[
+    ['Beton numunesinde basınç dayanımı','150×150 mm yüklenen yüzeye sahip küp numune 450 kN’da kırılmışsa A=22.500 mm² ve f_c=P/A=20 MPa bulunur. Numune yaşı, kür, yükleme hızı ve deney standardını rapora yaz.'],
+    ['Su/çimento oranı','180 kg etkin su ve 360 kg çimento için kütlesel w/c=0,50’dir. Agrega nemi ve su emmesi düzeltilmeden tartılan suyu etkin su kabul etme; dayanım ve dayanıklılık şartlarını birlikte kontrol et.']
+   ],
+   math:[
+    ['Lineer denklem sistemi','2x+y=5 ve x−y=1 sisteminden x=2, y=1 bulunur. Özgün denklemlere geri koy: 2×2+1=5 ve 2−1=1. Çözümü yerine koymadan doğru kabul etme.'],
+    ['Yöntem ve hata kontrolü','Sayısal çözümde ardışık yaklaşım farkı |x_k−x_{k−1}| ile yaklaşık hata izlenebilir. Durdurma ölçütünü toleransla karşılaştır; yakınsama, modelin doğru kurulduğunu tek başına kanıtlamaz.']
+   ],
+   survey:[
+    ['Arazi nivelmanı','Bilinen kot 100,000 m, geri okuma 1,455 m ve ileri okuma 0,965 m ise ΔH=BS−FS=+0,490 m; yeni nokta kotu 100,490 m olur. Okuma yönünü saha defterinde açık göster.'],
+    ['Nivelman kapanma kontrolü','ΣBS=5,425 m ve ΣFS=5,390 m ise ölçülen kot farkı +0,035 m’dir. Bilinen kot farkıyla karşılaştırıp kapanma hatasını bul; toleransı ölçme yöntemi ve güzergâh uzunluğuna göre seç.']
+   ],
+   water:[
+    ['Yağış hacmi ve akış','5 km² havzaya 40 mm yağış düşerse brüt hacim 200.000 m³ olur. Basitleştirilmiş C=0,35 akış katsayısıyla etkin akış hacmi yaklaşık 70.000 m³’tür. Bu hacim hesabıdır; pik debi için yağış süresi gerekir.'],
+    ['Su bütçesi','P=120 mm yağış, ET=45 mm ve Q=60 mm eşdeğer derinliği için ΔS=P−ET−Q=15 mm depolama artışı bulunur. Tüm terimleri aynı havza ve zaman ölçeğinde tanımla.']
+   ],
+   earthworks:[
+    ['Ortalama uç alan hacmi','A₁=18 m², A₂=26 m² ve L=12 m için V≈(A₁+A₂)L/2=264 m³ bulunur. Bu doğal kesit hacmidir; kabarma ve sıkıştırma katsayılarını ayrıca uygula.'],
+    ['Kabarma hacmi','264 m³ doğal kazı için geçici kabarma katsayısı 1,20 ise gevşek hacim 316,8 m³ olur. Kalıcı dolgu hacmi için ayrı sıkışma verisi gerekir; katsayıyı zemin türü ve deney/şartnameden al.']
+   ],
+   transport:[
+    ['Trafik akımı','k=25 araç/km ve v=40 km/saat ise q=kv=1000 araç/saat bulunur. Hız ve yoğunluk aynı yol kesimi ve zaman aralığına ait olmalıdır.'],
+    ['Pik saat faktörü','Saatlik toplam 600 araçtan en yoğun 15 dakikada 180 araç geçmişse PHF=600/(4×180)=0,833 olur. Yön ve sayım aralığını raporda koru.']
+   ],
+   buildingphysics:[
+    ['Yalıtım katmanının ısıl direnci','d=0,10 m ve λ=0,040 W/(m·K) için R=d/λ=2,50 m²K/W’dir. Bu yalnız katman direncidir; diğer katmanlar ve yüzey dirençleri toplam U değerini değiştirir.'],
+    ['U değeri ve ısı akısı','R_toplam=2,87 m²K/W ise U≈0,348 W/(m²K). İç-dış sıcaklık farkı 20 K olduğunda q=UΔT≈6,96 W/m² olur. Isı köprüleri ve yoğuşma ayrıca incelenmelidir.']
+   ],
+   sustainability:[
+    ['Yaşam döngüsü karşılaştırması','Aynı işlevsel birimde A çözümü 1250 kg CO₂e, B çözümü 980 kg CO₂e ise B’nin azalışı 21,6% olur. Sistem sınırı, hizmet ömrü ve performans aynı olmalıdır.'],
+    ['Bakım etkisi','Başlangıç üretim etkisi düşük olan malzeme sık bakım veya erken yenileme gerektirirse yaşam döngüsü avantajını kaybedebilir. Aynı bakım ve ömür sonu senaryolarını karşılaştır.']
+   ],
+   language:[
+    ['Şartname cümlesi','“The concrete shall be cured for at least seven days.” cümlesi “Betona en az yedi gün kür uygulanacaktır.” diye çevrilir. Shall yükümlülük bildirir; süre ve birim korunur.'],
+    ['Laboratuvar raporu','“The specimen was loaded until failure.” ifadesi “Numuneye kırılıncaya kadar yük uygulandı.” biçiminde çevrilir. Edilgen yapı teknik raporda deney sürecini öne çıkarır.']
+   ]
+  };
+  let key=kind;
+  if(c.id==='muk2')key='mechanics';
+  if(c.id==='din')key='dynamics';
+  if(c.id==='akiskan'||c.id==='hidrolik')key='fluid';
+  if(c.id==='malzeme'||c.id==='yapimalz')key='materials';
+  if(['istatistik','diferansiyel','lineer','muhmat','sayisal'].includes(c.id))key='math';
+  if(c.id==='olcme')key='survey';
+  if(['hidroloji','suiklim'].includes(c.id))key='water';
+  if(c.id==='toprak')key='earthworks';
+  if(['ulasimplan','kentulasim'].includes(c.id))key='transport';
+  if(c.id==='yalitim')key='buildingphysics';
+  if(c.id==='ekolojik')key='sustainability';
+  if(['myd1','myd2'].includes(c.id))key='language';
+  if(c.id==='istatistik')return [
+   {title:'Ortalama ve örnek standart sapması',text:'Veri 2, 4, 4, 6 olsun. Ortalama 4; kare sapmalar toplamı 8; örnek varyansı s²=8/(4−1)=2,667 ve s≈1,633 bulunur. Anakütle varyansı istenirse payda n olur.'},
+   {title:'Z puanı',text:'Ortalaması 70, standart sapması 5 olan dağılımda x=80 için z=(80−70)/5=2 bulunur. Gözlem ortalamanın iki standart sapma üzerindedir.'}
+  ][variant];
+  if(c.id==='diferansiyel')return [
+   {title:'Birinci mertebe lineer diferansiyel denklem',text:'y′+2y=6, y(0)=1 için μ=e^{2x}; (e^{2x}y)′=6e^{2x}. İntegrasyonla y=3+Ce^{−2x}; başlangıç koşulundan C=−2 ve y=3−2e^{−2x} bulunur.'},
+   {title:'Ayrılabilir diferansiyel denklem',text:'dy/dx=3y, y(0)=2 için dy/y=3dx; ln|y|=3x+C ve y=Ce^{3x}. Başlangıç koşuluyla y=2e^{3x} elde edilir.'}
+  ][variant];
+  if(c.id==='lineer')return [
+   {title:'Gauss yöntemi',text:'2x+y=5 ve x−y=1 sisteminden x=2, y=1 bulunur. Özgün denklemlere geri koy: 2×2+1=5 ve 2−1=1.'},
+   {title:'Determinantla tek çözüm kontrolü',text:'A=[[2,1],[1,−1]] için det(A)=−3≠0 olduğundan kare sistemin tek çözümü vardır. Büyük sistemlerde sayısal koşulluluk ayrıca değerlendirilmelidir.'}
+  ][variant];
+  if(c.id==='muhmat')return [
+   {title:'Gradyan',text:'f(x,y)=x²+xy+y² için ∇f=(2x+y,x+2y). (1,2) noktasında gradyan (4,5)’tir. Yönlü türev istenirse birim yön vektörüyle skaler çarpım yapılır.'},
+   {title:'Çift integralin fiziksel anlamı',text:'Birim yüzey yoğunluğu ρ=5 kg/m² olan 2×3 m levhanın kütlesi m=ρA=30 kg’dır. Yoğunluk değişkense m=∬_Aρ(x,y)dA kurulur.'}
+  ][variant];
+  if(c.id==='sayisal')return [
+   {title:'Newton–Raphson ile √2',text:'f(x)=x²−2 ve x₀=1,5 için x₁=x₀−f(x₀)/f′(x₀)=1,416667; x₂≈1,414216 bulunur. Yaklaşım √2’ye yaklaşır; hata ve durdurma ölçütünü belirt.'},
+   {title:'Trapez yöntemi',text:'∫₀²x²dx için n=2 ve h=1: I≈h/2[f(0)+2f(1)+f(2)]=3; gerçek değer 8/3≈2,667’dir. Mutlak hata yaklaşık 0,333 olur.'}
+  ][variant];
+  if(examples[key])return examples[key][variant];
+  return {
+   title:variant===0?'Ders alanından transfer uygulaması':'Sonucun bağımsız kontrolü',
+   text:variant===0?`“${t}” için sistem sınırını ve verileri tanımla; ${d.eq_note||profile.method||'uygun bağıntı ve varsayımları'} kullanarak çözüm sırasını kur. Sonucu birim, işaret ve fiziksel anlam kontrolünden geçir.`:`“${t}” konusunda bulduğun sonucu sınır koşulu, ölçüm kapanması veya yerine koyma kontrolüyle doğrula. ${d.engineering||profile.app||'Uygulama koşullarını'} açıklayarak çözümün hangi şartlarda geçerli olduğunu belirt.`
+  };
+ }
+ for(const c of courses){if(c.id==='muk1')continue;for(let i=0;i<c.topics.length;i++){
+  const d=deepLessonData[c.id+'_'+i];if(!d)continue;
+  if(!Array.isArray(d.examples))d.examples=[];
+  const profile=courseTeachingProfiles[c.id]||{};
+  const countNeeded=2-d.examples.length;
+  for(let n=0;n<countNeeded;n++)d.examples.push(buildCourseWorkedExample(c,c.topics[i],d,n));
+ }}
+
  // Konu sayfalarında beş aşamalı aktif hatırlama: kavram, yöntem, varsayım, doğrulama ve uygulama.
  for(const c of courses){if(c.id==='muk1')continue;for(let i=0;i<c.topics.length;i++){
   const d=deepLessonData[c.id+'_'+i];if(!d)continue;
