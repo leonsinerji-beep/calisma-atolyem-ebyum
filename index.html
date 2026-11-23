@@ -977,6 +977,9 @@ const curatedCourseVideos = {
   {terms:['hidrostatik','basınç','hidrostatik kuvvet','durgun'],id:'vnwdgA4a0CY',title:'Hidrostatik ve düzlem yüzeylere gelen kuvvetler',channel:'Zekeriya Parlak',note:'Konu anlatımı ve iki örnek problem çözümü içerir.'},
   {terms:['bernoulli','enerji çizgisi','süreklilik','debi','akış türü','reynolds'],id:'w49swFrHYiY',title:'Bernoulli denklemi – sınav tipi örnek sorular',channel:'Türkişi Engineering',note:'Bernoulli, hız-kesit ilişkisi, manometre ve kayıp etkilerini soru üzerinden işler.'}
  ],
+ hidrolik:[
+  {terms:['darcy','darcy-weisbach','boru akışı','sürtünme kaybı','boru kaybı'],id:'xxw2ToMExYc',title:'Boru Akış Problemi Çözümü | Darcy–Weisbach ve iterasyon',channel:'Türkçe mühendislik ders içeriği',note:'Boru çapı, uzunluk, pürüzlülük ve yük kaybından debinin iterasyonla bulunmasını gösterir. Sürtünme katsayısı ve birim kontrolünü kendi ders notunla birlikte takip et.'}
+ ],
  malzeme:[
   {terms:['faz diyagram','demir','karbon','denge diyagram','mikroyapı'],id:'yXrebbd-454',title:'Faz diyagramları ve levye kuralı',channel:'Malzeme Bilimi ve Mekanik Şeyler',note:'Faz diyagramı okuma, bileşim ve faz oranları için.'},
   {terms:['beton','kür','basınç dayanımı','slump','çimento','agrega'],id:'zkrxH_jbPbc',title:'Betonun yerleştirilmesi, katkılar, kür ve testler',channel:'Malzeme Bilimi ve Mekanik Şeyler',note:'Slump ve basınç deneyi ile betonun sahadaki uygulamasını ilişkilendirir.'}
@@ -990,10 +993,19 @@ const curatedCourseVideos = {
   {terms:['beton karışım hesabı','ts 802','karışım hesabı','agrega nem düzeltmesi'],id:'DKD_SLCmjTk',title:'Beton Karışım Hesabı Eğitim Videosu',channel:'Üniversite dersi olarak listelenen kaynak',note:'Çimento/su miktarı, agrega hesabı, elek analizi ve nem düzeltmesi adımlarını inceler. Güncel standart ve öğretim elemanının kullandığı tablolarla karşılaştır.'}
  ],
  diferansiyel:[
-  {terms:['diferansiyel denklemlere giriş','sınıflandırma'],id:'cNUNaCyeQnM',title:'Diferansiyel denklemlere giriş ve sınıflandırma',channel:'Türkişi Engineering',note:'Kanal açıklamasında birinci mertebe, yüksek mertebe, Laplace ve sınav soru çözümleri serisi bulunur.'}
+  {terms:['diferansiyel denklemlere giriş','sınıflandırma'],id:'cNUNaCyeQnM',title:'Diferansiyel denklemlere giriş ve sınıflandırma',channel:'Türkişi Engineering',note:'Kanal açıklamasında birinci mertebe, yüksek mertebe, Laplace ve sınav soru çözümleri serisi bulunur.'},
+  {terms:['birinci mertebe','lineer diferansiyel','integral çarpanı'],id:'cpVh6AkICFM',title:'Birinci Mertebeden Lineer Diferansiyel Denklemler',channel:'Platon Akademi',note:'Standart forma getirme, integrasyon çarpanı ve örnek çözüm adımlarını anlatır.'},
+  {terms:['homojen olmayan','parametrelerin değişimi','belirsiz katsayılar'],id:'0uRlaSrvoHs',title:'Homojen Olmayan Lineer Diferansiyel Denklemler',channel:'Türkçe matematik dersi',note:'Parametrelerin değişimi ve belirsiz katsayılar yöntemlerini örnek sorularla karşılaştırır.'}
  ],
  sayisal:[
   {terms:['newton','kök bulma','yakınsama','sayısal yöntem','sayısal çözümleme'],id:'I7zpcF_kmew',title:'Sayısal analiz – Newton–Raphson metodu',channel:'BUders Boğaziçiliden Özel Ders',note:'Kök bulma yöntemini ve iterasyon mantığını örnekle açıklar.'}
+ ],
+ lineer:[
+  {terms:['gauss eliminasyon','gauss yöntemi','lineer denklem sistemleri'],id:'1bq9g6zC8w8',title:'Gauss Eliminasyon Yöntemi ve Lineer Denklem Sistemleri',channel:'Türkçe matematik dersi',note:'Tek çözüm, sonsuz çözüm ve çözümsüz sistem ayrımını; satır işlemleri ve rank ilişkisini örnekle açıklar.'},
+  {terms:['lineer cebir vize','lineer cebir final','özuzay','rank'],id:'9mzlePoDxwE',title:'Lineer Cebir Vize ve Final Soruları Çözümü',channel:'Türkçe üniversite dersi',note:'Gauss, rank, matris uzayları ve sınav tipi soruları adım adım inceler.'}
+ ],
+ istatistik:[
+  {terms:['standart sapma','varyans','aritmetik ortalama','normal dağılım','istatistik soru çözümü'],id:'7suWCFaXHu4',title:'İstatistik: Ortalama, Varyans, Standart Sapma ve Normal Dağılım',channel:'Türkçe istatistik dersi',note:'Temel dağılım ve sınav tipi hesaplamaları örneklerle işler; kullanılan örneklem/anakütle tanımını notlarınla karşılaştır.'}
  ],
  hidroloji:[
   {terms:['yüzeysel akış','akım ölçümü','havza','akarsu','debi'],id:'H53UZ8OHYG4',title:'Hidroloji – yüzeysel akış ve akarsu debisi ölçümü',channel:'Fatih Saka',note:'Havza, yüzeysel akış ve muline ile debi ölçümüne odaklanır.'}
@@ -1001,6 +1013,10 @@ const curatedCourseVideos = {
  olcme:[
   {terms:['nivelman','yükseklik','kot','açık poligon nivelmanı'],id:'JOA6VqCysxo',title:'Nivelman nedir? Açık poligon nivelmanı',channel:'Kaan Kalkan',note:'Nivelman mantığı ve açık poligon nivelmanı örneği.'},
   {terms:['poligon','güzergah','açık poligon'],id:'O7LcYuDzSWo',title:'Açık poligon güzergâhı hesabı – örnek çözüm',channel:'AHBV Tapu Kadastro Ders Notları',note:'Açık poligon güzergâh hesabını uygulamayla gösterir.'}
+ ],
+ toprak:[
+  {terms:['yarma','dolgu','kazı dolgu hacmi','toprak kabarması','çökme yüzdesi'],id:'UB2qMSMIEVg',title:'Toprak İşleri: Yarma–Dolgu Hacim Hesabı',channel:'Eng. Ulaş',note:'Doğal, geçici kabarmış ve kalıcı hacim; çökme yüzdesi ve örnek problem.'},
+  {terms:['enkesit','tam yarma','tam dolgu','karışık kesit','hacim hesabı'],id:'E_Homl99sFk',title:'Ulaştırma II: Yarma ve Dolgu Enkesitlerinde Hacim Hesapları',channel:'Kadir AKGÖL',note:'Ardışık tam yarma, tam dolgu ve karışık enkesitler arasında hacim hesabı.'}
  ],
  yalitim:[
   {terms:['yoğuşma','buhar','yapı fiziği'],id:'hxBCslhHexA',title:'Yapı fiziği – yoğuşma tahkiki',channel:'Dr. Mehmet Oğuz Duru',note:'Yapı elemanında yoğuşma hesabı ve grafik okuma.'},
