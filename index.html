@@ -2761,16 +2761,20 @@ function startQuiz(){
  const groups=new Map();
  pool.forEach(q=>{const key=q.c+'|'+q.topic;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(q)});
  const rounds=[...groups.values()].map(group=>shuffle(group));
+ // Tüm ders testlerinde konu başına en fazla 4 soru ile dengeli dağılım sağla.
+ // Tek konu testlerinde ise o konunun mevcut soru bankasının tamamına erişim ver.
+ const perTopicLimit=t==='all'?4:Math.max(...rounds.map(group=>group.length));
+ const maxAvailable=rounds.reduce((sum,group)=>sum+Math.min(group.length,perTopicLimit),0);
  const requested=Math.min(n,pool.length);
- const target=Math.min(requested,groups.size*4);
+ const target=Math.min(requested,maxAvailable);
  let selected=[];
- for(let round=0;round<4&&selected.length<target;round++){
+ for(let round=0;round<perTopicLimit&&selected.length<target;round++){
   for(const group of rounds){
    if(group[round]&&selected.length<target)selected.push(group[round]);
   }
  }
  pool=shuffle(selected);
- if(pool.length<n)toast('Filtre ve konu başına en fazla 4 soru sınırı nedeniyle '+pool.length+' soruluk test oluşturuldu.');
+ if(pool.length<n)toast('Filtre ve dengeli soru dağılımı nedeniyle '+pool.length+' soruluk test oluşturuldu.');
  clearInterval(quizTimerInt);
  quiz={items:pool,index:0,answers:{},started:Date.now(),deadline:duration>0?Date.now()+duration*60000:null};
  if(quiz.deadline)quizTimerInt=setInterval(updateQuizCountdown,1000);
