@@ -153,13 +153,15 @@ const courses=[
 ];
 const formulas=[
 {course:'muk1',title:'Normal gerilme',expr:'σ = N / A',note:'N: eksenel kuvvet, A: kesit alanı. N ve mm² kullanılırsa σ birimi N/mm² = MPa olur.'},
+{course:'muk1',title:'Kesit alanı bağıntıları',expr:'A_dikdörtgen = b·h    ;    A_daire = πd²/4    ;    A_boru = π(D²−d²)/4    ;    A_net = (b−d_h)·t',note:'Delikli levhada net kesit, yük doğrultusuna dik kesitteki delik genişliği çıkarılarak bulunur. Geometriye göre uygun alanı seç.'},
 {course:'muk1',title:'Birim şekil değiştirme',expr:'ε = ΔL / L₀',note:'Boyutsuzdur. ΔL uzama/kısalma, L₀ ilk boydur.'},
 {course:'muk1',title:'Hooke kanunu',expr:'σ = E · ε',note:'Doğrusal elastik bölgede geçerlidir. E elastisite modülüdür.'},
+{course:'muk1',title:'Poisson oranı',expr:'ν = −ε_enine / ε_boyuna',note:'Tek eksenli çekme/basınçta enine birim şekil değiştirme ile boyuna birim şekil değiştirme oranıdır; boyutsuzdur.'},
 {course:'muk1',title:'Eksenel uzama',expr:'ΔL = N · L / (A · E)',note:'Prizmatik, sabit kesitli çubuk ve eksenel yük varsayımlarıyla.'},
 {course:'muk1',title:'Düzlem denge denklemleri',expr:'ΣFₓ = 0    ;    ΣFᵧ = 0    ;    ΣM₀ = 0',note:'Düzlemde statik dengedeki rijit cisim için iki kuvvet ve bir moment denklemi yazılır. Moment birimi kuvvet×uzunluktur.'},
 {course:'muk1',title:'Çekme deneyi büyüklükleri',expr:'σ_müh = P / A₀    ;    ε_müh = ΔL / L₀    ;    Rₘ = Pₘₐₓ / A₀',note:'Mühendislik gerilmesinde başlangıç kesit alanı A₀ kullanılır. Rₘ en büyük mühendislik gerilmesidir.'},
 {course:'muk1',title:'Isıl ve kısıtlı eksenel deformasyon',expr:'ΔL_T = α · ΔT · L    ;    ΣΔL = 0 (rijit uçlar)',note:'Serbest çubukta ısıl uzama oluşur. Uç hareketleri engellenmişse mekanik ve ısıl deformasyonların cebirsel toplamı sıfırdır.'},
-{course:'muk1',title:'Dairesel milde burulma',expr:'τ = T · r / J    ;    φ = T · L / (G · J)    ;    J_dolu = πd⁴/32',note:'τ kayma gerilmesi (MPa), T iç tork, r yarıçap, J polar atalet momenti (mm⁴), G kayma modülü, φ radyan cinsinden burulma açısıdır. Temel bağıntılar dairesel mil ve elastik burulma kabullerine dayanır.'},
+{course:'muk1',title:'Dairesel milde burulma',expr:'τ = T · r / J    ;    φ = T · L / (G · J)    ;    J_dolu = πd⁴/32    ;    J_boru = π(D⁴−d⁴)/32',note:'τ kayma gerilmesi (MPa), T iç tork, r yarıçap, J polar atalet momenti (mm⁴), G kayma modülü, φ radyan cinsinden burulma açısıdır. Temel bağıntılar dairesel mil ve elastik burulma kabullerine dayanır.'},
 {course:'muk1',title:'Kesme kuvveti ve eğilme momenti ilişkisi',expr:'dV/dx = −w(x)    ;    dM/dx = V(x)    ;    ΔM = ∫V(x) dx',note:'Yaygın bir işaret konvansiyonunda w yayılı yük, V kesme kuvveti, M eğilme momentidir. İşaretler dersin kullandığı konvansiyonla tutarlı olmalıdır.'},
 {course:'muk1',title:'Basit elastik eğilme',expr:'σ = M · y / I = M / S    ;    S = I / c',note:'M eğilme momenti, I alan atalet momenti, y nötr eksenden uzaklık, c en dış lif uzaklığı ve S kesit modülüdür. Doğrusal elastik basit eğilme varsayımları altında kullanılır.'},
 {course:'muk2',title:'Eğilme gerilmesi',expr:'σ = M · y / I',note:'Elastik eğilme varsayımları altında; y nötr eksenden uzaklıktır.'},
