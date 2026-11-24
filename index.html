@@ -1722,6 +1722,183 @@ questions.push(...[{"id":"muk1-defl-01","c":"muk1","topic":14,"level":"Kolay","q
 
 
 
+
+const careerLessonModules = [
+ {
+  objective:"Kariyer hedefini yalnızca bir meslek adı olarak değil; hedef rol, çalışma alanı, gerekli yetkinlikler ve zaman ufku ile tanımlamak.",
+  explanation:"Kariyer farkındalığı kişinin ilgi alanlarını, değerlerini, güçlü yönlerini, çalışma tercihlerini ve yaşam koşullarını tanımasıyla başlar. İnşaat mühendisliğinde saha, teknik ofis, proje yönetimi, ulaştırma, su yapıları, yapı denetimi, kamu ve akademi gibi farklı çalışma alanları vardır. Her rolün günlük görevleri ve beklenen yetkinlikleri farklıdır.\n\nHedef belirlerken genel ifadeler yerine gözlenebilir sonuçlar seçilmelidir. SMART yaklaşımı hedefin belirli, ölçülebilir, ulaşılabilir, ilgili ve zaman sınırlı olmasını önerir. Hedef, mevcut koşullara göre dönemsel olarak güncellenebilir.",
+  eq_title:"Hedef belirleme çerçevesi",
+  eq:"Hedef = rol + çalışma alanı + ölçülebilir sonuç + zaman sınırı",
+  eq_note:"Bu matematiksel eşitlik değil, hedefi belirsiz bir dilekten uygulanabilir bir plana dönüştüren kontrol çerçevesidir.",
+  example_title:"Teknik ofis alanına yönelme hedefi",
+  example:"Belirsiz hedef: Teknik ofiste çalışmak istiyorum. Daha ölçülebilir hedef: Önümüzdeki 12 hafta içinde bir yapı projesinin pafta okuma ve metraj süreçlerini öğrenmek; iki örnek çizim ve bir metraj çalışmasını portföy dosyasına eklemek.",
+  steps:["İlgi duyduğun çalışma alanlarını ve günlük görevleri araştır.","Hedef rolün neden sana uygun olduğunu yaz.","Hedefi belirli ve ölçülebilir bir çıktıya dönüştür.","Gerçekçi bir bitiş tarihi ve ara kilometre taşları belirle.","Üç ay sonunda ilerlemeyi değerlendirip hedefi güncelle."],
+  engineering:"Saha mühendisliği, teknik ofis, ulaştırma, hidrolik ve proje yönetimi gibi alanların görevleri farklıdır. Hedef rolü erken tanımak, ders projelerini ve staj deneyimlerini bilinçli seçmeyi sağlar.",
+  pitfalls:["Yalnızca mühendis olmak istiyorum gibi ölçülemeyen hedef yazmak.","İşin günlük görevlerini araştırmadan yalnızca unvana göre tercih yapmak.","Kısa sürede çok fazla hedef belirleyip öncelik seçmemek."],
+  checkq:"SMART hedefteki beş özellik nelerdir?",
+  checka:"Specific (belirli), Measurable (ölçülebilir), Achievable (ulaşılabilir), Relevant (ilgili) ve Time-bound (zaman sınırlı).",
+  practice:[{q:"CV’ye yazılabilecek kariyer hedefi ile ölçülebilir gelişim hedefi arasındaki fark nedir?",a:"Kariyer hedefi yönü gösterir; gelişim hedefi ise o yöne ilerlemek için yapılacak faaliyet, çıktı ve tarihi tanımlar."},{q:"Bir hedefin ulaşılabilir olup olmadığını nasıl kontrol edersin?",a:"Mevcut zaman, kaynak, ön koşul bilgi ve destekleri hedefin gerektirdiği çabayla karşılaştırırsın."}],
+  extraSections:[{title:"Hedef ile yöntem arasındaki fark",body:"Hedef ulaşılmak istenen sonucu; yöntem bu sonuca ulaşmak için izlenen adımları tanımlar. Örneğin mesleki İngilizceyi geliştirmek hedef değil, bu hedefe götüren faaliyetlerden biridir; ölçüt olarak seviye, teknik metin sayısı veya rapor yazma çıktısı belirlenebilir."}]
+ },
+ {
+  objective:"Kişisel güçlü yönleri ve gelişim alanlarını kanıta dayalı değerlendirmek; hedef rolün istediği yetkinliklerle aradaki farkı belirlemek.",
+  explanation:"Öz değerlendirme; teknik bilgi, uygulama becerisi, iletişim, ekip çalışması, problem çözme, dijital araçlar, iş güvenliği ve etik gibi başlıklarda mevcut durumun dürüstçe incelenmesidir. Yetkinlik yalnızca bir beceriyi bildiğini söylemek değildir; o beceriyi uygun koşulda uygulayabildiğini gösteren davranış veya çıktıdır.\n\nYetkinlik haritası, hedef rolün beklediği özelliklerle mevcut kanıtları yan yana koyar. Her satırda yetkinlik, mevcut düzey, kanıt, gelişim ihtiyacı ve planlanan faaliyet bulunabilir. Değerlendirme mümkün olduğunca somut örneklerle yapılmalıdır.",
+  eq_title:"Yetkinlik boşluğu analizi",
+  eq:"Gelişim ihtiyacı = hedef rol gereksinimi − mevcut kanıtla gösterilen düzey",
+  eq_note:"Bu kavramsal karşılaştırmadır; sayısal fark üretmek zorunlu değildir. Öncelik, hedef rol için kritik ve kanıtı zayıf yetkinliklere verilmelidir.",
+  example_title:"Yetkinlik haritası örneği",
+  example:"Hedef rol: saha mühendisi. Gereksinim: ölçüm verisini okuyup saha kaydı hazırlamak. Mevcut kanıt: ders kapsamında nivelman hesabı. Gelişim ihtiyacı: gerçek saha ölçüm defteri ve hata kontrolünü deneyimlemek. Eylem: örnek saha verisiyle hesap yapmak ve sonuç raporu hazırlamak.",
+  steps:["Hedef rolün görev ve yetkinliklerini çıkar.","Her yetkinlik için mevcut düzeyini dürüstçe değerlendir.","Bildiğini gösteren proje, rapor, çizim veya deneyimi yaz.","Eksik yetkinlikleri önem ve aciliyetine göre sırala.","Her boşluk için faaliyet ve kanıtlanabilir çıktı belirle."],
+  engineering:"İnşaat mühendisliğinde bir hesap raporu, çizim, metraj tablosu, deney sonucu, saha gözlem kaydı veya ekip çalışması çıktısı yetkinlik kanıtı olabilir.",
+  pitfalls:["Kendini yalnızca genel sıfatlarla tanımlamak.","Bir yazılımı açmış olmayı o yazılımda yetkinlik kanıtı saymak.","Gelişim alanlarını saklamak yerine önceliklendirmemek."],
+  checkq:"Yetkinlik haritasında hangi temel sütunlar bulunmalıdır?",
+  checka:"Yetkinlik, hedef rol gereksinimi, mevcut düzey, kanıt, gelişim boşluğu ve eylem/çıktı.",
+  practice:[{q:"Bir yetkinliğin kanıtı olarak hangi tür çıktılar gösterilebilir?",a:"Ders projesi, hesap raporu, çizim, laboratuvar raporu, staj görevi, sunum veya ölçülebilir saha çalışması."},{q:"Öz değerlendirmede neden yalnızca güçlü yönleri yazmak yeterli değildir?",a:"Gelişim boşlukları belirlenmezse hedef role ulaşmak için gerekli öğrenme ve deneyim planlanamaz."}],
+  extraSections:[{title:"Yetkinlik düzeyini dürüst tanımlama",body:"Başlangıç düzeyi, rehberlikle uygulama, bağımsız uygulama ve başkasına açıklayıp kontrol edebilme gibi gözlenebilir seviyeler kullan. Seviyeyi yalnızca özgüvene göre değil, tamamlanmış iş örneklerine göre belirle."}]
+ },
+ {
+  objective:"Pozisyona uygun, okunabilir ve doğrulanabilir bir CV hazırlamak; profesyonel çevrim içi profilini tutarlı bilgilerle desteklemek.",
+  explanation:"CV, işverenin adayın eğitimini, deneyimini, becerilerini ve pozisyonla ilişkisini kısa sürede değerlendirmesini sağlar. İçerik başvuru yapılan role göre düzenlenmeli; en ilgili bilgi üst sıralarda yer almalıdır. Eğitim, iş/staj deneyimi, projeler, teknik beceriler, sertifikalar ve yabancı dil düzeyi açık biçimde yazılabilir.\n\nDeneyim maddelerinde yalnızca görev adı yerine yapılan iş, kullanılan yöntem/araç ve mümkünse sonuç belirtilmelidir. Bilinmeyen veya kullanılmayan yazılım, sertifika ya da yetkinlik CV’ye eklenmemelidir. Profesyonel dijital profil ile CV’deki tarih, unvan ve proje bilgileri birbiriyle tutarlı olmalıdır.",
+  eq_title:"Deneyim maddesi yazma şablonu",
+  eq:"Eylem fiili + yapılan görev + kullanılan yöntem/araç + doğrulanabilir sonuç",
+  eq_note:"Bu bir yazım şablonudur; sayısal sonuç yoksa katkıyı dürüst ve somut biçimde açıklamak yeterlidir.",
+  example_title:"Proje deneyimini yazma",
+  example:"Zayıf ifade: AutoCAD biliyorum. Daha güçlü ifade: Ders projesinde iki katlı konut planını AutoCAD kullanarak çizdim; ölçülendirme ve katman düzenini uyguladım. İkinci ifade hem uygulamayı hem de yapılan işi gösterir.",
+  steps:["Başvuru ilanındaki görev ve becerileri belirle.","CV’yi uygun bölümlere ayır ve en ilgili deneyimi öne al.","Her deneyimi görev, yöntem ve sonuçla açıkla.","Tarih, yazım, iletişim ve dosya adını kontrol et.","CV’yi PDF olarak dışa aktar ve başvuru öncesi açıp düzeni doğrula."],
+  engineering:"Çizim, metraj, laboratuvar deneyleri, teknik rapor, saha gözlemi ve takım projesi; yeni mezun inşaat mühendisliği adayının deneyim bölümünde kullanılabilecek kanıtlardır.",
+  pitfalls:["Gerçek olmayan deneyim veya uzmanlık yazmak.","Bütün ilana aynı CV’yi göndermek.","Uzun görev tanımları yazıp somut çıktıyı gizlemek."],
+  checkq:"Bir CV deneyim maddesi nasıl daha doğrulanabilir hâle getirilir?",
+  checka:"Yapılan görev, kullanılan yöntem/araç ve elde edilen somut çıktı açıkça belirtilir; iddia abartılmaz.",
+  practice:[{q:"Yeni mezun bir adayın profesyonel deneyimi azsa CV’de hangi bölümler öne çıkarılabilir?",a:"Eğitim, ders projeleri, laboratuvar çalışmaları, teknik beceriler, stajlar, gönüllü çalışmalar ve doğrulanabilir portföy çıktıları."},{q:"CV ile çevrim içi profesyonel profil neden tutarlı olmalıdır?",a:"Tarih, pozisyon ve proje farklılıkları güven kaybına yol açabilir; bilgiler aynı gerçek deneyimi yansıtmalıdır."}],
+  extraSections:[{title:"ATS ve okunabilirlik",body:"Başvuru takip sistemlerinde okunabilirliği korumak için standart bölüm başlıkları, sade düzen ve metin tabanlı PDF kullan. Karmaşık tablolar, aşırı grafikler ve metni resim olarak gömmek bazı sistemlerde bilgilerin doğru okunmasını zorlaştırabilir."}]
+ },
+ {
+  objective:"İş arama kanallarını planlı kullanmak ve ilan metnindeki görev, zorunlu koşul, tercih edilen beceri ve başvuru adımlarını ayırt etmek.",
+  explanation:"İş arama yalnızca ilan sitelerinde arama yapmak değildir. Üniversite kariyer merkezi, meslek odaları, kurumların resmî kariyer sayfaları, staj programları, profesyonel ağlar ve doğrudan şirket başvuruları farklı kanallardır. İlanın kaynağı, güncelliği ve başvuru güvenilirliği kontrol edilmelidir.\n\nİlan analizi yaparken iş tanımı, zorunlu nitelikler, tercih edilen beceriler, deneyim seviyesi, lokasyon, çalışma koşulları ve son başvuru tarihi ayrı ayrı not edilir. Aday, sahip olmadığı koşulları varmış gibi göstermemeli; karşılayabildiği koşullara ilişkin kanıtları belirlemelidir.",
+  eq_title:"İlan–aday uyum tablosu",
+  eq:"İlan gereksinimi → mevcut kanıt → eksik alan → başvuru kararı / gelişim adımı",
+  eq_note:"Bu tablo başvuru kararını sistematikleştirir; ilanı tek bir puana indirgemek yerine zorunlu koşulların karşılanıp karşılanmadığını ayrı kontrol et.",
+  example_title:"İlan maddesini analiz etme",
+  example:"İlan: AutoCAD, metraj ve saha takibi deneyimi tercih sebebidir; sürücü belgesi zorunludur. Aday, AutoCAD ve metraj ders projelerini kanıtlayabilir; saha takibi deneyimi yoksa bunu deneyim gibi yazmaz. Sürücü belgesi koşulunu ise başvuru öncesinde karşılayıp karşılamadığını netleştirir.",
+  steps:["İlanın resmî ve güncel kaynağını doğrula.","Görevleri ve zorunlu koşulları ayrı listele.","Tercih edilen yetkinlikleri mevcut kanıtlarınla eşleştir.","Eksik koşulların başvuruya engel olup olmadığını değerlendir.","Pozisyona uygun CV ve kısa ön yazı ile başvur; son tarihi takip et."],
+  engineering:"Teknik ofis, şantiye, ölçme, kalite kontrol ve proje yönetimi ilanlarında benzer unvanlar farklı sorumluluklar içerebilir. Günlük görev ve raporlama ilişkisini okumak önemlidir.",
+  pitfalls:["İlanı okumadan standart CV göndermek.","Zorunlu koşulla tercih sebebini karıştırmak.","Kimlik veya banka bilgisi isteyen şüpheli ilanlara güvenmek."],
+  checkq:"İlan analizinde zorunlu nitelik ile tercih edilen beceri nasıl ayrılır?",
+  checka:"Zorunlu nitelik başvurunun asgari koşuludur; tercih edilen beceri adayları karşılaştırırken avantaj sağlayabilir ancak her zaman başvuru engeli değildir.",
+  practice:[{q:"Başvuru kanalı seçerken güvenilirlik nasıl kontrol edilir?",a:"Kurumun resmî web sitesi, doğrulanmış kariyer sayfası veya bilinen kariyer merkezi üzerinden ilan ve başvuru bağlantısı doğrulanır."},{q:"İlanda bulunmayan bir yetkinliği CV’ye eklemek neden yanlıştır?",a:"Mülakatta veya iş sırasında doğrulanamayabilir; etik ve güvenilirlik sorununa yol açar."}],
+  extraSections:[{title:"Başvuru takibi",body:"Başvuru tarihi, pozisyon adı, kurum, ilan bağlantısı, gönderilen CV sürümü ve takip tarihi için basit bir kayıt tablosu tut. Aynı ilana tekrar başvuru veya son tarihi kaçırma riskini azaltır."}]
+ },
+ {
+  objective:"Teknik ve davranışsal mülakatlara hazırlanmak; soruyu anlamak, varsayımları açıklamak ve deneyimleri yapılandırılmış biçimde anlatmak.",
+  explanation:"Mülakat, adayın yalnızca bilgi düzeyini değil, düşünme biçimini, iletişimini, etik yaklaşımını ve öğrenme isteğini de değerlendirebilir. Teknik soruda verilenleri ve bilinmeyenleri ayırmak, gerekli kabulleri belirtmek, çözüm yolunu sesli ve düzenli anlatmak önemlidir. Sonuca ulaşamıyorsan uydurma bilgi vermek yerine hangi bilgiyi kontrol edeceğini açıklamak daha güvenilirdir.\n\nDavranışsal sorular geçmişteki bir durumu nasıl yönettiğini anlamaya çalışır. STAR yöntemi; Situation (durum), Task (görev), Action (eylem) ve Result (sonuç) sırasıyla yanıtı düzenler. Sonuç bölümünde mümkünse öğrenilen ders de belirtilir.",
+  eq_title:"STAR yanıt yapısı",
+  eq:"Situation → Task → Action → Result",
+  eq_note:"STAR, davranışsal mülakat yanıtını düzenlemek için kullanılan bir anlatım çerçevesidir; her yanıtın kısa, ilgili ve gerçek bir deneyime dayanması gerekir.",
+  example_title:"Ekip projesindeki anlaşmazlığı anlatma",
+  example:"Durum: ders projesinde ekip üyeleri görev paylaşımında anlaşamadı. Görev: teslim tarihine kadar çizim ve hesapları tamamlamak. Eylem: işleri alt görevlere ayırıp sorumluları ve ara teslim tarihlerini belirledim. Sonuç: proje zamanında teslim edildi; sonraki çalışmalarda görevleri baştan yazılı netleştirmeyi öğrendik.",
+  steps:["İlan ve kurumun faaliyet alanını araştır.","Pozisyonla ilgili teknik temel bilgileri tekrar et.","Davranışsal sorular için gerçek STAR örnekleri hazırla.","Teknik soruda veri, varsayım ve çözüm adımlarını açıkla.","Bilmediğin konuda dürüst ol; teşekkür ve takip adımını tamamla."],
+  engineering:"İnşaat mühendisliği mülakatlarında taşıyıcı sistem, saha güvenliği, kalite, metraj, çizim okuma veya deney sonuçlarını yorumlama gibi pozisyona özgü senaryolar sorulabilir.",
+  pitfalls:["Bilmediği teknik bilgiyi kesinmiş gibi sunmak.","STAR yanıtında eylem ve sonucu açıklamamak.","Ekip çalışmasını anlatırken bütün katkıyı kendine mal etmek."],
+  checkq:"STAR yönteminin dört aşaması nedir?",
+  checka:"Situation (durum), Task (görev), Action (eylem) ve Result (sonuç).",
+  practice:[{q:"Teknik mülakatta soruyu tam anlamadıysan nasıl davranmalısın?",a:"Soruyu netleştiren kısa bir soru sor; verilenleri ve varsayımlarını tekrar et; sonra çözüm yolunu açıkla."},{q:"Bir başarısızlık örneğini anlatırken neye odaklanmalısın?",a:"Sorumluluğunu dürüstçe tanımla, ne yaptığını ve sonuçta ne öğrendiğini açıkla; mazeret üretme."}],
+  extraSections:[{title:"Mülakat sonunda sorulabilecek sorular",body:"Pozisyonun ilk üç ayındaki öncelikleri, ekip yapısını, kullanılan teknik araçları, saha/ofis dengesini ve başarı ölçütlerini sorabilirsin. Soruların işin kapsamını anlamaya yönelik ve saygılı olmalıdır."}]
+ },
+ {
+  objective:"Teknik bilgiyi açık aktarmak, aktif dinlemek, ekip içi rol ve sorumlulukları netleştirmek ve anlaşmazlıkları profesyonel biçimde çözmek.",
+  explanation:"Mühendislik projeleri farklı uzmanlıkların birlikte çalışmasını gerektirir. İletişim yalnızca konuşmak değil; doğru bilgiyi doğru kişiye, doğru zamanda ve anlaşılır biçimde aktarmaktır. Teknik yazışmada konu, tarih, çizim revizyonu, ölçü birimi, karar ve sorumlu kişi açık olmalıdır. Sözlü talimat kritikse yazılı kayıtla doğrulanabilir.\n\nTakım çalışmasında ortak hedef, görev dağılımı, teslim tarihi ve karar yöntemi netleştirilmelidir. Görüş ayrılıkları kişiselleştirilmeden veri, çizim, şartname, iş güvenliği ve proje hedefleri üzerinden ele alınmalıdır.",
+  eq_title:"Etkili ekip iletişimi döngüsü",
+  eq:"Bilgiyi doğrula → açık aktar → geri bildirimi dinle → kararı kaydet → uygulamayı takip et",
+  eq_note:"Bu bir iletişim kontrol döngüsüdür. Özellikle tasarım değişikliği, saha uygunsuzluğu ve güvenlik bildirimlerinde izlenebilir kayıt önemlidir.",
+  example_title:"Saha ile teknik ofis arasında revizyon iletişimi",
+  example:"Sahada bir ölçü uyuşmazlığı fark edildiğinde çalışan eski çizimi kullanmaya devam etmez. İlgili aksı, kotu, çizim numarasını ve revizyon tarihini kaydeder; teknik ofise fotoğraf/ölçüyle bildirir; onaylı güncel çizim geldikten sonra uygulamayı sürdürür.",
+  steps:["Ortak hedefi ve teslim ölçütünü netleştir.","Görev, sorumlu ve teslim tarihini yazılı belirle.","Teknik bilgiyi kaynak, ölçü ve revizyonla birlikte aktar.","Karşı tarafın anladığını geri bildirimle doğrula.","Anlaşmazlığı kişiselleştirmeden veri ve güvenlik üzerinden çöz."],
+  engineering:"Çizim revizyonları, saha uygunsuzlukları, kalite kayıtları, laboratuvar sonuçları ve iş güvenliği bildirimleri etkili ekip iletişimine bağlıdır.",
+  pitfalls:["Sözlü talimatı yanlış anlaşılmaya açık bırakmak.","Revizyon numarası ve birim belirtmeden teknik veri göndermek.","Anlaşmazlığı kişiselleştirmek veya güvenlik riskini bildirmemek."],
+  checkq:"Teknik bir revizyon bildiriminin izlenebilir olması için hangi bilgiler bulunmalıdır?",
+  checka:"İş/proje ve konum, çizim veya doküman numarası, revizyon, tarih, tespit edilen durum, ölçü/fotoğraf kanıtı ve istenen karar.",
+  practice:[{q:"Aktif dinleme ekip çalışmasında nasıl gösterilir?",a:"Karşı tarafın mesajını bölmeden dinlemek, anladığını kendi cümlelerinle özetlemek ve netleştirici soru sormakla."},{q:"Güvenlik açısından sakıncalı bir talimat aldığında nasıl davranmalısın?",a:"Riski açıkça bildir, güvenli olmayan uygulamayı sürdürme ve kurumun yetkili iş güvenliği/amir bildirim sürecini izle."}],
+  extraSections:[{title:"Geri bildirim verme",body:"Geri bildirim kişiye değil, gözlenebilir davranışa ve işe odaklanmalıdır. Durumu, etkisini ve beklenen düzeltmeyi somut örnekle açıkla; karşı tarafın görüşünü de dinle."}]
+ },
+ {
+  objective:"İşi alt görevlere bölmek, süre ve bağımlılıkları planlamak, ilerlemeyi izlemek ve proje risklerini erken fark etmek.",
+  explanation:"Zaman yönetimi bireysel öncelikleri düzenler; proje yönetimi ise kapsam, süre, maliyet, kalite, kaynak, iletişim ve risk gibi unsurları birlikte yönetir. Bir iş planı önce teslim edilecek sonucu tanımlar, ardından bu sonucu üreten faaliyetlere ayrılır. Her faaliyete sorumlu, süre, ön koşul ve çıktı atanır.\n\nFaaliyetler arasındaki bağımlılıklar çizelgeyi etkiler. Kritik yol, proje bitişini belirleyen en uzun bağımlı faaliyet zinciridir. Geciken kritik faaliyet bitiş tarihini doğrudan etkileyebilir. Zaman tahmininde belirsizlik ve risk payı da düşünülmelidir.",
+  eq_title:"İş planı çerçevesi",
+  eq:"İş paketi + sorumlu + süre + bağımlılık + teslim çıktısı",
+  eq_note:"Bu proje planlama kontrol listesidir. Süre tahminleri kaynak, kapsam, deneyim ve belirsizliklere göre yapılmalıdır.",
+  example_title:"Ders projesi için iş kırılımı",
+  example:"Bir küçük yapı projesi dört pakete ayrılır: veri ve ihtiyaç toplama, ön tasarım, hesap/çizim, rapor ve kontrol. Hesapların başlaması ön tasarım geometrisinin onayına bağlıdır. Her pakete sorumlu ve teslim tarihi atanır; son gün yalnızca biçimlendirmeye bırakılmaz, teknik kontrol için ayrıca süre ayrılır.",
+  steps:["Teslim edilecek sonucu ve kapsamı yaz.","İşi küçük ve tamamlanabilir paketlere ayır.","Bağımlılıkları ve kritik faaliyetleri belirle.","Sorumlu, süre, kaynak ve kalite ölçütü ata.","İlerlemeyi düzenli izle; sapma ve risk için düzeltici adım belirle."],
+  engineering:"Metraj, çizim, malzeme tedariki, şantiye imalatı, laboratuvar deneyleri ve proje onayları birbirine bağlı faaliyetler içerir. Gecikmeler zincirleme etki oluşturabilir.",
+  pitfalls:["Faaliyetlere sorumlu ve teslim çıktısı atamamak.","Bağımlı işler tamamlanmadan sonraki işe başlamak.","Risk ve kontrol için hiç zaman ayırmamak."],
+  checkq:"Kritik yol neyi belirler?",
+  checka:"Proje bitiş süresini belirleyen, toplam süre bakımından en uzun bağımlı faaliyet zincirini.",
+  practice:[{q:"Bir iş paketinin tamamlandığını nasıl ölçersin?",a:"Başta tanımlanan teslim çıktısının kabul ölçütlerini karşıladığını doğrulayarak."},{q:"Kritik olmayan bir işteki gecikme her zaman proje bitişini geciktirir mi?",a:"Hayır. Toplam bolluk süresi içinde kalıyorsa bitiş tarihini etkilemeyebilir; ancak bolluk aşılırsa kritik hâle gelebilir."}],
+  extraSections:[{title:"Günlük ve haftalık plan",body:"Günlük planda en fazla birkaç öncelikli çıktı belirle. Haftalık planda bağımlılıklar, yaklaşan teslimler ve riskler için zaman ayır. Planı gerçek ilerlemeye göre güncelle; tamamlanmayan işi sessizce sonraki güne taşımak yerine nedenini kaydet."}]
+ },
+ {
+  objective:"Mühendislikte kullanılan dijital araçları amaca uygun seçmek, veriyi güvenli ve düzenli yönetmek ve sürekli öğrenme planı oluşturmak.",
+  explanation:"Dijital yetkinlik tek bir yazılımı kullanabilmekten ibaret değildir. Dosya ve sürüm yönetimi, elektronik tablolar, teknik çizim/CAD, veri analizi, ortak çalışma araçları, çevrim içi araştırma ve temel bilgi güvenliği birlikte önemlidir. Her araç belirli bir iş ihtiyacına hizmet etmelidir.\n\nSürekli öğrenmede önce hangi becerinin gerekli olduğu belirlenir; sonra güvenilir kaynak, uygulama görevi ve ölçülebilir çıktı seçilir. Öğrenilen becerinin küçük bir proje veya portföy çalışmasında kullanılması kalıcılığı artırır.",
+  eq_title:"Dijital beceri öğrenme döngüsü",
+  eq:"İhtiyaç → kaynak seçimi → uygulama → çıktı → geri bildirim → güncelleme",
+  eq_note:"Bir yazılımın adı değil, onunla hangi işi doğru ve güvenli yapabildiğin önemlidir. Sürüm ve lisans koşulları ayrıca kontrol edilmelidir.",
+  example_title:"Elektronik tablo becerisini kanıtlama",
+  example:"Yalnızca Excel biliyorum yazmak yerine, bir beton numune sonuç tablosu hazırladığını; ortalama, standart sapma ve grafik oluşturduğunu; formülleri kontrol edip veri kaynağını belirttiğini örnek dosyayla gösterebilirsin.",
+  steps:["Hedef rol için gerekli dijital aracı veya beceriyi belirle.","Güvenilir ve güncel eğitim kaynağı seç.","Küçük, gerçekçi mühendislik uygulaması yap.","Dosyayı düzenli adlandır, sürüm ve kaynak bilgisini koru.","Ürünü kontrol ettir ve gelişim planını güncelle."],
+  engineering:"CAD çizimleri, elektronik tablolar, ölçme verileri, hesap raporları, proje dokümanları ve BIM gibi dijital araçlar mühendislik iş akışının farklı aşamalarında kullanılabilir.",
+  pitfalls:["Sadece izlenen eğitim videosunu uygulama yapmış saymak.","Dosya sürümü, yedek ve veri güvenliğini ihmal etmek.","Lisanssız veya kaynağı belirsiz yazılım kullanmak."],
+  checkq:"Dijital yetkinliğin kanıtı olarak ne gösterilebilir?",
+  checka:"Araçla tamamlanmış, kontrol edilebilir bir çıktı: çizim dosyası, hesap tablosu, veri analizi, model veya rapor.",
+  practice:[{q:"Yeni bir yazılımı öğrenirken kalıcı öğrenme için hangi sıra uygundur?",a:"İhtiyacı belirle, kaynağı seç, uygulama yap, çıktı üret, geri bildirim al ve tekrar et."},{q:"Proje dosyalarında sürüm yönetimi neden önemlidir?",a:"Yanlış revizyonun kullanılmasını, bilgi kaybını ve ekip üyelerinin farklı dosyalar üzerinde çalışmasını azaltır."}],
+  extraSections:[{title:"Bilgi güvenliği",body:"Kurumsal dosyaları izinsiz paylaşma; güçlü parola ve çok faktörlü doğrulama kullan; bağlantı ve ekleri kontrol et; hassas kişisel/proje verilerini açık paylaşım alanlarına koyma. Yedekleme ve erişim yetkilerini kurum politikasına göre yönet."}]
+ },
+ {
+  objective:"Mühendislik kararlarında dürüstlük, kamu güvenliği, mevzuata uyum, gizlilik, çıkar çatışması ve mesleki sorumluluğu uygulamak.",
+  explanation:"Mühendislik etiği yalnızca kişisel davranış kuralları değildir; tasarım, ölçüm, raporlama, iş güvenliği ve kamu yararıyla doğrudan ilişkilidir. Deney veya ölçüm sonucunu hedefe uydurmak, belirsizliği saklamak, yetki sınırını aşmak veya başkasının çalışmasını kaynak göstermeden kullanmak güveni zedeler.\n\nBir mühendis, kendi yetkinlik sınırını bilmeli; emin olmadığı konuda doğrulama istemeli; önemli riskleri ve uygunsuzlukları uygun kanaldan bildirmelidir. Gizli proje ve kişisel veriler yalnızca yetkili kişilerle, gerekli amaç için paylaşılmalıdır.",
+  eq_title:"Etik karar kontrolü",
+  eq:"Güvenlik → doğruluk → yetkinlik sınırı → çıkar çatışması → kayıt ve hesap verebilirlik",
+  eq_note:"Bu kontrol sırası etik ikilemleri düşünmek için yardımcıdır; yasal yükümlülükleri veya kurumun resmî prosedürlerini ikame etmez.",
+  example_title:"Uygunsuz deney sonucunun raporlanması",
+  example:"Beton deneyinde beklenen dayanımın altında sonuç elde edildiğinde veri silinmez veya değiştirilmez. Numune bilgisi, deney koşulları, cihaz kalibrasyonu ve olası hata kaynakları kontrol edilir; sonuç ve sınırlılıklar raporlanır; gerekli inceleme yetkili kişilere iletilir.",
+  steps:["Kararın etkilediği kişileri ve kamu güvenliğini belirle.","Gerçek veri, kayıt ve teknik kanıtları topla.","Yetkinlik ve yetki sınırını değerlendir; gerektiğinde uzman görüşü al.","Çıkar çatışması ve gizlilik yükümlülüklerini kontrol et.","Kararı gerekçesi ve kayıtlarıyla uygun kanaldan bildir."],
+  engineering:"Taşıyıcı sistem güvenliği, kalite kontrol, deney raporları, ölçme verisi ve şantiye iş güvenliği doğrudan etik sorumluluk içerir.",
+  pitfalls:["Sonucu hedefe uydurmak veya ölçüm belirsizliğini saklamak.","Yetkin olmadığı konuda kontrol yapmış gibi imza atmak.","Çıkar çatışmasını ve güvenlik riskini bildirmemek."],
+  checkq:"Mühendislik etiğinde teknik raporlamanın temel ilkesi nedir?",
+  checka:"Veriyi doğru, izlenebilir ve şeffaf raporlamak; yöntem, belirsizlik ve sınırlılıkları saklamamak.",
+  practice:[{q:"Bir yönetici güvenli olmadığını düşündüğün işi hızla tamamlamanı isterse ne yapmalısın?",a:"Riski somut gerekçeyle bildir, güvenli olmayan uygulamayı sürdürme ve kurumun yetkili iş güvenliği bildirim zincirini izle."},{q:"Çıkar çatışması ne zaman ortaya çıkabilir?",a:"Kişisel veya finansal çıkarın mesleki kararın tarafsızlığını etkileyebileceği ya da öyle algılanabileceği durumlarda."}],
+  extraSections:[{title:"Yetki ve sorumluluk",body:"Mühendislikte imza, onay ve teknik sorumluluk ilgili mevzuat, yetki ve uzmanlık koşullarına bağlıdır. Görev tanımını ve güncel resmî düzenlemeleri kontrol et; uzmanlık sınırını aşan kararlarda yetkili uzmana danış."}]
+ },
+ {
+  objective:"Kariyer hedeflerini kısa, orta ve uzun vadeli kilometre taşlarına dönüştürmek; ilerlemeyi düzenli izlemek ve planı kanıta göre güncellemek.",
+  explanation:"Kariyer yol haritası hedef rolü, mevcut yetkinlikleri, gelişim boşluklarını, faaliyetleri, teslim çıktılarını ve tarihleri tek bir planda birleştirir. Kısa vadeli hedefler temel beceri ve portföy oluşturabilir; orta vadeli hedefler staj, saha deneyimi veya belirli bir uzmanlık alanına yönelir; uzun vadeli hedefler sorumluluk ve uzmanlık düzeyini tanımlar.\n\nPlan sabit bir sözleşme değildir. Ders yükü, iş, aile, ekonomik koşullar ve fırsatlar değişebilir. Bu nedenle düzenli değerlendirme, tamamlanan çıktıları kaydetme ve öncelikleri güncelleme gerekir. Bir hedefin tamamlandığını yalnızca süre geçtiği için değil, beklenen kanıt üretildiğinde kabul et.",
+  eq_title:"Kişisel kariyer yol haritası",
+  eq:"Hedef rol → yetkinlik boşluğu → faaliyet → kanıt/çıktı → tarih → değerlendirme",
+  eq_note:"Yol haritası, hedef ile uygulama arasındaki bağlantıyı görünür kılar. Her faaliyet için sorumlu ve tamamlanma ölçütü tanımlanmalıdır.",
+  example_title:"12 aylık gelişim planı",
+  example:"İlk 3 ay: teknik çizim ve Excel uygulama dosyası hazırla. 4–6 ay: ilgili staj/iş deneyimi veya saha gözlem fırsatı ara. 7–9 ay: deneyimden bir teknik rapor veya portföy çıktısı üret. 10–12 ay: CV’yi güncelle, başvuruları değerlendir ve sonraki yılın uzmanlık hedefini belirle.",
+  steps:["Uzun vadeli hedef rolü açıkça tanımla.","Bu role giden kısa ve orta vadeli kilometre taşlarını belirle.","Her kilometre taşına faaliyet, tarih ve somut çıktı bağla.","Aylık ilerleme kaydı tut ve gecikme nedenlerini değerlendir.","Üç ayda bir planı güncelle; tamamlanan çıktıları portföyüne ekle."],
+  engineering:"İnşaat mühendisliği öğrencisi için ders projeleri, laboratuvar deneyleri, teknik çizim, saha uygulaması, staj, iş güvenliği eğitimi ve mesleki yazılım becerileri yol haritasına bağlanabilir.",
+  pitfalls:["Takvimi olan ama ölçülebilir çıktısı olmayan plan yapmak.","Aynı anda çok sayıda alana yönelip öncelik belirlememek.","Planı değerlendirmeden aylarca güncellememek."],
+  checkq:"Kariyer yol haritasında her hedefe eklenmesi gereken üç somut unsur nedir?",
+  checka:"Faaliyet, tamamlanma tarihi ve ilerlemeyi kanıtlayan çıktı/ölçüt.",
+  practice:[{q:"Bir hedef geciktiğinde yol haritasında ne yapılmalıdır?",a:"Gecikmenin nedenini ve bağımlılıklarını incele; süreyi veya faaliyeti gerçekçi biçimde güncelle; yeni bitiş ve kontrol tarihi belirle."},{q:"Bir portföyün CV’ye katkısı nedir?",a:"Yetkinliği yalnızca iddia etmek yerine çizim, rapor, hesap veya proje çıktısıyla göstermeye yardımcı olur."}],
+  extraSections:[{title:"Dönemsel gözden geçirme",body:"Her üç ayda bir tamamlanan çıktıları, devam eden işleri, yeni fırsatları ve değişen koşulları gözden geçir. Artık anlamlı olmayan hedefi bırakmak veya yeni bir yetkinliğe öncelik vermek başarısızlık değil, planı güncel tutmaktır."}]
+ }
+];
+careerLessonModules.forEach((d,i)=>{
+ deepLessonData['kariyer_'+i]={
+  objective:d.objective,
+  prerequisites:courseTeachingProfiles.kariyer.prereq,
+  explanation:d.explanation,
+  eq_title:d.eq_title,eq:d.eq,eq_note:d.eq_note,
+  example_title:d.example_title,example:d.example,
+  steps:d.steps,engineering:d.engineering,pitfalls:d.pitfalls,
+  checkq:d.checkq,checka:d.checka,practice:d.practice,
+  extraSections:d.extraSections,
+  sourceNote:'Kariyer planlaması kişisel koşullara ve hedef pozisyona göre uyarlanmalıdır. İlan, kurum prosedürü ve ilgili mesleki düzenlemelerin güncel resmî metinlerini ayrıca kontrol et.'
+ };
+});
+
 function deepLessonHTML(c,i){
  const d=deepLessonData[c.id+'_'+i];
  if(!d)return '';
