@@ -1764,7 +1764,7 @@ function analyticsView(){
   <div class="stat"><small>Çözülen test</small><strong>${tests.length}</strong></div>
  </div>
  <div class="grid two">
-  <section class="panel"><h3>Ders bazlı ilerleme</h3>${cs.map(c=>`<div style="margin:12px 0"><div class="row between"><b class="smalltext">${c.name}</b><span class="smalltext muted">% ${pct(c)}</span></div><div class="progress" style="margin-top:5px"><i style="width:${pct(c)}%"></i></div></div>`).join('')}</section>
+  <section class="panel"><h3>Ders bazlı ilerleme</h3>${cs.map(c=>`<div style="margin:12px 0"><div class="row between"><b class="smalltext">${c.name}</b><span class="smalltext muted">%${pct(c)}</span></div><div class="progress" style="margin-top:5px"><i style="width:${pct(c)}%"></i></div></div>`).join('')}</section>
   <section class="panel"><h3>Son 7 gün çalışma grafiği</h3>${weekChart()}<p class="smalltext muted">Yalnızca zaman tutucu veya test tamamlandığında kaydedilen süreler hesaplanır.</p><h3 style="margin-top:20px">Öğrenme önerisi</h3><div class="callout">İlerleme yüzdesi düşük olan ders, otomatik olarak önerilen çalışma dersleri arasında öne çıkar. Bir sonraki adım: bu dersin en eski tamamlanmamış konusunu aç ve testle pekiştir.</div></section>
  </div>
  <section class="panel" style="margin-top:16px">
