@@ -327,6 +327,11 @@ function specificLessonBox(c,i){const s=specificLessons[c.id+'_'+i];if(!s)return
 let state=load();let view='dashboard',selectedCourse=null,selectedQuestion=null,quiz=null,lessonTopic=null,timerInt=null,seconds=0;
 function load(){try{return Object.assign({done:[],wrong:[],sessions:[],notes:{},goal:40,customCourses:[],lastVisit:null},JSON.parse(localStorage.getItem('calismaAtolyemV2')||'{}'))}catch(e){return {done:[],wrong:[],sessions:[],notes:{},goal:40,customCourses:[]}}}
 function save(){localStorage.setItem('calismaAtolyemV2',JSON.stringify(state));}
+// Önceki sınav sürümünde boş bırakılan cevaplar yanlış defterine eklenmiş olabilir.
+// Gerçek tekrar kayıtları (isReview) korunur; yalnızca cevabı boş olan sınav kayıtları temizlenir.
+const blankWrongBefore=(state.wrong||[]).length;
+state.wrong=(state.wrong||[]).filter(w=>w&& (w.isReview|| (w.answer!==null&&w.answer!==undefined)));
+if(state.wrong.length!==blankWrongBefore)save();
 function allCourses(){return [...courses,...(state.customCourses||[])]}
 function totalTopics(){return allCourses().reduce((n,c)=>n+c.topics.length,0)}
 function doneCount(){return state.done.length}
