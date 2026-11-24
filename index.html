@@ -1752,25 +1752,27 @@ function reviewView(){const active=state.wrong.filter(w=>!w.resolved&&w.isReview
 function reviewComplete(id){const w=state.wrong.find(x=>x.id===id);if(w){w.resolved=true;w.resolvedAt=new Date().toISOString();save();render();toast('Tekrar tamamlandı.')}}
 function analyticsView(){
  const cs=allCourses(),tests=state.tests||[];
- const avg=tests.length?Math.round(tests.reduce((a,t)=>a+(t.total?t.score/t.total*100:0),0)/tests.length):0;
+ const answeredCount=t=>Number.isFinite(Number(t.answered))?Number(t.answered):(Number(t.total)||0);
+ const evaluatedTests=tests.filter(t=>answeredCount(t)>0);
+ const avg=evaluatedTests.length?Math.round(evaluatedTests.reduce((a,t)=>a+(t.total?t.score/t.total*100:0),0)/evaluatedTests.length):0;
  const total=totalTopics(),done=doneCount(),progress=total?done/total*100:0;
  const progressLabel=done>0&&progress<1?'<1%':Math.round(progress)+'%';
  const recent=tests.slice(-5).reverse();
  return `${head('Başarı analizim','Konu tamamlanması, test başarısı ve çalışma sürelerini birlikte değerlendir.')}
  <div class="grid stats">
   <div class="stat"><small>Genel konu tamamlama</small><strong>${progressLabel}</strong></div>
-  <div class="stat"><small>Test ortalaması · ${tests.length} test</small><strong>${avg}%</strong></div>
+  <div class="stat"><small>Yanıtlı test ortalaması · ${evaluatedTests.length} test</small><strong>${avg}%</strong></div>
   <div class="stat"><small>Toplam çalışma</small><strong>${state.sessions.reduce((a,x)=>a+x.minutes,0)} dk</strong></div>
   <div class="stat"><small>Çözülen test</small><strong>${tests.length}</strong></div>
  </div>
  <div class="grid two">
-  <section class="panel"><h3>Ders bazlı ilerleme</h3>${cs.map(c=>`<div style="margin:12px 0"><div class="row between"><b class="smalltext">${c.name}</b><span class="smalltext muted">%${pct(c)}</span></div><div class="progress" style="margin-top:5px"><i style="width:${pct(c)}%"></i></div></div>`).join('')}</section>
+  <section class="panel"><h3>Ders bazlı ilerleme</h3>${cs.map(c=>`<div style="margin:12px 0"><div class="row between"><b class="smalltext">${c.name}</b><span class="smalltext muted">% ${pct(c)}</span></div><div class="progress" style="margin-top:5px"><i style="width:${pct(c)}%"></i></div></div>`).join('')}</section>
   <section class="panel"><h3>Son 7 gün çalışma grafiği</h3>${weekChart()}<p class="smalltext muted">Yalnızca zaman tutucu veya test tamamlandığında kaydedilen süreler hesaplanır.</p><h3 style="margin-top:20px">Öğrenme önerisi</h3><div class="callout">İlerleme yüzdesi düşük olan ders, otomatik olarak önerilen çalışma dersleri arasında öne çıkar. Bir sonraki adım: bu dersin en eski tamamlanmamış konusunu aç ve testle pekiştir.</div></section>
  </div>
  <section class="panel" style="margin-top:16px">
   <h3>Son test sonuçları</h3>
-  <p class="smalltext muted">Genel ortalama tüm testleri kapsar. Aşağıda en son tamamlanan beş test ayrı ayrı gösterilir.</p>
-  ${recent.length?recent.map(t=>{const pctTest=t.total?Math.round(t.score/t.total*100):0;const courseName=courseBy(t.course)?.name||(t.course==='all'?'Karma sınav':'Ders');const date=t.date?new Date(t.date+'T00:00:00').toLocaleDateString('tr-TR'):'Tarih yok';return `<div class="task"><span class="dot" style="background:${pctTest>=70?'var(--green)':pctTest>=50?'var(--gold)':'var(--red)'}"></span><div><b>${courseName} · ${t.score}/${t.total} doğru (%${pctTest})</b><small>${date} · ${t.answered??'—'} cevaplandı · ${t.unanswered??'—'} boş</small></div></div>`}).join(''):'<div class="empty">Henüz tamamlanmış test bulunmuyor.</div>'}
+  <p class="smalltext muted">Tamamen boş bitirilen testler geçmişte saklanır ancak başarı ortalamasına katılmaz. Kısmen boş testlerde boş sorular puan alamaz.</p>
+  ${recent.length?recent.map(t=>{const pctTest=t.total?Math.round(t.score/t.total*100):0;const answered=answeredCount(t);const noAttempt=answered===0;const courseName=courseBy(t.course)?.name||(t.course==='all'?'Karma sınav':'Ders');const date=t.date?new Date(t.date+'T00:00:00').toLocaleDateString('tr-TR'):'Tarih yok';const resultLabel=noAttempt?'Yanıtlanmadı · ortalamaya katılmadı':t.score+'/'+t.total+' doğru (%'+pctTest+')';const tone=noAttempt?'var(--gold)':pctTest>=70?'var(--green)':pctTest>=50?'var(--gold)':'var(--red)';return `<div class="task"><span class="dot" style="background:${tone}"></span><div><b>${courseName} · ${resultLabel}</b><small>${date} · ${answered} cevaplandı · ${t.unanswered??Math.max(0,(t.total||0)-answered)} boş</small></div></div>`}).join(''):'<div class="empty">Henüz tamamlanmış test bulunmuyor.</div>'}
  </section>`;
 }
 function weekChart(){const days=[];for(let i=6;i>=0;i--){let d=new Date();d.setDate(d.getDate()-i);let key=d.toISOString().slice(0,10);days.push({key,label:d.toLocaleDateString('tr-TR',{weekday:'short'}),m:state.sessions.filter(s=>s.date===key).reduce((a,s)=>a+s.minutes,0)})}const max=Math.max(30,...days.map(d=>d.m));return `<div class="meter">${days.map(d=>`<div class="barwrap"><b class="smalltext">${d.m||''}</b><div class="bar" style="height:${Math.max(2,d.m/max*75)}px"></div><small>${d.label}</small></div>`).join('')}</div>`}
