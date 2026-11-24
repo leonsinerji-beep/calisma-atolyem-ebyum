@@ -2242,6 +2242,19 @@ const lineerFormulaLearning = {
  "Dönüşüm matrisi":["T(x)=Ax; x: giriş vektörü; A: dönüşüm matrisi; T(x): görüntü vektörü. Lineer dönüşüm toplama ve skaler çarpmayı korur.","Saat yönünün tersine 90° dönüşüm matrisi A=[[0,−1],[1,0]]’dır. (3,0) vektörü (0,3)’e dönüşür.","Dönüşüm matrisinin determinantı sıfır değilse kare dönüşüm terslenebilirdir. det(A)=0 ise en az bir boyutta bilgi kaybı oluşur."]
 };
 
+
+const muhmatFormulaLearning = {
+ "Modül ve kutupsal biçim":["z=a+bi: karmaşık sayı; a: gerçek kısım; b: sanal kısım; r=|z|: modül; θ: argüman (radyan veya derece). |z| boyutsuz değil, z’nin birimi varsa aynı birimdedir.","z=3+4i için r=√(3²+4²)=5 ve θ=tan⁻¹(4/3)≈53,13° olur.","Argüman belirlenirken noktanın bulunduğu bölge mutlaka kontrol edilmelidir. Çarpımda modüller çarpılır, açılar toplanır; bölümde modüller bölünür, açılar çıkarılır."],
+ "Cauchy–Riemann denklemleri":["f(z)=u(x,y)+iv(x,y); u: gerçek kısım; v: sanal kısım; u_x,u_y,v_x,v_y: kısmi türevler. x,y reel değişkenlerdir.","f(z)=z²=(x+iy)²=x²−y²+i2xy için u=x²−y², v=2xy. u_x=2x=v_y ve u_y=−2y=−v_x sağlanır.","Cauchy–Riemann koşulları gerekli koşuldur; analitiklik için uygun bölgede kısmi türevlerin sürekliliği gibi düzenlilik koşulları da kontrol edilmelidir."],
+ "Çok değişkenli fonksiyon":["z=f(x,y): iki bağımsız değişkenli skaler fonksiyon; tanım bölgesi, fonksiyonun gerçek değerli olduğu izinli (x,y) noktaları kümesidir.","f(x,y)=ln(4−x²−y²) için logaritma içi pozitif olmalı: x²+y²<4. Tanım bölgesi merkez orijin, yarıçap 2 olan açık disktir.","Karekök içi negatif olamaz; logaritma içi kesinlikle pozitif olmalıdır. Seviye eğrileri f(x,y)=c eşitliğiyle tanımlanır."],
+ "Toplam diferansiyel":["df: toplam diferansiyel; f_x=∂f/∂x ve f_y=∂f/∂y: kısmi türevler; dx,dy: küçük değişimler. df≈f_xdx+f_ydy yerel doğrusal değişimi verir.","f=x²y+3xy için (1,2) noktasında f_x=10, f_y=4 olduğundan df≈10dx+4dy olur.","Diferansiyel, küçük değişimler için birinci mertebe yaklaşımıdır. Büyük sonlu değişimlerde yüksek mertebe terimleri ihmal edilemeyebilir."],
+ "Çift integral":["∬_D f(x,y)dA: D bölgesi üzerinde çift integral; dA=dxdy veya dydx alan elemanıdır. f=1 seçilirse integral bölge alanını verir.","D=[0,2]×[0,3] için alan ∬_D1dA=∫₀²∫₀³1dy dx=6 birim² olur.","İntegrasyon sınırları D bölgesini tam kapsamalı; integrasyon sırası ve sınır fonksiyonları bölgeye uygun seçilmelidir. Yoğunluk gibi bir fonksiyonun integrali toplam kütleyi verebilir."],
+ "Gradyan ve yönlü türev":["∇f=(f_x,f_y): gradyan vektörü; u: birim yön vektörü (|u|=1); D_uf=∇f·u: u yönündeki yönlü türev.","f=x²+2y² için (1,1) noktasında ∇f=(2,4). u=(3/5,4/5) yönünde D_uf=2×3/5+4×4/5=22/5 olur.","Yönlü türevde yön vektörü birim olmalıdır; birim değilse önce normalize edilmelidir. Gradyan en hızlı artış yönünü gösterir."],
+ "Diverjans ve rotasyonel":["F=(P,Q,R): vektör alanı; ∇·F=P_x+Q_y+R_z: diverjans (skaler); ∇×F: rotasyonel (vektör). Türevler uzaysal koordinatlara göredir.","F=(2x,3y,−z) için ∇·F=2+3−1=4. F=(−y,x,0) için rotasyonelin z bileşeni Q_x−P_y=1−(−1)=2’dir.","Alan bileşenleri yeterli düzgünlükte olmalıdır. Diverjans kaynak/yutak yoğunluğunu; rotasyonel yerel dönme eğilimini ifade eder. İşaret ve koordinat yönü korunmalıdır."],
+ "Fourier serisi":["T: periyot (s veya x değişkeninin birimi); ω₀=2π/T: temel açısal frekans; a₀,aₙ,bₙ: Fourier katsayıları. Fonksiyonun periyodu ve katsayı integral aralığı birlikte tanımlanmalıdır.","f(x)=x, −π<x<π aralığında periyodik uzatılırsa tek fonksiyon olduğundan a₀=aₙ=0; Fourier serisi x~2Σₙ₌₁∞(−1)ⁿ⁺¹ sin(nx)/n olur.","Fourier serisi periyodik veya uygun koşullarda parçalı düzgün fonksiyonlara uygulanır. Uç nokta süreksizliklerinde seri, sağ ve sol limitlerin ortalamasına yakınsar."],
+ "Model ve boyut kontrolü":["[Q]: Q büyüklüğünün fiziksel boyutu; M: kütle; L: uzunluk; T: zaman. Boyutsal tutarlılık, eşitliğin iki tarafındaki her terimin aynı temel boyuta sahip olmasını gerektirir.","Q=AV denkleminde [A]=L² ve [V]=LT⁻¹ olduğundan [Q]=L³T⁻¹; bu hacimsel debinin m³/s boyutuyla uyumludur.","Boyut analizi denklem hatalarını yakalar ancak tek başına katsayıları veya modelin fiziksel doğruluğunu kanıtlamaz. Ampirik sabitlerin boyutları da olabilir."]
+};
+
 function formulaLearningHTML(f){
  let d=null;
  if(f.course==='muk1'){const key=formulaLearning[f.title]?f.title:formulaLearningAliases[f.title];d=formulaLearning[key];}
@@ -2251,6 +2264,7 @@ function formulaLearningHTML(f){
  else if(f.course==='istatistik')d=istatistikFormulaLearning[f.title];
  else if(f.course==='diferansiyel')d=diferansiyelFormulaLearning[f.title];
  else if(f.course==='lineer')d=lineerFormulaLearning[f.title];
+ else if(f.course==='muhmat')d=muhmatFormulaLearning[f.title];
  if(!d)return '';
  return '<details class="checkpoint" style="margin-top:12px"><summary>Birimler, semboller ve çözümlü örnek</summary><div style="padding:10px 2px 2px"><p><b>Semboller ve birimler:</b> '+esc(d[0])+'</p><p><b>Sayısal örnek:</b> '+esc(d[1])+'</p><p><b>Kullanım koşulu:</b> '+esc(d[2])+'</p></div></details>';
 }
