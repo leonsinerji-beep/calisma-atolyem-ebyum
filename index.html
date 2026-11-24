@@ -1103,6 +1103,39 @@ function addTopicPracticeQuestions(){
    existing.add(id);
   }
  }}
+ // Ayrıntılı konu modülü bulunmayan güz derslerinde, konu kartlarındaki aktif hatırlama
+ // sorularını da sınav bankasına aktar; anlatım ile test kapsamı eşleşsin.
+ for (const [course, rows] of Object.entries(fallTopicRows)) {
+  for (let topicIndex = 0; topicIndex < rows.length; topicIndex++) {
+   const row = rows[topicIndex];
+   const pairs = [{q:row[5],a:row[6]},{q:row[7],a:row[8]}]
+    .filter(item => typeof item.q === 'string' && item.q.trim() && typeof item.a === 'string' && item.a.trim());
+   for (let j = 0; j < pairs.length; j++) {
+    const id = 'row_' + course + '_' + topicIndex + '_' + j;
+    if (existing.has(id)) continue;
+    const correct = pairs[j].a.trim();
+    const distractors = [...new Set(rows.flatMap((other, k) =>
+      k === topicIndex ? [other[j===0?8:6]] : [other[6],other[8]]
+    ).filter(x => typeof x === 'string' && x.trim() && x.trim() !== correct))];
+    const fallback = [
+      'Kavramın tanımını değil yalnızca adını verir.',
+      'Bu bağıntı farklı bir fiziksel büyüklüğü açıklar.',
+      'Verilen koşullarda bu yorum geçerli değildir.'
+    ];
+    const wrongs = [...distractors, ...fallback].slice(0,3);
+    const correctAt = (topicIndex + j) % 4;
+    const options = [];
+    let wrongIndex = 0;
+    for (let k = 0; k < 4; k++) options.push(k === correctAt ? correct : wrongs[wrongIndex++]);
+    questions.push({
+      id, c:course, topic:topicIndex, level:j===0?'Kolay':'Orta',
+      q:pairs[j].q.trim(), o:options, a:correctAt,
+      e:correct + ' Konu kartındaki açıklama ve örnekle birlikte tekrar et.'
+    });
+    existing.add(id);
+   }
+  }
+ }
 }
 
 addTopicPracticeQuestions();
