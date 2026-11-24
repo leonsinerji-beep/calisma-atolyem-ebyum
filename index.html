@@ -1080,13 +1080,15 @@ function addTopicPracticeQuestions(){
   const wrong=c.id==='myd1'||c.id==='myd2'?languageWrong:c.id==='kariyer'?careerWrong:c.id==='suhukuk'||c.id==='supolitika'?legalWrong:technicalWrong;
   for(let j=0;j<Math.min(expandFallBank?4:2,practice.length);j++){
    const item=practice[j],id='topic_'+c.id+'_'+i+'_'+j;if(existing.has(id))continue;
+   // Genel aktif-hatırlama sorularını konu başlığıyla özelleştir; aynı ders içinde tekrar eden kökleri önle.
+   const questionText=(expandFallBank&&j>=2)?(c.topics[i]+' — '+item.q):item.q;
    const correct=item.a;
    const topicMistakes=expandFallBank?(d.pitfalls||[]).map(x=>'Yanlış yaklaşım: '+x):[];
    const wrongPool=expandFallBank?[...topicMistakes,...(j===0?wrong:commonWrong)]:(j===0?wrong:commonWrong);
    const wrongs=[...new Set(wrongPool)].filter(x=>x!==correct);
    const correctAt=(i+j)%4;const opts=[];let wi=0;
    for(let k=0;k<4;k++)opts.push(k===correctAt?correct:wrongs[wi++%wrongs.length]);
-   questions.push({id,c:c.id,topic:i,level:j===0?'Kolay':(j===3?'Zor':'Orta'),q:item.q,o:opts,a:correctAt,e:correct+' Bu kazanımda kavramı, varsayımları ve uygulama koşullarını birlikte kontrol et.'});
+   questions.push({id,c:c.id,topic:i,level:j===0?'Kolay':(j===3?'Zor':'Orta'),q:questionText,o:opts,a:correctAt,e:correct+' Bu kazanımda kavramı, varsayımları ve uygulama koşullarını birlikte kontrol et.'});
    existing.add(id);
   }
  }}
