@@ -1063,6 +1063,11 @@ function addTopicPracticeQuestions(){
   'Teknik cümledeki sayı, birim ve zorunluluk bildiren ifadeleri çeviride çıkarmak.',
   'Terimi teknik bir cümlede kullanmadan yalnızca kelime listesi olarak ezberlemek.'
  ];
+ const languageLearningWrong=[
+  'Terimi yalnızca kelime listesinde tekrar etmek; teknik cümle kurmamak.',
+  'Benzer terimleri karşılaştırmadan ilk Türkçe karşılığı ezberlemek.',
+  'Terimi bağlamından kopuk öğrenmek ve yeni bir metinde kullanmamak.'
+ ];
  const careerWrong=[
   'Yetkinliği kanıtlanabilir çıktı yerine yalnızca sıfatlarla anlatmak.',
   'Tarih, ölçüt ve teslim edilecek çıktı tanımlamadan genel bir hedef yazmak.',
@@ -1083,8 +1088,9 @@ function addTopicPracticeQuestions(){
    // Genel aktif-hatırlama sorularını konu başlığıyla özelleştir; aynı ders içinde tekrar eden kökleri önle.
    const questionText=(expandFallBank&&j>=2)?(c.topics[i]+' — '+item.q):item.q;
    const correct=item.a;
-   const topicMistakes=expandFallBank?(d.pitfalls||[]).map(x=>'Yanlış yaklaşım: '+x):[];
-   const wrongPool=expandFallBank?[...topicMistakes,...(j===0?wrong:commonWrong)]:(j===0?wrong:commonWrong);
+   const topicMistakes=expandFallBank&&j===2?(d.pitfalls||[]).map(x=>'Yanlış yaklaşım: '+x):[];
+   const baseWrong=(c.id==='myd1'&&j===3)?languageLearningWrong:(j===0?wrong:commonWrong);
+   const wrongPool=expandFallBank?[...topicMistakes,...baseWrong]:(j===0?wrong:commonWrong);
    const wrongs=[...new Set(wrongPool)].filter(x=>x!==correct);
    const correctAt=(i+j)%4;const opts=[];let wi=0;
    for(let k=0;k<4;k++)opts.push(k===correctAt?correct:wrongs[wi++%wrongs.length]);
