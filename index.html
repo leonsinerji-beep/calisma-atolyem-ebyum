@@ -2163,6 +2163,180 @@ mukavemet2LessonModules.forEach((d,i)=>{
   sourceNote:'Formüller idealize edilmiş elastik eleman modelleri içindir. Kesit, yükleme, mesnet ve geçerlilik koşullarını ders kaynağı ve ilgili tasarım standardıyla karşılaştır.'
 });
 
+
+const hidrolikLessonModules = [
+ {
+  objective:"Hidrolik sistemlerde enerji yüksekliği bileşenlerini, kayıp ve makine etkilerini tanımlamak; enerji denklemini iki kesit arasında kurmak.",
+  explanation:"Hidrolik, akışkanlar mekaniğinin temel ilkelerini gerçek mühendislik sistemlerine taşır. Boru ve kanal sistemlerinde akışın basınç, hız ve kot enerjileri birlikte değerlendirilir. Birim ağırlık başına enerji, basınç yüksekliği p/γ, hız yüksekliği V²/(2g) ve kot yüksekliği z toplamıyla ifade edilir.\n\nGerçek sistemde boru sürtünmesi ve dirsek/vana gibi yerel elemanlar enerji kaybettirir. Pompa akışkana enerji ekler, türbin enerji çeker. Bu nedenle enerji denklemi, yalnızca ideal Bernoulli denklemi olarak değil; kayıplar ve makinelerle genişletilmiş biçimde kurulmalıdır.",
+  eq_title:"İki kesit arasında enerji denklemi",
+  eq:"p₁/γ + V₁²/(2g) + z₁ + h_p = p₂/γ + V₂²/(2g) + z₂ + h_t + h_L",
+  eq_note:"p/γ: basınç yüksekliği; V²/2g: hız yüksekliği; z: kot; h_p: pompa yüksekliği; h_t: türbin yüksekliği; h_L: toplam enerji kaybı. Her terim metre cinsindedir.",
+  example_title:"Boru sisteminde yük farkı",
+  example:"İki kesitin kotları ve hızları eşit, pompa yok, toplam kayıp 4 m ve giriş basınç yüksekliği 30 m ise çıkış basınç yüksekliği 30−4=26 m olur. Enerji kaybı, akış yönünde kullanılabilir enerji yüksekliğini azaltır.",
+  steps:["Sistemi akış yönü ve referans kotuyla çiz.","Enerji denkleminin yazılacağı 1 ve 2 kesitlerini seç.","Her kesitte p/γ, V²/2g ve z terimlerini belirle.","Pompa/türbin yüksekliğini ve toplam kayıpları ekle.","Birimleri ve enerji çizgisinin fiziksel yönünü kontrol et."],
+  engineering:"Su iletim hatları, terfi merkezleri, sulama sistemleri, içme suyu şebekeleri ve basınçlı boru ağlarının enerji hesabında kullanılır.",
+  pitfalls:["Bernoulli denkleminde sürtünme ve yerel kayıpları ihmal etmek.","Pompa yüksekliğini enerji denkleminde yanlış işaretle yazmak.","Basınç yüksekliği ile basıncı aynı birimde sanmak."],
+  checkq:"Enerji denkleminde pompa ve türbin hangi etkiyi temsil eder?",
+  checka:"Pompa akışkana enerji ekler; türbin akışkandan enerji alır.",
+  practice:[{q:"Enerji denklemindeki h_L neyi temsil eder?",a:"Boru sürtünmesi ve yerel elemanlardan kaynaklanan toplam enerji kaybını."},{q:"Basınç yüksekliğinin birimi nedir?",a:"Uzunluk birimi, genellikle metredir."}],
+  extraSections:[{title:"Hidrolik ve enerji çizgisi",body:"Hidrolik eğim çizgisi (HGL) p/γ+z değerini, enerji çizgisi (EGL) ise buna V²/2g terimini ekleyen toplamı gösterir. Akım yönünde kayıplar nedeniyle EGL azalır; pompa üzerinde yükselir."}]
+ },
+ {
+  objective:"Dolu borularda akım rejimini ve sürtünme kaybının nedenlerini açıklamak; boru çapı, uzunluk, hız ve pürüzlülüğün etkisini yorumlamak.",
+  explanation:"Basınçlı boru akımında akışkanın boru duvarıyla etkileşimi ve viskoz etkiler nedeniyle mekanik enerji kaybı oluşur. Kayıp; boru uzunluğu, çapı, ortalama hız, akışkan özellikleri ve iç yüzey pürüzlülüğüne bağlıdır.\n\nReynolds sayısı atalet etkilerinin viskoz etkilere oranını gösterir. Laminer, geçiş ve türbülanslı rejim ayrımı sürtünme katsayısının belirlenmesinde önemlidir. Türbülanslı akımda pürüzlülük etkisi, Reynolds sayısı ve bağıl pürüzlülükle birlikte değerlendirilir.",
+  eq_title:"Boru akımında Reynolds sayısı",
+  eq:"Re = V D / ν = ρ V D / μ",
+  eq_note:"V: ortalama hız (m/s); D: boru çapı (m); ν: kinematik viskozite (m²/s); μ: dinamik viskozite (Pa·s); ρ: yoğunluk (kg/m³).",
+  example_title:"Reynolds sayısı hesabı",
+  example:"Su için ν=1,0×10⁻⁶ m²/s, V=1,2 m/s ve D=0,10 m ise Re=1,2×0,10/(1,0×10⁻⁶)=120.000 olur; boru akımı türbülanslıdır.",
+  steps:["Akışkanın sıcaklığa uygun viskozite değerini belirle.","Boru iç çapını ve kesit ortalama hızını kullan.","Re=VD/ν bağıntısıyla Reynolds sayısını hesapla.","Akım rejimini uygun sınıflandırmayla değerlendir.","Sürtünme katsayısını rejim ve pürüzlülüğe göre seç."],
+  engineering:"İçme suyu ve kanalizasyon basınç hatları, yangın hatları, pompa emiş-basma boruları ve endüstriyel iletim sistemlerinde önemlidir.",
+  pitfalls:["Boru dış çapını hidrolik hesapta kullanmak.","Dinamik ve kinematik viskoziteyi karıştırmak.","Akış rejimini yalnız hız değerine bakarak belirlemek."],
+  checkq:"Reynolds sayısı hangi iki etki arasındaki göreli önemi gösterir?",
+  checka:"Atalet etkilerinin viskoz etkilere oranını gösterir.",
+  practice:[{q:"Aynı akışkanda boru çapı iki katına, hız sabit kalacak biçimde çıkarsa Re nasıl değişir?",a:"Re=VD/ν olduğundan iki katına çıkar."},{q:"Bağıl pürüzlülük nasıl tanımlanır?",a:"Mutlak pürüzlülük yüksekliğinin boru çapına oranıdır: ε/D."}],
+  extraSections:[{title:"Sürtünme katsayısı",body:"Darcy sürtünme katsayısı f, Reynolds sayısı ve bağıl pürüzlülüğe bağlıdır. Laminer dairesel boru akımında f=64/Re; türbülanslı akımda Moody diyagramı veya uygun bağıntı kullanılır. Darcy ve Fanning katsayıları aynı değildir."}]
+ },
+ {
+  objective:"Darcy–Weisbach bağıntısıyla boru sürtünme kaybını hesaplamak ve Moody diyagramından Darcy sürtünme katsayısını belirlemek.",
+  explanation:"Darcy–Weisbach bağıntısı, tam dolu boruda uzunluk boyunca oluşan sürtünme yük kaybını hesaplar. Kayıp hız yüksekliğiyle, boru boyu/çap oranıyla ve Darcy sürtünme katsayısıyla ilişkilidir.\n\nMoody diyagramı, Reynolds sayısı ile bağıl pürüzlülüğe göre f değerini verir. Laminer rejimde f=64/Re; türbülanslı rejimde pürüzlülük ve Reynolds sayısı birlikte etkilidir. Hesapta Darcy katsayısının kullanıldığından emin olunmalıdır.",
+  eq_title:"Darcy–Weisbach sürtünme kaybı",
+  eq:"h_f = f (L/D) V²/(2g)",
+  eq_note:"h_f: sürtünme yük kaybı (m); f: Darcy katsayısı; L: boru uzunluğu; D: iç çap; V: ortalama hız; g: yerçekimi ivmesi.",
+  example_title:"Boru sürtünme kaybı hesabı",
+  example:"f=0,025, L=50 m, D=0,10 m, V=2 m/s ve g=9,81 m/s² için h_f=0,025×(50/0,10)×(4/19,62)≈2,55 m olur.",
+  steps:["L, D ve kesit ortalama hızını belirle.","Akışkan özellikleriyle Reynolds sayısını hesapla.","ε/D bağıl pürüzlülüğünü bul.","Moody diyagramı veya uygun bağıntıyla Darcy f katsayısını seç.","Darcy–Weisbach bağıntısını uygula ve kaybı enerji denklemine ekle."],
+  engineering:"Uzun iletim hatlarında boru çapı seçimi, pompa basma yüksekliği ve işletme enerji maliyetinin hesaplanmasında temel bağıntıdır.",
+  pitfalls:["Fanning katsayısını Darcy katsayısı yerine kullanmak.","L/D oranında boru boyu ile çapı aynı birimde yazmamak.","Moody diyagramında bağıl pürüzlülük eğrisini yanlış seçmek."],
+  checkq:"Darcy–Weisbach denkleminde sürtünme kaybı hangi uzunluk oranıyla artar?",
+  checka:"Boru uzunluğunun iç çapa oranı L/D ile doğru orantılıdır.",
+  practice:[{q:"Boru uzunluğu iki katına çıkarsa, diğerleri aynı iken sürtünme kaybı nasıl değişir?",a:"Darcy–Weisbach bağıntısına göre iki katına çıkar."},{q:"Laminer dairesel boru akımında Darcy sürtünme katsayısı nedir?",a:"f=64/Re."}],
+  extraSections:[{title:"Moody diyagramını okuma",body:"Önce Re yatay ekseninden bulunur; bağıl pürüzlülük eğrisi ε/D seçilir ve kesişimden f okunur. Laminer bölgede pürüzlülük etkisi belirgin değildir; tam türbülanslı pürüzlü bölgede f Reynolds sayısından bağımsızlaşabilir."}]
+ },
+ {
+  objective:"Dirsek, vana, giriş, çıkış ve kesit değişimi gibi elemanların yerel kayıplarını hesaplamak; eşdeğer boru uzunluğu kavramını açıklamak.",
+  explanation:"Boru sistemlerinde enerji kaybı yalnızca düz boru sürtünmesinden oluşmaz. Akışın yönünü veya hız dağılımını değiştiren dirsek, vana, tee, giriş ve çıkış gibi elemanlarda girdap ve ayrılma nedeniyle yerel kayıp oluşur.\n\nYerel kayıp h_m=K V²/(2g) ile hesaplanır. K katsayısı eleman geometrisine ve akım koşuluna bağlıdır. Bazı durumlarda yerel kayıp, aynı kaybı oluşturan eşdeğer düz boru uzunluğu Le ile temsil edilebilir.",
+  eq_title:"Yerel kayıp ve eşdeğer uzunluk",
+  eq:"h_m = K V²/(2g)    ;    L_e = K D / f",
+  eq_note:"K: yerel kayıp katsayısı; V: referans hız; D: boru iç çapı; f: Darcy sürtünme katsayısı. Le bağıntısı aynı hız ve çap için h_m=f(Le/D)V²/(2g) eşitliğinden gelir.",
+  example_title:"Dirsek kaybı",
+  example:"K=0,8, V=2,5 m/s ve g=9,81 m/s² ise h_m=0,8×2,5²/(2×9,81)≈0,255 m olur. Birden fazla elemanda aynı referans hızla kayıplar toplanır.",
+  steps:["Sistemdeki tüm yerel elemanları listele.","Her eleman için uygun K katsayısını ve referans kesiti belirle.","Elemandan geçen hız yüksekliğini hesapla.","h_m=K V²/(2g) bağıntısını uygula.","Tüm yerel kayıpları Darcy sürtünme kaybıyla topla."],
+  engineering:"Vana odaları, pompa istasyonları, dirsekli boru güzergâhları, daralma-genişleme parçaları ve şebeke bağlantılarında kullanılır.",
+  pitfalls:["Yerel kayıpları toplam enerji kaybına katmamak.","K katsayısını farklı referans hızına uygulamak.","Eşdeğer uzunluk bağıntısında Darcy ve Fanning katsayısını karıştırmak."],
+  checkq:"Yerel kayıp katsayısı K hangi niceliğin çarpanı olarak kullanılır?",
+  checka:"Hız yüksekliği V²/(2g) teriminin çarpanı olarak kullanılır.",
+  practice:[{q:"Aynı K katsayısı için hız iki katına çıkarsa yerel kayıp nasıl değişir?",a:"V² ile orantılı olduğundan dört katına çıkar."},{q:"Eşdeğer uzunluk yaklaşımı neyi sağlar?",a:"Bir yerel eleman kaybını, aynı kaybı veren eşdeğer düz boru sürtünme uzunluğu olarak ifade eder."}],
+  extraSections:[{title:"Birden fazla yerel eleman",body:"Aynı referans hızının geçerli olduğu seri elemanlarda toplam yerel kayıp ΣK·V²/(2g) olarak yazılır. Kesit değişiyorsa her eleman için uygun hız kullanılması gerekir."}]
+ },
+ {
+  objective:"Seri ve paralel boru sistemlerinde debi ve enerji kaybı koşullarını kurmak; dallanmış sistemlerde süreklilik ve enerji denklemlerini birlikte kullanmak.",
+  explanation:"Seri bağlı borularda aynı akım yolu boyunca hacimsel debi aynıdır; toplam enerji kaybı boru parçalarının kayıplarının toplamıdır. Her parçada çap, uzunluk ve pürüzlülük farklı olabilir, bu nedenle hızlar farklı olabilir.\n\nParalel borularda giriş ve çıkış düğümleri ortak olduğundan paralel kollar arasındaki yük kaybı aynıdır. Toplam debi, kollardan geçen debilerin toplamıdır. Çözümde düğüm sürekliliği ile her kolun enerji kaybı eşitliği birlikte kullanılır.",
+  eq_title:"Seri ve paralel boru koşulları",
+  eq:"Seri: Q₁=Q₂=Q ;   Paralel: h_L,1=h_L,2 ; Q_toplam=ΣQ_i",
+  eq_note:"Q: hacimsel debi (m³/s); h_L: iki ortak düğüm arasındaki enerji kaybı. Aynı akışkan ve ortak düğümler varsayılır.",
+  example_title:"Paralel iki kolun debisi",
+  example:"İki paralel kol aynı iki düğüm arasındaysa her iki kolda yük kaybı aynıdır. Birinci koldan 0,02 m³/s, ikinci koldan 0,03 m³/s geçiyorsa toplam debi Q=0,05 m³/s olur.",
+  steps:["Boru ağını düğüm ve kollarla şemalaştır.","Giriş/çıkış düğümlerinde süreklilik denklemlerini yaz.","Seri bölümlerde aynı debi koşulunu uygula.","Paralel kollar arasında enerji kaybı eşitliğini kur.","Darcy ve yerel kayıplarla bilinmeyen debileri çöz; debi toplamını kontrol et."],
+  engineering:"Su dağıtım şebekeleri, pompa bağlantıları, sanayi boru ağları ve yangın hatlarında seri-paralel ağ analizi kullanılır.",
+  pitfalls:["Paralel kollarda debilerin eşit olmak zorunda olduğunu sanmak.","Seri borularda çap değiştiğinde hızın aynı kalacağını varsaymak.","Düğümde gelen debi ile giden debi toplamını denkleştirmemek."],
+  checkq:"Paralel iki boru kolu arasında aynı olan temel hidrolik büyüklük nedir?",
+  checka:"Ortak başlangıç ve bitiş düğümleri arasındaki enerji kaybı/yük farkı.",
+  practice:[{q:"Seri bağlı iki boruda kararlı akımda debiler arasındaki ilişki nedir?",a:"Her ikisinden aynı hacimsel debi geçer."},{q:"Paralel iki koldaki toplam debi nasıl bulunur?",a:"Kollardan geçen debilerin toplamı olarak bulunur."}],
+  extraSections:[{title:"Düğüm denklemleri",body:"Her düğümde kararlı akış için giren debilerin toplamı çıkan debilerin toplamına eşittir. Boru yönleri başlangıçta varsayılabilir; negatif sonuç gerçek akış yönünün varsayılan yönün tersi olduğunu gösterir."}]
+ },
+ {
+  objective:"Pompa karakteristik eğrisi ile sistem eğrisinin kesişiminden çalışma noktasını belirlemek; debi, basma yüksekliği, verim ve güç ilişkisini yorumlamak.",
+  explanation:"Pompa akışkana mekanik enerji aktararak basma yüksekliği sağlar. Pompa karakteristik eğrisi debi arttıkça pompanın sağlayabildiği yüksekliğin değişimini gösterir. Sistem eğrisi ise statik kot farkı ve debiye bağlı boru/yerel kayıplardan kaynaklanan gerekli yüksekliği ifade eder.\n\nÇalışma noktası bu iki eğrinin kesişimidir. Seçilen pompanın yalnızca nominal debisine bakmak yeterli değildir; sistemin istediği debi ve basma yüksekliği, verim, motor gücü ve işletme aralığı birlikte kontrol edilmelidir.",
+  eq_title:"Hidrolik güç ve pompa giriş gücü",
+  eq:"P_h = ρ g Q H    ;    P_giriş = ρ g Q H / η",
+  eq_note:"ρ: yoğunluk (kg/m³); g: m/s²; Q: debi (m³/s); H: pompa toplam basma yüksekliği (m); η: toplam verim (0–1); güç W cinsindedir.",
+  example_title:"Pompa gücü hesabı",
+  example:"ρ=1000 kg/m³, Q=0,03 m³/s, H=20 m ve η=0,75 ise P_giriş=1000×9,81×0,03×20/0,75≈7848 W=7,85 kW olur.",
+  steps:["Statik kot farkını ve sistem kayıplarını belirle.","Sistem eğrisini debiye bağlı yük gereksinimi olarak kur.","Pompa eğrisiyle kesişen çalışma debisi ve basma yüksekliğini bul.","Verim eğrisini ve işletme aralığını kontrol et.","Gerekli giriş gücünü hesapla; motor ve kavitasyon koşullarını ayrıca değerlendir."],
+  engineering:"İçme suyu terfi merkezleri, sulama pompaları, drenaj sistemleri, atık su terfisi ve proses suyu sistemlerinde kullanılır.",
+  pitfalls:["Pompa eğrisini sistem eğrisinden bağımsız seçmek.","Hidrolik güç ile motor giriş gücünü karıştırmak.","Verimi yüzde 75 yerine 75 katsayısıyla kullanmak."],
+  checkq:"Pompanın gerçek çalışma noktası nasıl bulunur?",
+  checka:"Pompa karakteristik eğrisi ile sistem eğrisinin kesişiminden bulunur.",
+  practice:[{q:"Verim %75 ise güç hesabında η kaç alınır?",a:"η=0,75 alınır."},{q:"Sistem eğrisindeki statik yük hangi bileşene bağlıdır?",a:"Sistem giriş ve çıkışındaki sabit kot/enerji farkına bağlıdır."}],
+  extraSections:[{title:"Kavitasyon kontrolü",body:"Pompa emişinde mutlak basınç buhar basıncına yaklaşırsa buhar kabarcıkları oluşabilir. NPSH mevcut değeri pompanın istediği NPSH değerinden uygun emniyet payıyla büyük olmalıdır; emiş hattı kayıpları ve sıvı sıcaklığı değerlendirilir."}]
+ },
+ {
+  objective:"Açık kanal akımını basınçlı boru akımından ayırmak; serbest yüzey, hidrolik yarıçap, akım derinliği ve enerji kavramlarını tanımlamak.",
+  explanation:"Açık kanal akımında akışkanın bir serbest yüzeyi atmosferle temas hâlindedir. Akımı çoğunlukla yerçekimi ve kanal taban eğimi sürükler. Nehir, drenaj kanalı, sulama kanalı ve savak yaklaşım kanalı açık kanal örnekleridir.\n\nKesit alanı A, ıslak çevre P ve hidrolik yarıçap R_h=A/P temel geometrik büyüklüklerdir. Hidrolik derinlik D_h=A/T olup T serbest yüzey genişliğidir. Akım düzgün, değişken, üniform veya üniform olmayan biçimde sınıflandırılabilir.",
+  eq_title:"Hidrolik yarıçap ve hidrolik derinlik",
+  eq:"R_h = A/P    ;    D_h = A/T",
+  eq_note:"A: akım kesit alanı (m²); P: ıslak çevre (m); T: serbest yüzey genişliği (m). R_h ve D_h uzunluk birimindedir.",
+  example_title:"Dikdörtgen kanal geometrisi",
+  example:"Taban genişliği b=3 m ve su derinliği y=1 m ise A=by=3 m², ıslak çevre P=b+2y=5 m ve hidrolik yarıçap R_h=3/5=0,60 m olur.",
+  steps:["Kanal kesitini ve serbest yüzeyi çiz.","Su derinliğini ve taban/yan eğim geometrisini tanımla.","Akım alanı A ve ıslak çevre P’yi hesapla.","R_h=A/P ve gerekirse D_h=A/T bul.","Serbest yüzey ve yerçekimi etkisi nedeniyle açık kanal denklemlerini seç."],
+  engineering:"Drenaj, sulama, taşkın kanalları, menfez yaklaşım akımları, dere ıslahı ve atık su kanallarında kullanılır.",
+  pitfalls:["Hidrolik yarıçapı hidrolik derinlikle karıştırmak.","Islak çevreye serbest yüzeyi dahil etmek.","Açık kanalda basınçlı boru yaklaşımını doğrudan kullanmak."],
+  checkq:"Açık kanalda ıslak çevreye hangi sınırlar dahildir?",
+  checka:"Akışkanla temas eden taban ve yan yüzeyler dahildir; serbest yüzey dahil değildir.",
+  practice:[{q:"Dikdörtgen kanalda A=by ifadesindeki y nedir?",a:"Akım derinliğidir."},{q:"Hidrolik yarıçap nasıl hesaplanır?",a:"Akım kesit alanının ıslak çevreye oranı R_h=A/P."}],
+  extraSections:[{title:"Üniform ve üniform olmayan akım",body:"Üniform akımda belirli bir uzunluk boyunca ortalama derinlik ve hız değişmez; üniform olmayan akımda akım derinliği konuma göre değişir. Kararlılık ise zamanla değişimle ilgilidir; iki sınıflandırma birbirinden farklıdır."}]
+ },
+ {
+  objective:"Manning bağıntısıyla düzgün açık kanal akımında hız ve debiyi hesaplamak; pürüzlülük, hidrolik yarıçap ve taban eğiminin etkisini açıklamak.",
+  explanation:"Manning bağıntısı, üniform türbülanslı açık kanal akımı için ortalama hızın pürüzlülük katsayısı, hidrolik yarıçap ve enerji eğimiyle ilişkisini verir. SI birim sisteminde V=(1/n)R_h^(2/3)S^(1/2) kullanılır. Debi Q=AV ile bulunur.\n\nManning n değeri kanal yüzeyinin pürüzlülüğünü ve biçimini temsil eden ampirik katsayıdır. Kanalın bitki örtüsü, kaplama, bakım durumu ve kesit geometrisi n değerini etkileyebilir. S, düzgün akımda taban eğimiyle enerji eğiminin eşit olduğu kabulüyle kullanılır.",
+  eq_title:"Manning hız ve debi bağıntısı",
+  eq:"V = (1/n) R_h^(2/3) S^(1/2)    ;    Q = A V",
+  eq_note:"V: m/s; n: Manning pürüzlülük katsayısı; R_h: m; S: enerji eğimi (boyutsuz); A: m²; Q: m³/s.",
+  example_title:"Dikdörtgen kanalda Manning hesabı",
+  example:"A=3 m², R_h=0,60 m, n=0,015 ve S=0,001 ise V=(1/0,015)×0,60^(2/3)×0,001^(1/2)≈0,95 m/s; Q=AV≈2,85 m³/s olur.",
+  steps:["Kanal kesitinden A ve P değerlerini bul.","R_h=A/P hesapla.","Yüzey malzemesi ve kanal durumuna uygun n seç.","Düzgün akım için enerji/taban eğimini S belirle.","Manning bağıntısıyla V ve ardından Q=AV hesapla."],
+  engineering:"Sulama ve drenaj kanalları, yağmur suyu kanalları, dere kesitleri ve atık su kanallarının kapasite hesabında kullanılır.",
+  pitfalls:["Manning n değerini kanal malzemesine bakmadan seçmek.","R_h yerine su derinliğini koymak.","S eğimini yüzde olarak verildiğinde ondalığa çevirmemek."],
+  checkq:"Manning denkleminde n büyürse aynı geometri ve eğimde hız nasıl değişir?",
+  checka:"V n ile ters orantılı olduğundan n büyüdükçe ortalama hız azalır.",
+  practice:[{q:"Manning hesabında taban eğimi %0,1 ise S ondalık olarak kaçtır?",a:"S=0,001 olur."},{q:"Debi Manning hızından sonra nasıl hesaplanır?",a:"Q=A·V bağıntısıyla hesaplanır."}],
+  extraSections:[{title:"Manning katsayısı seçimi",body:"n tek bir evrensel değer değildir. Beton kaplama, doğal zemin, bitki örtüsü, taşlı yüzey ve bakım koşulları farklı direnç oluşturur. Ders/standart tablosundan uygun değer seçilmeli ve seçim gerekçesi belirtilmelidir."}]
+ },
+ {
+  objective:"Özgül enerji, Froude sayısı ve kritik derinlik kavramlarını kullanarak açık kanal akım rejimini sınıflandırmak.",
+  explanation:"Açık kanalda özgül enerji, kanal tabanına göre birim ağırlık başına enerji yüksekliği olarak E=y+V²/(2g) biçiminde ifade edilir. Aynı debide derinlik değiştikçe hız yüksekliği ile derinlik arasında enerji dengesi oluşur. Kritik akım, özgül enerjinin minimum olduğu duruma karşılık gelir.\n\nFroude sayısı Fr=V/√(gD_h) ile tanımlanır. Fr<1 subkritik (derin ve yavaş), Fr=1 kritik, Fr>1 süperkritik (sığ ve hızlı) akımı gösterir. Dikdörtgen kanalda birim genişlik debisi q=Q/b ile kritik derinlik y_c=(q²/g)^(1/3) bulunur.",
+  eq_title:"Özgül enerji ve Froude sayısı",
+  eq:"E = y + V²/(2g)    ;    Fr = V/√(g D_h)",
+  eq_note:"y: su derinliği (m); V: ortalama hız (m/s); D_h=A/T: hidrolik derinlik (m); g: m/s². Dikdörtgen kanalda D_h=y olur.",
+  example_title:"Akım rejimi değerlendirmesi",
+  example:"Dikdörtgen kanalda y=1 m ve V=2 m/s ise Fr=2/√(9,81×1)=0,64 bulunur; Fr<1 olduğundan akım subkritiktir.",
+  steps:["Kanal kesitini ve akım derinliğini tanımla.","A ve T üzerinden hidrolik derinliği D_h=A/T hesapla.","Ortalama hız V’yi belirle.","Fr=V/√(gD_h) ile rejimi sınıflandır.","Gerekirse özgül enerji E veya kritik derinlik hesabını yap."],
+  engineering:"Savak yaklaşım akımları, kanal geçişleri, düşüler, hidrolik sıçrama ve taşkın kanalı tasarımında akım rejimini bilmek önemlidir.",
+  pitfalls:["Froude sayısını Reynolds sayısıyla karıştırmak.","Hidrolik derinliği her kesitte doğrudan su derinliği kabul etmek.","Kritik derinlik formülünde toplam debi yerine birim genişlik debisini kullanmamak."],
+  checkq:"Froude sayısı 1’den küçükse açık kanal akımı nasıl adlandırılır?",
+  checka:"Subkritik akım olarak adlandırılır.",
+  practice:[{q:"Dikdörtgen kanalda q=4 m²/s ve g=9,81 m/s² ise kritik derinlik yaklaşık kaç m’dir?",a:"y_c=(q²/g)^(1/3)=(16/9,81)^(1/3)≈1,18 m."},{q:"Froude sayısı 1 olduğunda hangi özel durum oluşur?",a:"Kritik akım oluşur; özgül enerji belirli debi için minimum değerdedir."}],
+  extraSections:[{title:"Dikdörtgen kanalda kritik derinlik",body:"Dikdörtgen kesitte birim genişlik debisi q=Q/b’dir. Kritik derinlik y_c=(q²/g)^(1/3) bağıntısıyla bulunur. Kesit geometrisi değişirse kritik koşulun genel ifadesi ve hidrolik derinlik dikkate alınmalıdır."}]
+ },
+ {
+  objective:"Savakların akış ölçümündeki işlevini ve savak debi bağıntılarının geometrik/deneysel katsayılarla ilişkisini açıklamak.",
+  explanation:"Savak, açık kanalda su seviyesini yükselten ve akımı belirli bir açıklıktan geçirerek debi ölçümü veya kontrolü sağlayan yapıdır. Keskin kenarlı dikdörtgen savakta debi, savak genişliği ve savak üstündeki su yükünün 3/2 kuvvetiyle ilişkilidir.\n\nDebi bağıntısı ideal enerji yaklaşımından türetilir; gerçek akımda hız yaklaşımı, daralma, yan etkiler ve savak geometrisi nedeniyle boşalma katsayısı Cd kullanılır. Su yükü H, savak kretinden yukarıdaki serbest yüzeye olan düşey mesafedir ve ölçüm noktası savaktan yeterince uzakta olmalıdır.",
+  eq_title:"Keskin kenarlı dikdörtgen savak bağıntısı",
+  eq:"Q = (2/3) C_d b √(2g) H^(3/2)",
+  eq_note:"Q: debi (m³/s); Cd: boşalma katsayısı (boyutsuz); b: savak genişliği (m); g: m/s²; H: savak üstü yük (m). Bağıntı kullanılan savak tipine ve kabullere bağlıdır.",
+  example_title:"Dikdörtgen savakta debi",
+  example:"Cd=0,62, b=1,0 m, H=0,20 m ve g=9,81 m/s² için Q=(2/3)×0,62×1,0×√(19,62)×0,20^(3/2)≈0,073 m³/s olur.",
+  steps:["Savak tipini ve açıklık genişliğini belirle.","Kret üstündeki yük H’yi doğru referans noktasından ölç.","Savak türüne uygun Cd değerini seç.","Savak debi bağıntısını tutarlı SI birimleriyle uygula.","Yaklaşım hızı ve yan daralma gibi düzeltme gerekip gerekmediğini kontrol et."],
+  engineering:"Debi ölçüm yapıları, sulama kanalları, laboratuvar kanalları, taşkın kontrol ve kanal işletmesinde kullanılır.",
+  pitfalls:["H yüksekliğini kanal tabanından ölçmek.","Savak tipine uygun olmayan katsayı kullanmak.","H değerini yanlış ölçüm noktasından almak veya yaklaşım hızını ihmal etmek."],
+  checkq:"Dikdörtgen savak debisinde H hangi referansa göre ölçülür?",
+  checka:"Savak kretinden su serbest yüzeyine kadar olan düşey yük olarak ölçülür.",
+  practice:[{q:"Dikdörtgen savak denkleminde debi H’nin hangi kuvvetiyle orantılıdır?",a:"H^(3/2) ile orantılıdır."},{q:"Boşalma katsayısı Cd neyi düzeltir?",a:"İdeal teorik akımla gerçek akım arasındaki kayıp, daralma ve akış etkilerini temsil eder."}],
+  extraSections:[{title:"Savak ölçümünde dikkat",body:"Su yükü ölçümünde dalga ve yerel akım etkilerini azaltmak için ölçüm noktası uygun uzaklıkta seçilir. Savak kretinin yataylığı, keskin kenar koşulu, yan daralma ve yaklaşım hızı ölçüm hassasiyetini etkiler."}]
+ }
+];
+hidrolikLessonModules.forEach((d,i)=>{
+ deepLessonData['hidrolik_'+i]={
+  objective:d.objective,prerequisites:courseTeachingProfiles.hidrolik.prereq,
+  explanation:d.explanation,eq_title:d.eq_title,eq:d.eq,eq_note:d.eq_note,
+  example_title:d.example_title,example:d.example,steps:d.steps,
+  engineering:d.engineering,pitfalls:d.pitfalls,checkq:d.checkq,checka:d.checka,
+  practice:d.practice,extraSections:d.extraSections,
+  sourceNote:'Hidrolik bağıntıları akım rejimi, geometri, pürüzlülük ve sınır koşullarına bağlıdır. Seçilen formülün uygulama koşullarını ve ders kaynağındaki katsayıları kontrol et.'
+ });
+});
+
 function deepLessonHTML(c,i){
  const d=deepLessonData[c.id+'_'+i];
  if(!d)return '';
