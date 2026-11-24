@@ -370,8 +370,10 @@ consolidateOpenWrongEntries();
 if(JSON.stringify(state.wrong)!==wrongBeforeCleanup)save();
 function allCourses(){return [...courses,...(state.customCourses||[])]}
 function totalTopics(){return allCourses().reduce((n,c)=>n+c.topics.length,0)}
-function doneCount(){return state.done.length}
-function pct(c){return Math.round(c.topics.filter((_,i)=>state.done.includes(c.id+'_'+i)).length/c.topics.length*100)}
+function validDoneKeys(){return [...new Set((state.done||[]).filter(key=>{const value=String(key),cut=value.lastIndexOf('_');if(cut<=0)return false;const id=value.slice(0,cut),index=Number(value.slice(cut+1)),course=courseBy(id);return !!course&&Number.isInteger(index)&&index>=0&&index<course.topics.length;}))]}
+function doneTopicsForCourse(c){const keys=new Set(validDoneKeys());return c.topics.filter((_,i)=>keys.has(c.id+'_'+i)).length}
+function doneCount(){return validDoneKeys().length}
+function pct(c){return c.topics.length?Math.round(doneTopicsForCourse(c)/c.topics.length*100):0}
 function courseBy(id){return allCourses().find(c=>c.id===id)}
 function toast(s){const t=document.getElementById('toast');t.textContent=s;t.classList.remove('hide');setTimeout(()=>t.classList.add('hide'),2300)}
 function nav(v){if(quiz&&v!=='quiz'){clearInterval(quizTimerInt);quizTimerInt=null;quiz=null;}view=v;selectedCourse=null;lessonTopic=null;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));document.getElementById('sidebar').classList.remove('open');render()}
@@ -1777,13 +1779,13 @@ function analyticsView(){
  const recent=tests.slice(-5).reverse();
  return `${head('Başarı analizim','Konu tamamlanması, test başarısı ve çalışma sürelerini birlikte değerlendir.')}
  <div class="grid stats">
-  <div class="stat"><small>Genel konu tamamlama</small><strong>${progressLabel}</strong></div>
+  <div class="stat"><small>Genel konu tamamlama</small><strong>${progressLabel}</strong><div class="smalltext muted">${done}/${total} konu tamamlandı</div></div>
   <div class="stat"><small>Yanıtlı test ortalaması · ${evaluatedTests.length} test</small><strong>${avg}%</strong></div>
   <div class="stat"><small>Toplam çalışma</small><strong>${state.sessions.reduce((a,x)=>a+x.minutes,0)} dk</strong></div>
   <div class="stat"><small>Çözülen test</small><strong>${tests.length}</strong></div>
  </div>
  <div class="grid two">
-  <section class="panel"><h3>Ders bazlı ilerleme</h3>${cs.map(c=>`<div style="margin:12px 0"><div class="row between"><b class="smalltext">${c.name}</b><span class="smalltext muted">%${pct(c)}</span></div><div class="progress" style="margin-top:5px"><i style="width:${pct(c)}%"></i></div></div>`).join('')}</section>
+  <section class="panel"><h3>Ders bazlı ilerleme</h3>${cs.map(c=>`<div style="margin:12px 0"><div class="row between"><b class="smalltext">${c.name}</b><span class="smalltext muted">%${pct(c)} · ${doneTopicsForCourse(c)}/${c.topics.length} konu</span></div><div class="progress" style="margin-top:5px"><i style="width:${pct(c)}%"></i></div></div>`).join('')}</section>
   <section class="panel"><h3>Son 7 gün çalışma grafiği</h3>${weekChart()}<p class="smalltext muted">Yalnızca zaman tutucu veya test tamamlandığında kaydedilen süreler hesaplanır.</p><h3 style="margin-top:20px">Öğrenme önerisi</h3><div class="callout">İlerleme yüzdesi düşük olan ders, otomatik olarak önerilen çalışma dersleri arasında öne çıkar. Bir sonraki adım: bu dersin en eski tamamlanmamış konusunu aç ve testle pekiştir.</div></section>
  </div>
  <section class="panel" style="margin-top:16px">
