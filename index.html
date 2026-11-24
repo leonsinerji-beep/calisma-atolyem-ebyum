@@ -2047,11 +2047,28 @@ const akiskanFormulaLearning = {
  "Pompa için hidrolik güç":["P_gerekli: pompa giriş gücü (W); ρ: kg/m³; g: m/s²; Q: m³/s; H: toplam basma yüksekliği (m); η: toplam verim (0–1).","ρ=1000 kg/m³, Q=0,03 m³/s, H=20 m ve η=0,75 için P=1000×9,81×0,03×20/0,75≈7848 W=7,85 kW.","Bu bağıntı gereken pompa giriş gücünü yaklaşık verir. Debi, toplam yükseklik ve verim aynı çalışma noktası için kullanılmalı; birimler SI sisteminde tutulmalıdır."]
 };
 
+
+const malzemeFormulaLearning = {
+ "Kütle yoğunluğu":["ρ: kütle yoğunluğu (kg/m³); m: numune kütlesi (kg); V: numune hacmi (m³).","m=0,50 kg ve V=0,00020 m³ ise ρ=0,50/0,00020=2500 kg/m³ olur.","Hacim belirlenirken numunedeki açık/kapalı boşluklar ve nem durumu deney yöntemine göre tanımlanmalıdır."],
+ "Ortalama normal gerilme":["σ: ortalama normal gerilme (Pa veya MPa); F: kesite dik kuvvet (N); A: seçilen kesit alanı (m² veya mm²).","F=20 kN ve A=100 mm² ise σ=20.000/100=200 N/mm²=200 MPa olur.","Kuvvetin kesite dik bileşeni kullanılmalıdır. Mühendislik gerilmesinde başlangıç kesit alanı A₀ kullanılır; gerçek gerilmede anlık alan gerekir."],
+ "Mühendislik birim şekil değiştirmesi":["ε: mühendislik birim şekil değiştirmesi (boyutsuz); ΔL: boy değişimi; L₀: başlangıç ölçü boyu. ΔL ve L₀ aynı uzunluk biriminde olmalıdır.","L₀=100 mm ve ΔL=0,5 mm ise ε=0,5/100=0,005 (yüzde olarak %0,5) olur.","Mühendislik birim şekil değiştirmesi başlangıç ölçü boyuna göre tanımlanır; gerçek şekil değiştirme ile karıştırılmamalıdır."],
+ "Hooke kanunu":["σ: normal gerilme (Pa/MPa); E: elastisite modülü (Pa/MPa); ε: boyutsuz birim şekil değiştirme.","E=200 GPa=200.000 MPa ve ε=0,001 ise σ=Eε=200 MPa olur.","Yalnız doğrusal elastik bölgede uygulanır. E ve σ aynı gerilme birim sisteminde kullanılmalıdır."],
+ "Poisson oranı":["ν: Poisson oranı (boyutsuz); ε_enine: enine birim şekil değiştirme; ε_boyuna: boyuna birim şekil değiştirme.","ν=0,30 ve çekme doğrultusunda ε_boyuna=0,001 ise ε_enine=−0,30×0,001=−0,0003 olur.","Tek eksenli elastik yüklemede boyuna uzama ile enine daralma arasındaki negatif oranı verir; işaret konvansiyonu korunmalıdır."],
+ "Kayma modülü bağıntısı":["τ: kayma gerilmesi (Pa/MPa); G: kayma modülü (Pa/MPa); γ: kayma birim şekil değiştirmesi (radyan yaklaşımında boyutsuz).","G=80 GPa=80.000 MPa ve γ=0,0005 ise τ=Gγ=40 MPa olur.","Doğrusal elastik kayma bölgesinde geçerlidir. τ ve G aynı gerilme biriminde yazılmalıdır."],
+ "Serbest ısıl birim şekil değiştirme":["ε_T: serbest ısıl birim şekil değiştirme; α: doğrusal ısıl genleşme katsayısı (1/°C veya 1/K); ΔT: sıcaklık değişimi.","α=12×10⁻⁶/°C ve ΔT=50°C için ε_T=0,0006. L=2 m ise serbest uzama ΔL=ε_TL=1,2 mm olur.","Elemanın serbestçe genleşebildiği durum içindir. Genleşme kısıtlanırsa mekanik gerilme de oluşabilir."],
+ "Çekme dayanımı (mühendislik)":["R_m: en büyük mühendislik çekme gerilmesi (Pa/MPa); P_max: deneydeki en büyük çekme kuvveti (N); A₀: başlangıç kesit alanı (mm²).","P_max=50 kN ve A₀=100 mm² ise R_m=50.000/100=500 MPa olur.","Mühendislik çekme dayanımı başlangıç alanına göre hesaplanır; numune geometrisi, ölçü boyu ve deney standardı belirtilmelidir."],
+ "Beton / malzeme basınç dayanımı":["f_c: basınç dayanımı (MPa); P_max: en büyük basınç yükü (N); A: yüklenen kesit alanı (mm²).","P_max=450 kN ve A=150×150=22.500 mm² ise f_c=450.000/22.500=20 MPa olur.","Numune şekli, boyutu, yaşı, kür koşulu, yükleme hızı ve ilgili deney standardı sonucu etkiler."],
+ "Su/çimento oranı":["w/c: su/çimento oranı (boyutsuz); m_su: karışımdaki etkin su kütlesi (kg); m_çimento: çimento kütlesi (kg).","Etkin su=180 kg ve çimento=360 kg ise w/c=180/360=0,50 olur.","Kütle oranıdır. Agrega nemi ve su emmesi düzeltilmeli; yalnız karıştırıcıya eklenen suyu doğrudan etkin su saymamak gerekir."],
+ "Yüzde uzama":["A%: yüzde uzama (%); L_f: kopma sonrası birleştirilmiş numunenin ölçü boyu; L₀: başlangıç ölçü boyu.","L₀=100 mm ve L_f=125 mm ise A%=((125−100)/100)×100=%25 olur.","Çekme deneyi sonrası kalıcı boy artışıdır. Ölçü boyu deney standardına göre tanımlanır."],
+ "Su emme oranı":["WA%: su emme oranı (%); m_sat: standarda göre doygun yüzey-kuru kütle; m_kuru: etüv kurusu kütle.","m_sat=1,05 kg ve m_kuru=1,00 kg ise WA%=((1,05−1,00)/1,00)×100=%5 olur.","Numunenin kurutma, suya daldırma ve yüzey kuruluğu prosedürü standarda uygun olmalıdır; kütleler aynı birimde olmalıdır."]
+};
+
 function formulaLearningHTML(f){
  let d=null;
  if(f.course==='muk1'){const key=formulaLearning[f.title]?f.title:formulaLearningAliases[f.title];d=formulaLearning[key];}
  else if(f.course==='din')d=dinamikFormulaLearning[f.title];
  else if(f.course==='akiskan')d=akiskanFormulaLearning[f.title];
+ else if(f.course==='malzeme')d=malzemeFormulaLearning[f.title];
  if(!d)return '';
  return '<details class="checkpoint" style="margin-top:12px"><summary>Birimler, semboller ve çözümlü örnek</summary><div style="padding:10px 2px 2px"><p><b>Semboller ve birimler:</b> '+esc(d[0])+'</p><p><b>Sayısal örnek:</b> '+esc(d[1])+'</p><p><b>Kullanım koşulu:</b> '+esc(d[2])+'</p></div></details>';
 }
