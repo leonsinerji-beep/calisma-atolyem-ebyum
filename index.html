@@ -2098,12 +2098,27 @@ const malzemeFormulaLearning = {
  "Su emme oranı":["WA%: su emme oranı (%); m_sat: standarda göre doygun yüzey-kuru kütle; m_kuru: etüv kurusu kütle.","m_sat=1,05 kg ve m_kuru=1,00 kg ise WA%=((1,05−1,00)/1,00)×100=%5 olur.","Numunenin kurutma, suya daldırma ve yüzey kuruluğu prosedürü standarda uygun olmalıdır; kütleler aynı birimde olmalıdır."]
 };
 
+
+const istatistikFormulaLearning = {
+ "Veri türü ve anakütle":["N: anakütle büyüklüğü; n: örneklem büyüklüğü. Değişken türü, gözlemin ölçüm biçimine göre nitel/nicel; nicel değişkenler kesikli/sürekli ayrımıyla sınıflandırılır.","Bir partideki 500 numunenin tamamı anakütle; rastgele seçilen 40 numune örneklemdir. Numune basınç dayanımı MPa cinsinden nicel-sürekli değişkendir.","Bu başlık sayısal formülden çok veri türü ve örnekleme tasarımıyla ilgilidir. Anakütle parametresi ile örneklem istatistiğini ayır."],
+ "Frekans ve göreli frekans":["fᵢ: i. sınıf frekansı; n: toplam gözlem sayısı; hᵢ: göreli frekans. Σfᵢ=n ve Σhᵢ=1 olmalıdır.","20 beton deneyinin 5’i bir sınıfa düşüyorsa hᵢ=5/20=0,25=%25 olur.","Sınıflar ayrık ve tüm gözlemleri kapsamalıdır. Kümülatif frekans biriken sayıyı verir; histogram nicel sınıf aralıkları içindir."],
+ "Merkezi eğilim ölçüleri":["x̄: aritmetik ortalama; xᵢ: i. gözlem; n: gözlem sayısı. Medyan sıralı verinin ortası, mod en sık görülen değerdir.","2, 4, 4, 6, 9 için x̄=25/5=5, medyan=4 ve mod=4 olur.","Ortalama uç değerlere duyarlıdır. Çarpık dağılımda veya uç değer varlığında medyan daha dayanıklı olabilir."],
+ "Örneklem varyansı":["s²: örneklem varyansı; xᵢ: gözlem; x̄: örneklem ortalaması; n: örneklem büyüklüğü; s: örneklem standart sapması.","2, 4, 6 verisinde x̄=4, kareli sapmalar toplamı 8; s²=8/(3−1)=4 ve s=√4=2 olur.","Örneklem varyansı n−1 ile bölünür. Varyansın birimi değişken biriminin karesi, standart sapmanın birimi değişkenle aynıdır."],
+ "Temel olasılık":["P(A): A olayının olasılığı; Aᶜ: tümleyen olay. Eş olasılıklı sonlu uzayda P(A)=uygun sonuç sayısı/tüm sonuç sayısı.","Adil zar atıldığında çift sayı gelme olasılığı 3/6=0,5; gelmeme olasılığı da 1−0,5=0,5’tir.","P(A) 0 ile 1 arasındadır ve örnek uzayın olasılığı 1’dir. Sayma oranı yalnız eş olasılıklı sonuçlarda doğrudan kullanılır."],
+ "Koşullu olasılık ve Bayes":["P(A|B): B gerçekleşmişken A olasılığı; P(A∩B): kesişim olasılığı. Bayes, ters koşullu olasılığı günceller.","P(A∩B)=0,12 ve P(B)=0,30 ise P(A|B)=0,12/0,30=0,40 bulunur.","Koşullu olasılık için P(B)>0 olmalıdır. Bağımsızlıkta P(A|B)=P(A); Bayes hesabında taban oran ve yanlış pozitifler ihmal edilmemelidir."],
+ "Beklenen değer ve varyans":["X: kesikli rassal değişken; P(X=x): olasılık; E[X]: beklenen değer; Var(X): varyans. Olasılıkların toplamı 1’dir.","X=0 olasılık 0,25 ve X=10 olasılık 0,75 ise E[X]=0×0,25+10×0,75=7,5 olur.","E[X]=ΣxP(X=x) ve Var(X)=E[X²]−(E[X])². Beklenen değer X ile aynı birimde, varyans birimin karesindedir."],
+ "Normal dağılım ve z skoru":["x: gözlem; μ: ortalama; σ: standart sapma; z: standartlaştırılmış değer (boyutsuz). z=(x−μ)/σ.","μ=50, σ=5 ve x=60 için z=(60−50)/5=2 olur; değer ortalamanın iki standart sapma üzerindedir.","Normal dağılım simetriktir. 68–95–99,7 kuralı yaklaşık geçerlidir; z skoru normal dağılım varsayımıyla olasılık yorumunda kullanılır."],
+ "Standart hata ve güven aralığı":["SE(x̄): örneklem ortalamasının standart hatası; σ: anakütle standart sapması; n: örneklem büyüklüğü; z_(α/2): kritik normal değer.","σ=10 ve n=25 ise SE=10/√25=2 olur. %95 güven düzeyinde z≈1,96 kullanılırsa hata payı 1,96×2=3,92’dir.","Bu ifade σ biliniyorsa kullanılır. σ bilinmiyorsa çoğu durumda s ve t dağılımı kullanılır; güven aralığı koşullara bağlıdır."],
+ "Hipotez testi karar kuralı":["H₀: sıfır hipotezi; H₁: alternatif hipotez; α: anlamlılık düzeyi; p: p-değeri. Karar p ile α karşılaştırılarak verilir.","α=0,05 ve p=0,03 ise p≤α olduğundan H₀ reddedilir. p=0,08 olsaydı H₀ reddedilemezdi.","p-değeri H₀’ın doğru olma olasılığı değildir. H₀’ın reddedilememesi, onun kanıtlandığı anlamına gelmez; test varsayımları da kontrol edilmelidir."]
+};
+
 function formulaLearningHTML(f){
  let d=null;
  if(f.course==='muk1'){const key=formulaLearning[f.title]?f.title:formulaLearningAliases[f.title];d=formulaLearning[key];}
  else if(f.course==='din')d=dinamikFormulaLearning[f.title];
  else if(f.course==='akiskan')d=akiskanFormulaLearning[f.title];
  else if(f.course==='malzeme')d=malzemeFormulaLearning[f.title];
+ else if(f.course==='istatistik')d=istatistikFormulaLearning[f.title];
  if(!d)return '';
  return '<details class="checkpoint" style="margin-top:12px"><summary>Birimler, semboller ve çözümlü örnek</summary><div style="padding:10px 2px 2px"><p><b>Semboller ve birimler:</b> '+esc(d[0])+'</p><p><b>Sayısal örnek:</b> '+esc(d[1])+'</p><p><b>Kullanım koşulu:</b> '+esc(d[2])+'</p></div></details>';
 }
