@@ -2696,6 +2696,47 @@ const muhmatFormulaLearning = {
  "Model ve boyut kontrolü":["[Q]: Q büyüklüğünün fiziksel boyutu; M: kütle; L: uzunluk; T: zaman. Boyutsal tutarlılık, eşitliğin iki tarafındaki her terimin aynı temel boyuta sahip olmasını gerektirir.","Q=AV denkleminde [A]=L² ve [V]=LT⁻¹ olduğundan [Q]=L³T⁻¹; bu hacimsel debinin m³/s boyutuyla uyumludur.","Boyut analizi denklem hatalarını yakalar ancak tek başına katsayıları veya modelin fiziksel doğruluğunu kanıtlamaz. Ampirik sabitlerin boyutları da olabilir."]
 };
 
+
+const mukavemet2FormulaCards = [
+ {course:'muk2',title:'Kesit alanı atalet momenti',expr:'I_x = b h³ / 12',note:'Dikdörtgen kesitin ağırlık merkezinden geçen yatay eksene göre alan atalet momenti.'},
+ {course:'muk2',title:'Paralel eksen teoremi',expr:'I_x = I_x,c + A d²',note:'Bir alanın merkez eksenine paralel başka bir eksene göre atalet momentini verir.'},
+ {course:'muk2',title:'Kesit modülü',expr:'S = I / c',note:'Elastik eğilmede dış lif gerilmesini σmax=M/S ile hesaplamak için kullanılır.'},
+ {course:'muk2',title:'Kesme gerilmesi',expr:'τ = V Q / (I t)',note:'Kiriş kesitinde belirli bir seviyedeki enine kayma gerilmesini verir.'},
+ {course:'muk2',title:'Kayma akısı',expr:'q = V Q / I',note:'İnce cidarlı kiriş kesitlerinde birim uzunluk başına kayma kuvveti aktarımı.'},
+ {course:'muk2',title:'Elastik eğri denklemi',expr:'E I v″(x) = M(x)',note:'Küçük sehimli lineer elastik Euler–Bernoulli kiriş modelinin diferansiyel bağıntısı.'},
+ {course:'muk2',title:'Konsol kiriş uç sehmi',expr:'δ = P L³ / (3 E I)',note:'Sabit EI değerli konsol kirişin serbest ucunda tekil düşey yük için.'},
+ {course:'muk2',title:'Şekil değiştirme enerjisi',expr:'U = ∫ M² / (2 E I) dx',note:'Lineer elastik kirişte eğilme nedeniyle depolanan enerji.'},
+ {course:'muk2',title:'Castigliano teoremi',expr:'δ = ∂U / ∂P',note:'Toplam şekil değiştirme enerjisinin ilgili kuvvete göre türevi, aynı doğrultudaki yer değiştirmeyi verir.'},
+ {course:'muk2',title:'Burulma şekil değiştirme enerjisi',expr:'U = ∫ T² / (2 G J) dx',note:'Lineer elastik milde burulma nedeniyle depolanan enerji.'},
+ {course:'muk2',title:'Bredt–Batho bağıntısı',expr:'q = T / (2 A_m) ; τ = q/t',note:'İnce cidarlı tek hücreli kapalı kesitte burulma kaynaklı kayma akısı ve ortalama gerilme.'},
+ {course:'muk2',title:'Asal gerilmeler',expr:'σ₁,₂ = σ_ort ± R',note:'Düzlem gerilme durumunda Mohr dairesinin normal gerilme ekseni kesişimleri.'},
+ {course:'muk2',title:'Mohr dairesi yarıçapı',expr:'R = √[((σx−σy)/2)² + τxy²]',note:'Düzlem içi maksimum kayma gerilmesinin büyüklüğü R değeridir.'},
+ {course:'muk2',title:'Narinlik oranı',expr:'λ = K L / r_min ; r_min = √(I_min/A)',note:'Kolonun etkin boyunu en küçük atalet yarıçapına oranlar.'},
+ {course:'muk2',title:'Emniyet katsayısı',expr:'n = kapasite / talep',note:'Basit emniyet katsayısı tanımı; gerçek tasarımda ilgili standardın katsayı ve limit durumları uygulanır.'}
+];
+mukavemet2FormulaCards.forEach(card=>{
+ if(!formulas.some(f=>f.course===card.course&&f.title===card.title))formulas.push(card);
+});
+const mukavemet2FormulaLearning = {
+ "Eğilme gerilmesi":["σ: normal gerilme (MPa); M: eğilme momenti (N·mm); y: nötr eksenden uzaklık (mm); I: alan atalet momenti (mm⁴).","M=12 kN·m=12×10⁶ N·mm, I=8×10⁷ mm⁴ ve c=100 mm ise σmax=Mc/I=15 MPa olur.","Basit elastik eğilme, doğrusal elastik malzeme ve küçük şekil değiştirme varsayımlarına dayanır. Moment ve kesit özelliği aynı eksene göre olmalıdır."],
+ "Euler burkulma yükü":["P_cr: ideal kritik burkulma yükü (N); E: elastisite modülü (N/mm²); I_min: zayıf eksene göre alan atalet momenti (mm⁴); K: boyutsuz etkin boy katsayısı; L: kolon boyu (mm).","E=200.000 N/mm², I_min=6×10⁶ mm⁴, L=3000 mm ve K=1 için P_cr≈1,316×10⁶ N=1316 kN olur.","İdeal, merkezî basınçlı, doğrusal elastik ve yeterince narin kolon modeli içindir. Gerçek tasarımda kusur, eksantrisite ve yönetmelik hükümleri ayrıca değerlendirilir."],
+ "Kesit alanı atalet momenti":["I_x: alan atalet momenti (mm⁴); b: kesit genişliği (mm); h: kesit yüksekliği (mm).","b=100 mm ve h=200 mm için I_x=100×200³/12=66,67×10⁶ mm⁴ olur.","Eksen ağırlık merkezinden geçmeli ve formül seçilen eksene uygun olmalıdır. I birimi uzunluğun dördüncü kuvvetidir."],
+ "Paralel eksen teoremi":["I_x: taşınan eksene göre atalet momenti (mm⁴); I_x,c: parça ağırlık merkezi eksenine göre atalet momenti; A: alan (mm²); d: paralel eksenler arası dik uzaklık (mm).","I_x,c=1,0×10⁶ mm⁴, A=2000 mm² ve d=30 mm ise I_x=1,0×10⁶+2000×30²=2,8×10⁶ mm⁴ olur.","Eksenler paralel olmalıdır. Bileşik kesitte parçaların alan ve ağırlık merkezleri doğru belirlenmeli; boşluk alanları uygun işaretle çıkarılmalıdır."],
+ "Kesit modülü":["S: kesit modülü (mm³); I: alan atalet momenti (mm⁴); c: nötr eksenden en dış life uzaklık (mm).","I=8×10⁷ mm⁴ ve c=100 mm ise S=8×10⁵ mm³ olur. M=12 kN·m için σmax=M/S=15 MPa’dır.","Elastik eğilme hesabında kullanılır. S değeri, eğilme momentinin hangi eksen etrafında olduğuna göre belirlenmelidir."],
+ "Kesme gerilmesi":["τ: kayma gerilmesi (MPa); V: kesme kuvveti (N); Q: birinci alan momenti (mm³); I: alan atalet momenti (mm⁴); t: yerel kalınlık (mm).","V=40.000 N, Q=1,2×10⁶ mm³, I=8×10⁷ mm⁴ ve t=8 mm için τ=75 N/mm²=75 MPa olur.","Kiriş kesitindeki belirli bir seviye için kullanılır. Q, seçilen seviyenin bir tarafındaki alanın nötr eksene göre birinci momentidir; t o seviyedeki yerel kalınlıktır."],
+ "Kayma akısı":["q: kayma akısı (N/mm); V: kesme kuvveti (N); Q: birinci alan momenti (mm³); I: alan atalet momenti (mm⁴).","V=40.000 N, Q=1,2×10⁶ mm³ ve I=8×10⁷ mm⁴ ise q=600 N/mm olur.","İnce cidarlı kesitlerde birim uzunluk başına kuvvet aktarımını verir. Yerel kayma gerilmesi için τ=q/t kullanılır."],
+ "Elastik eğri denklemi":["E: elastisite modülü (N/mm²); I: alan atalet momenti (mm⁴); v: sehim (mm); x: kiriş boyunca koordinat (mm); M: eğilme momenti (N·mm).","M sabit kabul edilen bir bölgede EI v″=M ise v″=M/(EI); iki integrasyonla eğim ve sehim fonksiyonları bulunur.","Küçük sehimli Euler–Bernoulli kiriş modelidir. İşaret konvansiyonu baştan seçilmeli; mesnet ve süreklilik koşulları uygulanmalıdır."],
+ "Konsol kiriş uç sehmi":["δ: uç sehmi (mm); P: uç kuvveti (N); L: konsol boyu (mm); E: elastisite modülü (N/mm²); I: alan atalet momenti (mm⁴).","P=2000 N, L=2000 mm, E=200.000 N/mm² ve I=8×10⁶ mm⁴ için δ=PL³/(3EI)=3,33 mm olur.","Sabit EI, lineer elastik davranış, küçük sehim ve serbest uçta tekil yük bulunan ankastre kiriş için geçerlidir."],
+ "Şekil değiştirme enerjisi":["U: eğilme enerjisi (N·mm veya J); M: moment (N·mm); E: elastisite modülü (N/mm²); I: alan atalet momenti (mm⁴); x: koordinat (mm).","M ve EI sabitse L uzunluğundaki eleman için U=M²L/(2EI) olur. Sayısal hesapta enerji birimi N·mm elde edilir.","Bu ifade yalnız eğilme enerjisini içerir. Eksenel, kesme ve burulma katkıları önemliyse ayrıca eklenmelidir."],
+ "Castigliano teoremi":["U: toplam elastik şekil değiştirme enerjisi; P: genelleştirilmiş kuvvet (N); δ: aynı doğrultudaki yer değiştirme (mm).","U(P)=aP²/2 biçiminde verilmişse δ=∂U/∂P=aP olur; burada a sistemin esneklik katsayısını temsil eder.","Lineer elastik sistem ve enerji fonksiyonunun ilgili yük bakımından türevlenebilir olması gerekir. Moment değişkenine göre türev dönme açısını verir."],
+ "Burulma şekil değiştirme enerjisi":["U: burulma enerjisi (J veya N·mm); T: tork (N·mm); G: kayma modülü (N/mm²); J: polar alan atalet momenti (mm⁴); x: mil ekseni (mm).","T,G,J sabit ve uzunluk L ise U=T²L/(2GJ) olur.","Dairesel milde lineer elastik burulma varsayımıyla kullanılır. Tork, G, J ve uzunluk birimleri tutarlı olmalıdır."],
+ "Bredt–Batho bağıntısı":["q: kayma akısı (N/mm); T: tork (N·mm); A_m: cidar orta çizgisinin kapalı alanı (mm²); t: cidar kalınlığı (mm); τ: kayma gerilmesi (MPa).","T=10 kN·m=10⁷ N·mm, A_m=50.000 mm² ise q=10⁷/(2×50.000)=100 N/mm. t=2 mm için τ=50 MPa olur.","İnce cidarlı tek hücreli kapalı kesit yaklaşımıdır. Açık kesit veya çok hücreli kesitte farklı çözüm gerekir."],
+ "Asal gerilmeler":["σx, σy: düzlem normal gerilmeleri (MPa); τxy: düzlem içi kayma gerilmesi (MPa); σort: ortalama normal gerilme; R: Mohr dairesi yarıçapı.","σx=80 MPa, σy=20 MPa, τxy=30 MPa için σort=50 MPa ve R=42,43 MPa; σ1=92,43 MPa, σ2=7,57 MPa olur.","Düzlem gerilme durumu içindir. İşaret konvansiyonu ve tüm gerilme birimleri aynı olmalıdır."],
+ "Mohr dairesi yarıçapı":["R: Mohr dairesi yarıçapı (MPa); σx,σy: normal gerilmeler; τxy: kayma gerilmesi.","σx=80 MPa, σy=20 MPa ve τxy=30 MPa için R=√(30²+30²)=42,43 MPa olur.","R, maksimum düzlem içi kayma gerilmesinin büyüklüğüdür. Üç boyutlu gerilme durumunda üç asal gerilme ve birden fazla daire değerlendirilir."],
+ "Narinlik oranı":["λ: boyutsuz narinlik oranı; K: etkin boy katsayısı; L: kolon boyu (mm); r_min: minimum atalet yarıçapı (mm); I_min: alan atalet momenti (mm⁴); A: kesit alanı (mm²).","K=1, L=3000 mm, I_min=6×10⁶ mm⁴ ve A=3000 mm² ise r_min=√(2000)=44,72 mm ve λ≈67,1 olur.","Etkin boy ve en küçük atalet yarıçapı kullanılmalıdır. Narinlik, kolonun burkulma duyarlılığını yorumlamak için kullanılır."],
+ "Emniyet katsayısı":["n: emniyet katsayısı (boyutsuz); kapasite ve talep aynı fiziksel büyüklükte olmalıdır; σ_y: akma dayanımı (MPa).","σ_y=250 MPa ve n=2 için basit izin verilebilir gerilme σ_izin=125 MPa olur.","Bu sade yaklaşım, gerçek tasarım yönetmeliklerinin yük/direnç katsayıları ve limit durumlarının yerine geçmez. İlgili standart ve malzeme şartları izlenmelidir."]
+};
+
 function formulaLearningHTML(f){
  let d=null;
  if(f.course==='muk1'){const key=formulaLearning[f.title]?f.title:formulaLearningAliases[f.title];d=formulaLearning[key];}
@@ -2705,6 +2746,7 @@ function formulaLearningHTML(f){
  else if(f.course==='istatistik')d=istatistikFormulaLearning[f.title];
  else if(f.course==='diferansiyel')d=diferansiyelFormulaLearning[f.title];
  else if(f.course==='lineer')d=lineerFormulaLearning[f.title];
+ else if(f.course==='muk2')d=mukavemet2FormulaLearning[f.title];
  else if(f.course==='muhmat')d=muhmatFormulaLearning[f.title];
  if(!d)return '';
  return '<details class="checkpoint" style="margin-top:12px"><summary>Birimler, semboller ve çözümlü örnek</summary><div style="padding:10px 2px 2px"><p><b>Semboller ve birimler:</b> '+esc(d[0])+'</p><p><b>Sayısal örnek:</b> '+esc(d[1])+'</p><p><b>Kullanım koşulu:</b> '+esc(d[2])+'</p></div></details>';
