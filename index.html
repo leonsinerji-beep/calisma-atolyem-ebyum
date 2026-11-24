@@ -1211,6 +1211,31 @@ function addTopicPracticeQuestions(){
 }
 
 addTopicPracticeQuestions();
+
+function addMyd1VocabularyQuestions(){
+ const rows=fallTopicRows.myd1||[];
+ rows.forEach((row,topicIndex)=>{
+  const vocabulary=Array.isArray(row[10])?row[10].filter(v=>Array.isArray(v)&&v.length>=2):[];
+  if(vocabulary.length<4)return;
+  for(let j=0;j<2;j++){
+   const [term,meaning]=vocabulary[j];
+   const distractors=vocabulary.filter((_,index)=>index!==j).map(v=>v[1]);
+   const answer=(topicIndex+j)%4,options=[];
+   let wrongIndex=0;
+   for(let k=0;k<4;k++)options.push(k===answer?meaning:distractors[wrongIndex++]);
+   const id='myd1-vocab-'+(topicIndex+1)+'-'+(j+1);
+   if(questions.some(item=>item.id===id))continue;
+   questions.push({
+    id,c:'myd1',topic:topicIndex,level:j===0?'Kolay':'Orta',
+    q:'“'+term+'” teriminin bu konudaki Türkçe karşılığı hangisidir?',
+    o:options,a:answer,
+    e:term+' = '+meaning+'. Terimi teknik bağlamı ve örnek cümleyle birlikte değerlendir.'
+   });
+  }
+ });
+}
+addMyd1VocabularyQuestions();
+
 const muk1ExamQuestions = [
 {id:'m1-exam-01',c:'muk1',topic:0,level:'Kolay',q:'İdeal makaralı mesnetin düzlem modelinde kaç tepki kuvveti bileşeni vardır?',o:['Bir, temas yüzeyine dik','İki, yatay ve düşey','Üç, iki kuvvet ve moment','Hiç tepki oluşturmaz'],a:0,e:'İdeal makara yalnız temas yüzeyine dik hareketi engeller; teğetsel yönde hareket serbesttir.'},
 {id:'m1-exam-02',c:'muk1',topic:0,level:'Orta',q:'6 m açıklıklı basit kirişin orta noktasına 12 kN aşağı yük uygulanıyor. Her bir düşey mesnet tepkisi kaç kN olur?',o:['3','6','9','12'],a:1,e:'Sistem simetriktir. Toplam düşey yük 12 kN olduğundan iki mesnet tepkisi 6 kN yukarıdır.'},
