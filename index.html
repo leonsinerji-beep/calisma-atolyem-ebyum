@@ -1423,6 +1423,38 @@ const lineerExamQuestions = [
 ];
 questions.push(...lineerExamQuestions);
 
+const muhmatExamQuestions = [
+ q('muhmat-core-01','muhmat',0,'Kolay','z=3+4i karmaşık sayısının modülü kaçtır?',['3','4','5','7'],2,'|z|=√(3²+4²)=√25=5.'),
+ q('muhmat-core-02','muhmat',0,'Orta','z=−3+4i karmaşık sayısının argümanı hangi bölgede bulunur?',['I. bölge','II. bölge','III. bölge','IV. bölge'],1,'Gerçek kısım negatif, sanal kısım pozitif olduğundan nokta II. bölgededir; argüman yaklaşık 126,87°’dir.'),
+ q('muhmat-core-03','muhmat',0,'Zor','z₁=2(cos30°+i sin30°) ve z₂=3(cos60°+i sin60°) ise z₁z₂’nin kutupsal biçimi hangisidir?',['6(cos90°+i sin90°)','5(cos30°+i sin30°)','6(cos30°+i sin30°)','1(cos90°+i sin90°)'],0,'Kutupsal biçimde çarpımda modüller çarpılır, argümanlar toplanır: 2×3=6 ve 30°+60°=90°.'),
+ q('muhmat-core-04','muhmat',1,'Kolay','f(z)=u(x,y)+iv(x,y) analitikliği için Cauchy–Riemann koşulları hangisidir?',['u_x=v_y ve u_y=−v_x','u_x=v_x ve u_y=v_y','u_x=−v_y ve u_y=v_x','u=v her noktada'],0,'Cauchy–Riemann denklemleri u_x=v_y ve u_y=−v_x biçimindedir.'),
+ q('muhmat-core-05','muhmat',1,'Orta','f(z)=z² için gerçek kısım u(x,y) hangisidir?',['x²+y²','x²−y²','2xy','x−y'],1,'z²=(x+iy)²=x²−y²+i(2xy); gerçek kısım u=x²−y²’dir.'),
+ q('muhmat-core-06','muhmat',1,'Zor','f(z)=z² fonksiyonunda u=x²−y² ve v=2xy için Cauchy–Riemann koşullarını kontrol ettiğinde hangisi bulunur?',['Koşullar sağlanır; fonksiyon tüm düzlemde analitiktir.','Koşullar yalnız orijinde sağlanır.','Koşullar hiçbir noktada sağlanmaz.','Yalnız x=y doğrusu üzerinde sağlanır.'],0,'u_x=2x=v_y ve u_y=−2y=−v_x olduğundan Cauchy–Riemann denklemleri tüm düzlemde sağlanır; z² analitiktir.'),
+ q('muhmat-core-07','muhmat',2,'Kolay','f(x,y)=x²+y² fonksiyonunun (3,4) noktasındaki değeri kaçtır?',['7','12','25','49'],2,'f(3,4)=3²+4²=9+16=25.'),
+ q('muhmat-core-08','muhmat',2,'Orta','f(x,y)=ln(4−x²−y²) fonksiyonunun gerçek değerli olması için tanım bölgesi koşulu hangisidir?',['x²+y²<4','x²+y²>4','x²+y²=4','Her (x,y)∈R² için tanımlıdır'],0,'Logaritmanın içi pozitif olmalıdır: 4−x²−y²>0, yani x²+y²<4.'),
+ q('muhmat-core-09','muhmat',2,'Zor','f(x,y)=x²+y² için f(x,y)=c seviye eğrileri (c>0) hangi geometrik şekildir?',['Merkezi orijinde yarıçapı √c olan çemberler','Merkezi orijinde yarıçapı c olan doğrular','Paralel yatay doğrular','Hiperboller'],0,'x²+y²=c denklemi merkezi orijinde ve yarıçapı √c olan çemberleri tanımlar.'),
+ q('muhmat-core-10','muhmat',3,'Kolay','f(x,y)=x²y+3xy için f_x kısmi türevi hangisidir?',['2xy+3y','x²+3x','2x+3','x²y'],0,'x’e göre türev alırken y sabit tutulur: f_x=2xy+3y.'),
+ q('muhmat-core-11','muhmat',3,'Orta','f(x,y)=x²y+3xy için (1,2) noktasında toplam diferansiyel yaklaşık olarak hangi katsayıları içerir?',['df≈10dx+4dy','df≈4dx+10dy','df≈2dx+3dy','df≈dx+dy'],0,'f_x=2xy+3y=10 ve f_y=x²+3x=4 noktada. Bu nedenle df=f_xdx+f_ydy≈10dx+4dy.'),
+ q('muhmat-core-12','muhmat',3,'Zor','f_x ve f_y kısmi türevleri alınırken hangi işlem yapılır?',['f_x alınırken y sabit, f_y alınırken x sabit tutulur.','Her iki değişken aynı anda türevlenir.','Diğer değişken sıfır yapılır.','Fonksiyon önce mutlaka integre edilir.'],0,'Kısmi türevde türev alınmayan bağımsız değişken sabit kabul edilir.'),
+ q('muhmat-core-13','muhmat',4,'Kolay','D=[1,3]×[−1,2] dikdörtgeninin alanı kaçtır?',['3','5','6','9'],2,'Dikdörtgenin alanı (3−1)×(2−(−1))=2×3=6’dır.'),
+ q('muhmat-core-14','muhmat',4,'Orta','Bir düzlem bölgesinin alanını çift integral ile hesaplamak için integrand genellikle ne seçilir?',['f(x,y)=1','f(x,y)=0','f(x,y)=x+y daima','f(x,y)=∂²f/∂x∂y'],0,'Alan A=∬_D 1 dA ile bulunur; integrand 1 seçilir.'),
+ q('muhmat-core-15','muhmat',4,'Zor','∫₀²∫₀³(x+y)dy dx çift integralinin değeri kaçtır?',['9','12','15','18'],2,'İç integral 3x+9/2 olur. Dış integral ∫₀²(3x+9/2)dx=6+9=15’tir.'),
+ q('muhmat-core-16','muhmat',5,'Kolay','f(x,y)=x²+2y² fonksiyonunun (1,2) noktasındaki gradyanı hangisidir?',['(2,8)','(1,4)','(2,4)','(4,8)'],0,'∇f=(f_x,f_y)=(2x,4y); (1,2) noktasında (2,8) olur.'),
+ q('muhmat-core-17','muhmat',5,'Orta','f(x,y)=x²+2y² için (1,1) noktasında u=(3/5,4/5) birim yönünde yönlü türev kaçtır?',['2','22/5','6','8'],1,'∇f(1,1)=(2,4). D_uf=∇f·u=2×3/5+4×4/5=22/5.'),
+ q('muhmat-core-18','muhmat',5,'Zor','Bir noktada gradyan vektörü hangi yönü gösterir?',['Fonksiyonun en hızlı arttığı yönü','Fonksiyonun her zaman sıfır olduğu yönü','En hızlı azaldığı yönü','Yalnız koordinat eksenlerini'],0,'Gradyan, fonksiyonun en hızlı artış yönünü gösterir; büyüklüğü en büyük yönlü türevdir.'),
+ q('muhmat-core-19','muhmat',6,'Kolay','F=(2x,3y,−z) vektör alanının diverjansı kaçtır?',['0','2','4','6'],2,'∇·F=∂(2x)/∂x+∂(3y)/∂y+∂(−z)/∂z=2+3−1=4.'),
+ q('muhmat-core-20','muhmat',6,'Orta','F=(−y,x,0) alanının rotasyonelinin z bileşeni kaçtır?',['0','1','2','−2'],2,'(∇×F)_z=∂Q/∂x−∂P/∂y=1−(−1)=2.'),
+ q('muhmat-core-21','muhmat',6,'Zor','Düzgün bir bölgede C¹ bir vektör alanının rotasyoneli sıfırsa, uygun basit bağlantılılık koşulunda hangi yorum yapılabilir?',['Alan konservatiftir ve skaler potansiyel fonksiyonla ifade edilebilir.','Diverjansı mutlaka sıfırdır.','Alan sabit olmak zorundadır.','Akış hızı mutlaka sıfırdır.'],0,'Basit bağlantılı bölgede curl F=0 koşulu, yeterli düzgünlük altında alanın konservatif olmasıyla ilişkilidir.'),
+ q('muhmat-core-22','muhmat',7,'Kolay','Bir fonksiyonun periyodu T ise Fourier serisinin temel açısal frekansı ω₀ hangisidir?',['T/(2π)','2π/T','πT','1/T²'],1,'Temel açısal frekans ω₀=2π/T rad/s biçimindedir.'),
+ q('muhmat-core-23','muhmat',7,'Orta','Simetrik bir aralıkta tanımlı çift bir fonksiyonun Fourier serisinde sinüs katsayıları bₙ için ne söylenir?',['Hepsi sıfırdır.','Hepsi birdir.','Yalnız b₁ sıfırdır.','İşaretleri daima pozitiftir.'],0,'Çift fonksiyon ile sinüs (tek fonksiyon) çarpımının simetrik aralıktaki integrali sıfırdır; bu nedenle bₙ=0 olur.'),
+ q('muhmat-core-24','muhmat',7,'Zor','Simetrik aralıkta tek bir fonksiyonun Fourier serisinde hangi katsayılar sıfır olur?',['a₀ ve tüm aₙ katsayıları','Tüm bₙ katsayıları','Yalnız a₁','Hiçbiri'],0,'Tek fonksiyonun sabit ve kosinüs bileşenleri simetrik aralıkta sıfır integral verir; yalnız sinüs terimleri kalır.'),
+ q('muhmat-core-25','muhmat',8,'Kolay','Fiziksel bir model denkleminde boyutsal tutarlılık neyi gerektirir?',['Eşitliğin iki tarafındaki terimlerin aynı boyutta olmasını','Bütün değişkenlerin aynı sayısal değerde olmasını','Her terimin metre cinsinden olmasını','Sabitlerin boyutsuz olmasını'],0,'Boyutsal tutarlılıkta toplanan terimler ve eşitliğin iki tarafı aynı fiziksel boyuta sahip olmalıdır.'),
+ q('muhmat-core-26','muhmat',8,'Orta','Bir akışta Q=0,03 m³/s debi ve A=0,015 m² kesit alanı varsa ortalama hız kaç m/s’dir?',['0,5','2','4,5','45'],1,'Q=AV olduğundan V=Q/A=0,03/0,015=2 m/s.'),
+ q('muhmat-core-27','muhmat',8,'Zor','m x″+c x′+k x=F(t) denkleminde her terimin kuvvet (N) biriminde olması için sönüm katsayısı c’nin birimi ne olmalıdır?',['N·s/m','N/m','kg/m³','m/s²'],0,'x′ birimi m/s olduğundan c x′ kuvvet olmalıdır; c birimi N/(m/s)=N·s/m’dir.')
+];
+questions.push(...muhmatExamQuestions);
+
+
 
 
 
