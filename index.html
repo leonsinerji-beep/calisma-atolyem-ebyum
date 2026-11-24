@@ -2198,6 +2198,18 @@ const diferansiyelFormulaLearning = {
  "Yay-kütle-sönümleyici modeli":["m: kütle (kg); c: sönüm katsayısı (N·s/m); k: yay rijitliği (N/m); x: yer değiştirme (m); F(t): dış kuvvet (N).","m=2, c=6, k=8 için 2x″+6x′+8x=F(t); doğal açısal frekans ω_n=√(k/m)=2 rad/s ve ζ=c/(2√mk)=0,75 olur.","Model lineer yay ve viskoz sönümleyici varsayar. Başlangıç konumu/hızı ve kuvvet geçmişi çözümü belirler; katsayılar SI birimlerinde tutarlı olmalıdır."]
 };
 
+
+const lineerFormulaLearning = {
+ "Matris çarpım boyutu":["A: m×n, B: n×p boyutlu matrisler; C=AB: m×p boyutlu sonuç matrisi. İç boyutlar eşleşmelidir.","A 2×3 ve B 3×2 ise AB çarpımı tanımlıdır ve sonuç 2×2 boyutundadır. BA da tanımlıdır ancak 3×3 boyutunda olur.","Çarpımın tanımlılığı için ilk matrisin sütun sayısı ikinci matrisin satır sayısına eşit olmalıdır. AB genel olarak BA’ya eşit değildir."],
+ "Determinant ve ters matris":["A=[[a,b],[c,d]] için det(A)=ad−bc. A⁻¹: A ile çarpıldığında birim matrisi veren ters matristir.","A=[[2,1],[1,1]] için det(A)=1 ve A⁻¹=[[1,−1],[−1,2]] olur.","Ters matris yalnız kare matrislerde ve det(A)≠0 iken vardır. Sayısal hesapta determinantın sıfır olup olmadığı önce kontrol edilmelidir."],
+ "Matris denklem ve rank":["A: katsayı matrisi; x: bilinmeyen vektör; b: sağ taraf vektörü; rank: matrisin doğrusal bağımsız satır/sütun sayısı.","2x+y=5 ve x−y=1 sistemi için x=2, y=1 bulunur; çözüm özgün denklemlere geri konularak doğrulanır.","Sistem tutarlıysa rank(A)=rank([A|b]); tek çözüm için ortak rank bilinmeyen sayısına eşit olmalıdır."],
+ "Temel satır işlemleri":["Rᵢ↔Rⱼ: satır değişimi; Rᵢ←kRᵢ (k≠0): satır ölçekleme; Rᵢ←Rᵢ+kRⱼ: satıra satır katı ekleme.","[1 2|5; 1 −1|1] genişletilmiş matrisinde ikinci satırdan ilk satır çıkarıldığında eşdeğer denklem sistemi korunur ve eliminasyon yapılabilir.","Temel satır işlemleri doğrusal sistemin çözüm kümesini ve rankını korur. Determinant üzerinde etkileri farklıdır; satır değişimi işareti çevirir, ölçekleme aynı katsayıyla çarpar, satıra kat ekleme değiştirmez."],
+ "Alt uzay testi":["W: vektör uzayının alt kümesi; 0: sıfır vektörü; u,v∈W ve λ skaler. Alt uzay toplama ve skaler çarpmaya kapalı olmalıdır.","W={(x,y):y=2x} için (0,0) W’dedir; (x₁,2x₁)+(x₂,2x₂)=(x₁+x₂,2(x₁+x₂)) yine W’dedir.","Sıfır vektörünü içermek gerekli fakat tek başına yeterli değildir. Toplama ve skaler çarpma altında kapalılık da kontrol edilmelidir."],
+ "Lineer bağımsızlık":["vᵢ: vektörler; cᵢ: skaler katsayılar. Σcᵢvᵢ=0 eşitliğinin yalnız tüm cᵢ=0 çözümü varsa vektörler bağımsızdır.","(1,0) ve (0,1) vektörleri R² için bağımsızdır ve baz oluşturur. (2,4)=2(1,2) olduğundan (1,2) ile (2,4) bağımlıdır.","Bağımsızlıkta sıfır vektörünün doğrusal kombinasyonu yalnız tüm katsayılar sıfırken oluşur. Bir vektör kümesi baz ise hem bağımsız hem uzayı geren kümedir."],
+ "Özdeğer ve özvektör":["A: kare matris; λ: özdeğer; v≠0: özvektör. det(A−λI)=0 karakteristik denklemi verir ve Av=λv sağlanır.","A=diag(2,3) için özdeğerler λ₁=2 ve λ₂=3’tür. λ=2 için v=(1,0) özvektördür.","Özvektör sıfır olamaz. Özdeğerler karakteristik denklemden, özvektörler ise (A−λI)v=0 homojen sisteminden bulunur."],
+ "Dönüşüm matrisi":["T(x)=Ax; x: giriş vektörü; A: dönüşüm matrisi; T(x): görüntü vektörü. Lineer dönüşüm toplama ve skaler çarpmayı korur.","Saat yönünün tersine 90° dönüşüm matrisi A=[[0,−1],[1,0]]’dır. (3,0) vektörü (0,3)’e dönüşür.","Dönüşüm matrisinin determinantı sıfır değilse kare dönüşüm terslenebilirdir. det(A)=0 ise en az bir boyutta bilgi kaybı oluşur."]
+};
+
 function formulaLearningHTML(f){
  let d=null;
  if(f.course==='muk1'){const key=formulaLearning[f.title]?f.title:formulaLearningAliases[f.title];d=formulaLearning[key];}
@@ -2206,6 +2218,7 @@ function formulaLearningHTML(f){
  else if(f.course==='malzeme')d=malzemeFormulaLearning[f.title];
  else if(f.course==='istatistik')d=istatistikFormulaLearning[f.title];
  else if(f.course==='diferansiyel')d=diferansiyelFormulaLearning[f.title];
+ else if(f.course==='lineer')d=lineerFormulaLearning[f.title];
  if(!d)return '';
  return '<details class="checkpoint" style="margin-top:12px"><summary>Birimler, semboller ve çözümlü örnek</summary><div style="padding:10px 2px 2px"><p><b>Semboller ve birimler:</b> '+esc(d[0])+'</p><p><b>Sayısal örnek:</b> '+esc(d[1])+'</p><p><b>Kullanım koşulu:</b> '+esc(d[2])+'</p></div></details>';
 }
