@@ -1202,6 +1202,119 @@ const muk1ExamQuestions = [
 {id:'m1-exam-39',c:'muk1',topic:3,level:'Orta',q:'Süneklik malzeme davranışında neyi ifade eder?',o:['Kopmadan önce önemli plastik şekil değiştirme yapabilme kapasitesini','Yalnız elastisite modülünün büyüklüğünü','Birim hacimdeki kütleyi','Kesit alanının atalet momentini'],a:0,e:'Süneklik kopmadan önce kalıcı şekil değiştirme yapabilme kapasitesidir; kopma uzaması veya kesit daralmasıyla değerlendirilebilir.'}];
 questions.push(...muk1ExamQuestions);
 
+/* Mukavemet 1 soru bankası dengelemesi: her konu için en az 12 farklı soru. */
+questions.push(
+ // 0 · Kuvvet sistemi, mesnetler ve iç kuvvetler (8 yeni)
+ q('m1-core00-01','muk1',0,'Kolay','Düzlemde ideal mafsallı mesnet hangi tepki bileşenlerini sağlar?',['Yatay ve düşey kuvvet tepkilerini','Yalnız düşey kuvvet tepkisini','Yalnız moment tepkisini','İki kuvvet ve bir moment tepkisini'],0,'İdeal mafsal iki doğrultudaki ötelemeyi engeller; dönmeye izin verir. Bu nedenle iki kuvvet bileşeni vardır.'),
+ q('m1-core00-02','muk1',0,'Kolay','Düzlemde ideal ankastre mesnetin bilinmeyen tepki bileşenleri hangileridir?',['Yalnız düşey kuvvet','Yatay kuvvet, düşey kuvvet ve mesnet momenti','Yatay ve düşey kuvvet, fakat moment yok','Yalnız mesnet momenti'],1,'Ankastre mesnet yatay ve düşey ötelemeyi, ayrıca dönmeyi engeller; iki kuvvet ve bir moment tepkisi doğurur.'),
+ q('m1-core00-03','muk1',0,'Kolay','4 m boyunca 3 kN/m düzgün yayılı yükün eşdeğer tekil kuvveti kaç kN ve başlangıçtan hangi uzaklıktadır?',['12 kN, 2 m','7 kN, 4 m','12 kN, 4 m','3 kN, 2 m'],0,'Bileşke W=wL=3×4=12 kN olur ve düzgün yayılı yükün ağırlık merkezinden, yani L/2=2 m noktasından etkiler.'),
+ q('m1-core00-04','muk1',0,'Orta','6 m açıklıklı basit kirişin tümüne 4 kN/m düzgün yayılı yük uygulanıyor. Simetriden her düşey mesnet tepkisi kaç kN olur?',['6','8','12','24'],2,'Toplam yük wL=4×6=24 kN; simetriden her mesnet 12 kN taşır.'),
+ q('m1-core00-05','muk1',0,'Orta','2 m uzunluğundaki konsol kirişin serbest ucuna 5 kN düşey yük uygulanıyor. Ankastre mesnetteki moment büyüklüğü kaç kN·m olur?',['2,5','5','10','20'],2,'Ankastre momentinin büyüklüğü P·L=5×2=10 kN·m olur.'),
+ q('m1-core00-06','muk1',0,'Orta','8 m basit kirişin orta noktasına 20 kN tekil yük uygulanıyor. Düşey mesnet tepkileri kaç kN olur?',['5 ve 15','10 ve 10','0 ve 20','20 ve 0'],1,'Yük ve geometri simetriktir; düşey tepkiler 20/2=10 kN olur.'),
+ q('m1-core00-07','muk1',0,'Orta','10 kN büyüklüğündeki kuvvet yatayla 30° açı yapıyor. Yatay bileşen yaklaşık kaç kN olur?',['5,00','8,66','10,00','17,32'],1,'Yatay bileşen F_x=F cos30°=10×0,866=8,66 kN olur.'),
+ q('m1-core00-08','muk1',0,'Zor','Bir kirişte x=3 m kesitinde sol parçada yukarı Ay=8 kN tepkisi ve aşağı 5 kN tekil yük bulunuyor. Kesitte başka düşey yük yoksa iç kesme kuvvetinin büyüklüğü kaç kN olur?',['3','5','8','13'],0,'Düşey denge için kesme kuvveti 8−5=3 kN büyüklüğünde olmalıdır; işareti seçilen kesit yüzü konvansiyonuna bağlıdır.'),
+
+ // 1 · Normal gerilme ve birim dönüşümleri (5 yeni)
+ q('m1-core01-01','muk1',1,'Kolay','60 kN eksenel kuvvet taşıyan ve net alanı 300 mm² olan çubukta ortalama normal gerilme kaç MPa olur?',['20','100','200','300'],2,'σ=N/A=60.000/300=200 N/mm²=200 MPa.'),
+ q('m1-core01-02','muk1',1,'Kolay','Çapı 10 mm olan dolu dairesel kesitin alanı yaklaşık kaç mm²dir?',['31,4','78,5','157,1','314,2'],1,'A=πd²/4=π×10²/4≈78,54 mm².'),
+ q('m1-core01-03','muk1',1,'Orta','Dış çapı 40 mm, iç çapı 20 mm olan dairesel borunun net kesit alanı yaklaşık kaç mm²dir?',['471,2','628,3','942,5','1256,6'],2,'A=π(D²−d²)/4=π(1600−400)/4≈942,48 mm².'),
+ q('m1-core01-04','muk1',1,'Kolay','50 mm × 20 mm dikdörtgen kesitin alanı kaç mm²dir?',['700','900','1000','1400'],2,'Dikdörtgen alanı A=b h=50×20=1000 mm².'),
+ q('m1-core01-05','muk1',1,'Orta','60 mm genişlikte, 8 mm kalınlıkta ve yük doğrultusuna dik 16 mm delikli levhanın net alanı kaç mm²dir?',['256','320','352','480'],2,'Net genişlik 60−16=44 mm; net alan 44×8=352 mm².'),
+
+ // 2 · Birim şekil değiştirme ve Hooke kanunu (5 yeni)
+ q('m1-core02-01','muk1',2,'Kolay','İlk boyu 2000 mm olan çubuk 1 mm uzarsa birim şekil değiştirme ε kaçtır?',['0,00005','0,0005','0,005','0,05'],1,'ε=ΔL/L₀=1/2000=0,0005 ve boyutsuzdur.'),
+ q('m1-core02-02','muk1',2,'Orta','Doğrusal elastik çelikte σ=100 MPa ve E=200.000 MPa ise ε kaçtır?',['0,00005','0,0005','0,005','0,05'],1,'Hooke kanunundan ε=σ/E=100/200.000=0,0005.'),
+ q('m1-core02-03','muk1',2,'Orta','Boyuna birim şekil değiştirme +0,001 ve Poisson oranı ν=0,30 ise enine birim şekil değiştirme yaklaşık kaçtır?',['+0,0003','−0,0003','+0,003','−0,003'],1,'ν=−ε_enine/ε_boyuna olduğundan ε_enine=−0,30×0,001=−0,0003.'),
+ q('m1-core02-04','muk1',2,'Kolay','200 GPa elastisite modülü kaç MPa eder?',['200','2.000','20.000','200.000'],3,'1 GPa=1000 MPa; 200 GPa=200.000 MPa.'),
+ q('m1-core02-05','muk1',2,'Orta','Hooke kanunu σ=Eε hangi durumda doğrudan kullanılabilir?',['Malzeme doğrusal elastik bölgede iken','Malzeme kopmuşken','Her plastik deformasyon düzeyinde','Yalnız sıcaklık değişimi varken'],0,'σ=Eε bağıntısı doğrusal elastik gerilme–şekil değiştirme aralığında geçerlidir.'),
+
+ // 3 · Malzemelerin mekanik davranışı (7 yeni)
+ q('m1-core03-01','muk1',3,'Kolay','Sünek bir metalde akma dayanımına ulaşıldıktan sonra genel olarak hangi davranış başlar?',['Kalıcı plastik şekil değiştirme','Elastisite modülünün sonsuza çıkması','Kesitin kütlesinin sıfırlanması','Gerilmenin her zaman sıfır olması'],0,'Akma başlangıcından sonra yük kaldırıldığında tamamen geri dönmeyen plastik şekil değiştirme oluşur.'),
+ q('m1-core03-02','muk1',3,'Kolay','Mühendislik gerilme–şekil değiştirme eğrisinde çekme dayanımı Rm hangi değerdir?',['İlk elastik eğimin değeri','Mühendislik gerilmesinin ulaştığı en büyük değer','Kopma anındaki uzamanın tersi','Yalnız akma başlangıcındaki gerilme'],1,'Rm, çekme deneyinde maksimum kuvvetin ilk kesit alanına oranıdır; mühendislik eğrisinin tepe değeridir.'),
+ q('m1-core03-03','muk1',3,'Orta','Sünek bir çekme numunesinde boyun verme (necking) genellikle hangi aşamadan sonra başlar?',['Elastik davranış başlamadan önce','Mühendislik çekme dayanımına ulaşıldıktan sonra','Numune yüklenmeden önce','Yalnız basınç deneyinde'],1,'Mühendislik gerilmesinin maksimuma ulaşmasıyla kararsız yerel kesit daralması, yani boyun verme başlar.'),
+ q('m1-core03-04','muk1',3,'Orta','Gerilme–şekil değiştirme eğrisinin kopmaya kadar altında kalan alan hangi özelliği temsil eder?',['Elastisite modülü','Tokluk','Poisson oranı','Kesit modülü'],1,'Eğri altındaki toplam alan, kopmaya kadar birim hacimde soğurulan deformasyon enerjisiyle ilişkilidir; tokluk ölçüsüdür.'),
+ q('m1-core03-05','muk1',3,'Orta','Bir malzemenin sünekliği en doğrudan hangi davranışı ifade eder?',['Kopmadan önce plastik şekil değiştirebilme kapasitesi','Yalnız rijitliği','Isıl iletkenliği','Yoğunluğu'],0,'Süneklik, malzemenin kopmadan önce önemli kalıcı şekil değiştirme yapabilme kapasitesidir.'),
+ q('m1-core03-06','muk1',3,'Zor','Belirgin akma platosu olmayan çelikte %0,2 ofset yöntemi hangi birim şekil değiştirme ötelenmesini kullanır?',['0,0002','0,002','0,02','0,2'],1,'%0,2 birim şekil değiştirme 0,002 değeridir; elastik doğruya paralel çizgi bu kadar ötelenir.'),
+ q('m1-core03-07','muk1',3,'Orta','Mühendislik birim şekil değiştirmesi hesaplanırken paydada hangi uzunluk kullanılır?',['Yük altındaki anlık boy','Numunenin ilk ölçü boyu L₀','Numunenin çapı','Numunenin toplam hacmi'],1,'Mühendislik şekil değiştirmesi ε=ΔL/L₀ tanımında başlangıç ölçü boyunu kullanır.'),
+
+ // 4 · Eksenel yükleme ve deformasyon (7 yeni)
+ q('m1-core04-01','muk1',4,'Kolay','N=40 kN, L=1000 mm, A=200 mm² ve E=200.000 MPa olan prizmatik çubuğun uzaması kaç mm olur?',['0,5','1,0','2,0','4,0'],1,'ΔL=NL/(AE)=40.000×1000/(200×200.000)=1,00 mm.'),
+ q('m1-core04-02','muk1',4,'Orta','Seri bağlı iki çubukta arada dış eksenel yük yoksa iki parçadaki iç kuvvet nasıl ilişkilidir?',['Eşit büyüklüktedir','Alanlarıyla ters orantılıdır ve farklıdır','Her zaman sıfırdır','Yalnız kısa parçada oluşur'],0,'Seri bağlantıda arada dış yük bulunmuyorsa eksenel iç kuvvet her iki parçada aynı büyüklüktedir.'),
+ q('m1-core04-03','muk1',4,'Orta','20 kN kuvvet taşıyan iki seri parçanın E değeri 200.000 MPa’dır. L₁=1000 mm, A₁=200 mm²; L₂=500 mm, A₂=400 mm. Toplam uzama kaç mm olur?',['0,375','0,500','0,625','0,750'],2,'ΔL₁=20.000×1000/(200×200.000)=0,50 mm; ΔL₂=20.000×500/(400×200.000)=0,125 mm. Toplam 0,625 mm.'),
+ q('m1-core04-04','muk1',4,'Kolay','α=12×10⁻⁶/°C, ΔT=50°C ve L=3000 mm olan serbest çelik çubuğun ısıl uzaması kaç mm olur?',['0,18','0,90','1,80','18,0'],2,'ΔL_T=αΔTL=12×10⁻⁶×50×3000=1,80 mm.'),
+ q('m1-core04-05','muk1',4,'Orta','Aynı N, L ve E koşullarında çubuğun kesit alanı iki katına çıkarılırsa eksenel uzama nasıl değişir?',['İki katına çıkar','Yarıya iner','Dört katına çıkar','Değişmez'],1,'ΔL=NL/(AE) olduğundan A iki katına çıkınca uzama yarıya iner.'),
+ q('m1-core04-06','muk1',4,'Orta','N=100 kN basınç, L=1500 mm, A=500 mm² ve E=200.000 MPa olan çubuğun boy değişiminin büyüklüğü kaç mm olur?',['0,75','1,00','1,50','3,00'],2,'|ΔL|=100.000×1500/(500×200.000)=1,50 mm; basınçta bu değer kısalmadır.'),
+ q('m1-core04-07','muk1',4,'Zor','Eksenel kuvvet, alan veya elastisite modülü eleman boyunca değişiyorsa toplam deformasyon için hangi ifade uygundur?',['ΔL=N/(AE) her durumda','ΔL=∫₀ᴸ N(x)/[A(x)E(x)] dx','ΔL=∫₀ᴸ A(x)E(x) dx','ΔL=EA/L'],1,'Değişken iç kuvvet, alan veya malzeme için diferansiyel deformasyon dΔL=N(x)/[A(x)E(x)]dx olup uzunluk boyunca integre edilir.'),
+
+ // 5 · Statikçe belirsiz eksenel elemanlar (8 yeni)
+ q('m1-core05-01','muk1',5,'Kolay','İki ucu rijit duvara bağlı eksenel çubuk ısıtıldığında, serbest ısıl uzama engellenirse hangi iç kuvvet oluşur?',['Çekme','Basınç','Kesme','Tork'],1,'Isıtma serbest uzama eğilimi doğurur; duvarlar uzamayı engellediğinde basınç iç kuvveti oluşur.'),
+ q('m1-core05-02','muk1',5,'Orta','A=400 mm², E=200.000 MPa, α=12×10⁻⁶/°C ve ΔT=40°C olan çelik çubuğun iki ucu sabitse eksenel kuvvet büyüklüğü kaç kN olur?',['19,2','28,8','38,4','48,0'],2,'N=AEαΔT=400×200.000×12×10⁻⁶×40=38.400 N=38,4 kN basınç.'),
+ q('m1-core05-03','muk1',5,'Orta','Statikçe belirsiz eksenel sistemin çözümünde denge denklemlerine hangi ek ilişki gerekir?',['Deformasyon uyumluluğu','Yalnız kesit çevresi','Yalnız sıcaklık ölçeği','Kesit renginin değişimi'],0,'Denge tek başına yetmediğinde mesnet ve bağlantıların dayattığı yer değiştirme uyumluluğu ile malzeme bağıntısı kullanılır.'),
+ q('m1-core05-04','muk1',5,'Orta','Paralel bağlı iki çubuk rijit plakaya bağlanmışsa ideal durumda iki çubuğun uç yer değiştirmeleri nasıl ilişkilidir?',['Eşittir','Kesit alanları oranındadır','Uzunlukları toplamına eşittir','Birinin yer değiştirmesi daima sıfırdır'],0,'Rijit plaka nedeniyle bağlantı noktalarının deplasmanı aynıdır; çubuk kuvvetleri rijitliklerine göre paylaşılır.'),
+ q('m1-core05-05','muk1',5,'Orta','Paralel iki çubuğun eksenel rijitlikleri 30 ve 70 kN/mm, toplam taşıdıkları yük 60 kN ise ilk çubuğun yükü kaç kN olur?',['12','18','30','42'],1,'Ortak deplasman nedeniyle yük rijitlikle orantılıdır: N₁=60×30/(30+70)=18 kN.'),
+ q('m1-core05-06','muk1',5,'Orta','Seri bağlı iki farklı malzemeli çubukta arada dış yük yoksa hangi büyüklük her parçada aynıdır?',['Eksenel iç kuvvet','Birim uzama','Kesit alanı','Elastisite modülü'],0,'Seri bağlantıda iç kuvvet aynıdır; malzeme, alan ve boy farklıysa deformasyonlar farklı olabilir.'),
+ q('m1-core05-07','muk1',5,'Orta','İki ucu sabit çelik çubuk ısıtılmak yerine soğutulursa, ideal elastik modelde hangi iç kuvvet oluşur?',['Basınç','Çekme','Tork','Kesme'],1,'Soğuma serbest kısalma eğilimi yaratır; sabit uçlar kısalmayı engellediği için çekme kuvveti oluşur.'),
+ q('m1-core05-08','muk1',5,'Zor','Rijit uçlar arasında seri bağlı parçalardan oluşan sistemde toplam boy değişimi hangi koşulu sağlamalıdır?',['Parçaların mekanik ve ısıl deformasyonlarının cebirsel toplamı sıfır olmalıdır','Her parçanın deformasyonu ayrı ayrı sıfır olmalıdır','Yalnız en uzun parçanın deformasyonu sıfır olmalıdır','Parçaların kuvvetleri toplamı sıfır olmalıdır'],0,'Uçlar sabit olduğunda toplam uç deplasmanı sıfırdır; tüm parçaların mekanik ve ısıl deformasyonları işaretli biçimde toplanır.'),
+
+ // 6 · Dairesel millerde burulma (7 yeni)
+ q('m1-core06-01','muk1',6,'Kolay','0,5 kN·m tork kaç N·mm eder?',['500','5.000','50.000','500.000'],3,'1 kN·m=10⁶ N·mm olduğundan 0,5 kN·m=500.000 N·mm.'),
+ q('m1-core06-02','muk1',6,'Orta','Çapı 40 mm olan dolu dairesel milin polar atalet momenti J yaklaşık kaç mm⁴tür?',['31.416','125.664','251.327','502.655'],2,'J=πd⁴/32=π×40⁴/32≈251.327 mm⁴.'),
+ q('m1-core06-03','muk1',6,'Orta','Dış çapı 60 mm, iç çapı 40 mm olan boru milin polar atalet momenti yaklaşık kaç mm⁴tür?',['510.509','1.021.018','1.570.796','2.042.036'],1,'J=π(D⁴−d⁴)/32=π(60⁴−40⁴)/32≈1.021.018 mm⁴.'),
+ q('m1-core06-04','muk1',6,'Orta','T=0,5 kN·m, L=1500 mm, G=80.000 MPa ve J=251.327 mm⁴ olan milin burulma açısı yaklaşık kaç rad olur?',['0,00373','0,0187','0,0373','0,373'],2,'φ=TL/(GJ)=500.000×1500/(80.000×251.327)≈0,0373 rad.'),
+ q('m1-core06-05','muk1',6,'Orta','10 kW güç ile 300 dev/dak hızda dönen milin torku yaklaşık kaç N·m olur?',['31,8','159,2','318,3','955,0'],2,'ω=2πn/60=31,416 rad/s; T=P/ω=10.000/31,416≈318,3 N·m.'),
+ q('m1-core06-06','muk1',6,'Zor','Dolu dairesel milde tork sabit tutulup çap iki katına çıkarılırsa maksimum burulma kayma gerilmesi nasıl değişir?',['İki katına çıkar','Yarıya iner','Sekizde bire iner','On altıda bire iner'],2,'τmax=16T/(πd³); çap iki katına çıkarsa gerilme 1/2³=1/8 olur.'),
+ q('m1-core06-07','muk1',6,'Orta','Temel τ=Tr/J burulma bağıntısı doğrudan hangi kesit türü için geliştirilmiştir?',['Dairesel kesitli miller','Her açık ince cidarlı kesit','Her dikdörtgen kesit','Yalnız betonarme kesitler'],0,'Bu basit bağıntı dairesel kesitli, doğrusal elastik Saint-Venant burulması için geçerlidir; dairesel olmayan kesitte doğrudan kullanılamaz.'),
+
+ // 7 · Kirişlerde kesme kuvveti ve eğilme momenti (7 yeni)
+ q('m1-core07-01','muk1',7,'Orta','6 m basit kirişin tümüne 3 kN/m düzgün yayılı yük uygulanıyor. Maksimum eğilme momenti kaç kN·m olur?',['9','13,5','18','27'],1,'Mmax=wL²/8=3×6²/8=13,5 kN·m.'),
+ q('m1-core07-02','muk1',7,'Kolay','Kiriş boyunca yayılı yük bulunmayan bir aralıkta kesme kuvveti V(x) nasıl değişir?',['Sabit kalır','Doğrusal artar','Parabolik değişir','Her noktada sıfır olur'],0,'dV/dx=−w; w=0 ise kesme kuvveti sabittir.'),
+ q('m1-core07-03','muk1',7,'Orta','Kiriş üzerindeki aşağı yönlü tekil düşey yük, kesme kuvveti diyagramında hangi etkiyi oluşturur?',['Yük büyüklüğü kadar ani sıçrama','Sürekli parabolik değişim','Yalnız eğilme momenti sıçraması','Hiçbir değişiklik oluşturmaz'],0,'Tekil düşey kuvvet, kesme diyagramında kuvvet büyüklüğü kadar ani sıçrama oluşturur; yön işaret konvansiyonuna bağlıdır.'),
+ q('m1-core07-04','muk1',7,'Orta','dM/dx=V bağıntısına göre iç noktada V=0 ve moment fonksiyonu düzgünse M için ne söylenebilir?',['Yerel ekstremum oluşabilir','M mutlaka sıfırdır','Kesme kuvveti sonsuzdur','Kirişte yük yoktur'],0,'V=dM/dx olduğundan V=0 noktası moment fonksiyonunun yerel maksimum/minimum adayıdır; çevre aralıklar da incelenir.'),
+ q('m1-core07-05','muk1',7,'Orta','8 m basit kirişin orta noktasına 20 kN tekil yük uygulanıyor. Maksimum moment kaç kN·m olur?',['20','30','40','80'],2,'Mmax=PL/4=20×8/4=40 kN·m.'),
+ q('m1-core07-06','muk1',7,'Kolay','Basit kirişte sabit düzgün yayılı yük altında kesme ve moment diyagramlarının şekli nasıldır?',['Kesme doğrusal, moment parabolik','Kesme parabolik, moment doğrusal','İkisi de sabit','İkisi de doğrusal'],0,'dV/dx=−w sabit olduğundan V doğrusal; dM/dx=V olduğundan M ikinci dereceden/parabolik değişir.'),
+ q('m1-core07-07','muk1',7,'Orta','Kesme kuvveti diyagramının x=a ile x=b arasındaki işaretli alanı hangi büyüklüğün değişimini verir?',['Eğilme momenti değişimini','Mesnet tepkisini','Eksenel deformasyonu','Burulma açısını'],0,'ΔM=∫ₐᵇ V(x)dx; kesme diyagramının işaretli alanı moment değişimidir.'),
+
+ // 8 · Eğilme gerilmesi (7 yeni)
+ q('m1-core08-01','muk1',8,'Kolay','b=100 mm ve h=200 mm dikdörtgen kesitin yatay merkezî eksenine göre I değeri yaklaşık kaç mm⁴tür?',['6,67×10⁶','33,33×10⁶','66,67×10⁶','133,33×10⁶'],2,'I=bh³/12=100×200³/12≈66,67×10⁶ mm⁴.'),
+ q('m1-core08-02','muk1',8,'Orta','M=5 kN·m ve kesit modülü S=500.000 mm³ ise maksimum elastik eğilme gerilmesi kaç MPa olur?',['5','10','20','25'],1,'σmax=M/S=5×10⁶/500.000=10 N/mm²=10 MPa.'),
+ q('m1-core08-03','muk1',8,'Orta','Dikdörtgen kesitte genişlik sabitken yükseklik iki katına çıkarılırsa yatay merkezî eksene göre I kaç kat olur?',['2','4','8','16'],2,'I=bh³/12 olduğundan yükseklik iki katına çıkınca I 2³=8 kat olur.'),
+ q('m1-core08-04','muk1',8,'Kolay','Basit elastik eğilmede nötr eksen üzerinde normal gerilme kaçtır?',['Maksimum çekme','Maksimum basınç','Sıfır','Kesit alanına eşittir'],2,'σ=My/I ve nötr eksende y=0 olduğundan normal gerilme sıfırdır.'),
+ q('m1-core08-05','muk1',8,'Orta','Çapı 40 mm olan dolu dairesel kesitin çap merkezinden geçen yatay eksene göre alan atalet momenti yaklaşık kaç mm⁴tür?',['31.416','125.664','251.327','502.655'],1,'Dairesel kesitte I=πd⁴/64=π×40⁴/64≈125.664 mm⁴.'),
+ q('m1-core08-06','muk1',8,'Orta','M=8 kN·m, c=100 mm ve I=50×10⁶ mm⁴ ise en dış lifteki eğilme gerilmesi kaç MPa olur?',['8','12','16','20'],2,'σmax=Mc/I=8×10⁶×100/(50×10⁶)=16 MPa.'),
+ q('m1-core08-07','muk1',8,'Zor','Eksenel çekme N ve eğilme momenti M aynı kesitte birlikte etkiliyorsa doğrusal elastik normal gerilme nasıl bulunur?',['σ=N/A±My/I','σ=N·A+M·I','σ=VQ/(It) yalnız','σ=T/J yalnız'],0,'Aynı noktadaki eksenel normal gerilme N/A ile eğilme gerilmesi My/I cebirsel olarak toplanır; işaret dış lif konumuna bağlıdır.'),
+
+ // 9 · Bileşik mukavemet (3 yeni)
+ q('m1-core09-01','muk1',9,'Kolay','60 kN basınç kuvveti kesit merkezinden 30 mm kaçık uygulanıyor. Oluşan eğilme momentinin büyüklüğü kaç kN·m olur?',['0,18','0,60','1,80','18,0'],2,'M=P·e=60 kN×0,030 m=1,80 kN·m.'),
+ q('m1-core09-02','muk1',9,'Orta','A=3000 mm², I=25×10⁶ mm⁴, c=50 mm olan kesitte N=60 kN çekme ve M=1 kN·m eğilme vardır. Kritik dış lifte normal gerilmenin en büyük olası büyüklüğü kaç MPa olur?',['18','20','22','24'],2,'N/A=60.000/3000=20 MPa; Mc/I=1×10⁶×50/(25×10⁶)=2 MPa. En büyük cebirsel değer 22 MPa olur.'),
+ q('m1-core09-03','muk1',9,'Zor','Düzlem gerilmede σx=80 MPa, σy=0 ve τxy=60 MPa ise en büyük asal gerilme yaklaşık kaç MPa olur?',['80','100','112','140'],2,'σort=40 MPa; R=√(40²+60²)=72,11 MPa. σ1=40+72,11≈112,1 MPa.'),
+
+ // 10 · Mohr dairesi (3 yeni)
+ q('m1-core10-01','muk1',10,'Orta','σx=60 MPa, σy=−20 MPa ve τxy=0 ise asal gerilmeler hangileridir?',['60 MPa ve −20 MPa','40 MPa ve 0 MPa','20 MPa ve 40 MPa','80 MPa ve −80 MPa'],0,'Kayma gerilmesi sıfır olduğundan mevcut eksenler asal yönlerdir; asal gerilmeler 60 ve −20 MPa olur.'),
+ q('m1-core10-02','muk1',10,'Orta','Saf kayma durumunda τxy=40 MPa, σx=σy=0 ise asal gerilmeler hangileridir?',['+20 ve −20 MPa','+40 ve −40 MPa','+80 ve −80 MPa','0 ve 0 MPa'],1,'Saf kaymada σort=0, R=|τ|=40 MPa; asal gerilmeler ±40 MPa olur.'),
+ q('m1-core10-03','muk1',10,'Kolay','Fiziksel gerilme elemanı 20° döndürülürse Mohr dairesinde karşılık gelen açı kaç derecedir?',['10°','20°','40°','80°'],2,'Mohr dairesindeki açı fiziksel eleman dönüşünün iki katıdır: 2×20°=40°.'),
+
+ // 11 · Kesmeli eğilme ve kayma gerilmesi (3 yeni)
+ q('m1-core11-01','muk1',11,'Orta','b=80 mm, h=120 mm dikdörtgen kesitte V=36 kN ise nötr eksendeki maksimum kayma gerilmesi kaç MPa olur?',['3,75','5,625','7,50','11,25'],1,'A=80×120=9600 mm²; τmax=3V/(2A)=3×36.000/(2×9600)=5,625 MPa.'),
+ q('m1-core11-02','muk1',11,'Orta','V=40 kN, Q=100.000 mm³ ve I=20×10⁶ mm⁴ olan kesitte kayma akısı q yaklaşık kaç N/mm olur?',['100','200','300','400'],1,'q=VQ/I=40.000×100.000/(20×10⁶)=200 N/mm.'),
+ q('m1-core11-03','muk1',11,'Kolay','τ=VQ/(It) bağıntısındaki t hangi büyüklüktür?',['Kirişin açıklığı','Gerilmenin hesaplandığı seviyedeki kesit genişliği/kalınlığı','İkinci alan momenti','Birinci alan momenti'],1,'t, seçilen seviyede kayma gerilmesinin aktarıldığı yerel kesit genişliği veya gövde kalınlığıdır.'),
+
+ // 12 · Burkulma ve stabilite (3 yeni)
+ q('m1-core12-01','muk1',12,'Kolay','İdeal ankastre-ankastre kolon için Euler etkin boy katsayısı K yaklaşık kaçtır?',['0,5','0,7','1,0','2,0'],0,'İki ucu ankastre ideal kolon için etkin boy yaklaşık L/2 olduğundan K=0,5 kabul edilir.'),
+ q('m1-core12-02','muk1',12,'Orta','K=0,7, L=2500 mm ve atalet yarıçapı r=25 mm olan kolonun narinlik oranı λ kaçtır?',['35','50','70','100'],2,'λ=KL/r=0,7×2500/25=70.'),
+ q('m1-core12-03','muk1',12,'Orta','Diğer bütün koşullar sabitken Euler etkin boy katsayısı K iki katına çıkarılırsa kritik yük nasıl değişir?',['İki katına çıkar','Yarıya iner','Dörtte bire iner','Değişmez'],2,'Pcr=π²EI/(KL)² olduğundan K iki katına çıkarsa kritik yük 1/4 olur.'),
+
+ // 13 · Enerji metotları ve Castigliano (3 yeni)
+ q('m1-core13-01','muk1',13,'Orta','N=20 kN, L=1000 mm, A=400 mm² ve E=200.000 MPa olan prizmatik çubukta eksenel şekil değiştirme enerjisi kaç J olur?',['0,25','1,25','2,50','5,00'],2,'U=N²L/(2AE)=20.000²×1000/[2×400×200.000]=2500 N·mm=2,50 J.'),
+ q('m1-core13-02','muk1',13,'Orta','Birim yük/sanal iş yöntemiyle bir noktadaki yer değiştirme hangi integral türüyle bulunur?',['∫Mm/(EI) dx','∫AE dx','∫T/J dx tek başına','∫V dx her koşulda'],0,'Doğrusal elastik kirişte birim yük yönteminde gerçek yük momenti M ile birim yükten doğan m çarpımı ∫Mm/(EI)dx boyunca integre edilir; diğer iç tesirler gerekiyorsa eklenir.'),
+ q('m1-core13-03','muk1',13,'Kolay','Castigliano teoreminde şekil değiştirme enerjisinin bir moment M’ye göre türevi hangi büyüklüğü verir?',['Doğrusal yer değiştirme','Dönme açısı','Kesit alanı','Elastisite modülü'],1,'∂U/∂M, ilgili momentin uygulandığı noktadaki ve doğrultudaki dönme açısını verir.'),
+
+ // 14 · Elastik eğri, eğim ve sehim (3 yeni)
+ q('m1-core14-01','muk1',14,'Kolay','Küçük eğim kabulünde kiriş eğimi θ ile sehim v(x) arasındaki ilişki hangisidir?',['θ=dv/dx','θ=EI/v','θ=M/V','θ=PL/AE'],0,'Elastik eğrinin teğet eğimi sehim fonksiyonunun x’e göre türevidir: θ=dv/dx.'),
+ q('m1-core14-02','muk1',14,'Orta','L=4000 mm basit mesnetli kirişin ortasına P=10 kN yük uygulanıyor. E=200.000 MPa ve I=60×10⁶ mm⁴ ise maksimum sehim yaklaşık kaç mm olur?',['0,56','1,11','2,22','4,44'],1,'δmax=PL³/(48EI)=10.000×4000³/(48×200.000×60×10⁶)≈1,11 mm.'),
+ q('m1-core14-03','muk1',14,'Kolay','Ankastre bir kirişin ankastre ucunda hangi sınır koşulları uygulanır?',['v=0 ve θ=0','M=0 ve V=0','v=0 ve M=0','θ=0 ve V=0'],0,'Ankastre uçta düşey yer değiştirme ve dönme engellenir; v=0 ve θ=0 olur.')
+);
+
+
 /* Mukavemet 1 · ileri altı konu için ayrı sınav havuzu (5 soru/konu). */
 questions.push(
  q('m1-adv9-01','muk1',9,'Kolay','120 kN büyüklüğündeki basınç kuvveti, kesit merkezinden 40 mm eksantrik uygulanıyor. Oluşan eğilme momenti kaç kN·m olur?',['2,4','3,6','4,8','6,0'],2,'M=P·e=120 kN×0,040 m=4,8 kN·m.'),
