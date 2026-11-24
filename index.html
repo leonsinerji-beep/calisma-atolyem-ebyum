@@ -308,6 +308,19 @@ const specificLessons={
 'yapimalz_7':{concept:'Beton basınç dayanımı, standart koşullarda hazırlanmış ve kür edilmiş numunenin kırılma yükünün yüklenen kesit alanına oranıyla bulunur.',example:'Örnek: 150×150 mm kesitli küp numune 270 kN yükte kırılırsa A=22.500 mm² ve f_c=270.000/22.500=12 N/mm²=12 MPa.',steps:['Numune boyutlarını ve deney yaşını doğrula.','Maksimum kırılma yükünü kaydet.','Yüklenen kesit alanını hesapla.','f_c=P/A ile dayanımı bul; standardın numune ve yükleme şartlarını belirt.'],trap:'Numune boyutu, şekli, yükleme hızı ve kür koşulları dayanım sonucunu etkiler; farklı numuneler doğrudan karşılaştırılmamalıdır.'},
 'sayisal_2':{concept:'İkiye bölme yöntemi, sürekli bir fonksiyonun işaret değiştirdiği aralıkta kök bulunduğu varsayımıyla çalışır. Her adımda aralık ikiye bölünür ve kökü içeren yarı aralık seçilir.',example:'Örnek: f(x)=x²−2 için [1,2] aralığında f(1)<0 ve f(2)>0. İlk orta nokta m=1,5; f(1,5)=0,25 olduğundan kök [1,1,5] aralığındadır.',steps:['Başlangıç aralığının uçlarında işaret değişimini kontrol et.','Orta noktayı m=(a+b)/2 hesapla.','f(m) işaretine göre kökü içeren yarı aralığı seç.','Hata/tolerans sağlanana kadar yinele.'],trap:'Başlangıç aralığında işaret değişimi yoksa standart ikiye bölme yöntemi kök garantisi vermez.'}
 };
+function lessonIntro(c,t){
+ const p=courseTeachingProfiles[c.id]||{};
+ const name=esc(c.name||'Ders'),topic=esc(t||'Konu');
+ const coursePurpose=p.intro||c.desc||'Bu dersin temel kavramlarını ve mühendislik uygulamalarını birlikte öğren.';
+ const prerequisites=p.prereq?'<b>Ön koşullar:</b> '+esc(p.prereq):'';
+ const method=p.method?'<b>Çalışma yaklaşımı:</b> '+esc(p.method):'';
+ return '<b>'+name+' · '+topic+':</b> '+esc(coursePurpose)+' '+prerequisites+' '+method;
+}
+function application(c){
+ const p=courseTeachingProfiles[c.id]||{};
+ if(p.app)return esc(p.app);
+ return esc(c.name+' dersi; proje verilerinin değerlendirilmesi, uygun yöntem ve kabullerin seçilmesi, hesapların kontrolü ve sonuçların mühendislik bağlamında yorumlanmasında kullanılır.');
+}
 function specificLessonBox(c,i){const s=specificLessons[c.id+'_'+i];if(!s)return '';return `<h3>Örnekli konu anlatımı</h3><p>${s.concept}</p><div class="callout"><b>Adım adım örnek</b><br>${s.example}</div><h3>Çözüm adımları</h3><ol>${s.steps.map(x=>`<li>${x}</li>`).join('')}</ol><div class="callout"><b>Sık yapılan özel hata:</b> ${s.trap}</div>`}
 
 let state=load();let view='dashboard',selectedCourse=null,selectedQuestion=null,quiz=null,lessonTopic=null,timerInt=null,seconds=0;
