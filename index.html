@@ -2153,6 +2153,22 @@ const istatistikFormulaLearning = {
  "Hipotez testi karar kuralı":["H₀: sıfır hipotezi; H₁: alternatif hipotez; α: anlamlılık düzeyi; p: p-değeri. Karar p ile α karşılaştırılarak verilir.","α=0,05 ve p=0,03 ise p≤α olduğundan H₀ reddedilir. p=0,08 olsaydı H₀ reddedilemezdi.","p-değeri H₀’ın doğru olma olasılığı değildir. H₀’ın reddedilememesi, onun kanıtlandığı anlamına gelmez; test varsayımları da kontrol edilmelidir."]
 };
 
+
+const diferansiyelFormulaLearning = {
+ "Denklemi sınıflandırma":["y(x): bilinmeyen fonksiyon; x: bağımsız değişken; aᵢ(x): katsayı; g(x): zorlayıcı terim; n: en yüksek türev mertebesi.","y″+3y′−2y=sin x denklemi ikinci mertebe, lineer adi diferansiyel denklemdir.","Mertebe en yüksek türevin mertebesidir; dereceyle karıştırılmaz. Lineerlik için y ve türevleri birinci kuvvette olmalı, birbirleriyle çarpılmamalıdır."],
+ "Değişkenleri ayırma":["y: bağımlı değişken; x: bağımsız değişken; h(y) ve g(x): yalnız kendi değişkenlerine bağlı fonksiyonlar.","y′=3x² için dy=3x²dx; integrasyonla y=x³+C bulunur.","Denklem dy/h(y)=g(x)dx biçiminde ayrılabilmelidir. Bölme yapılırken sıfır çözümü gibi özel çözümler kaybolmadığından ayrıca kontrol edilmelidir."],
+ "İntegrasyon çarpanı":["P(x), Q(x): y′+P(x)y=Q(x) standart biçiminin katsayıları; μ(x): integrasyon çarpanı.","y′+2y=6 için μ=e^(2x); (e^(2x)y)′=6e^(2x) olur.","Lineer birinci mertebe ODE için standart biçime getirildikten sonra μ=e^(∫Pdx) kullanılır."],
+ "Tam diferansiyel denklem":["M(x,y), N(x,y): diferansiyel formun katsayıları; F(x,y): potansiyel fonksiyon; F_x=M ve F_y=N.","M=2xy+3, N=x²+4y için M_y=N_x=2x; F=x²y+3x+2y² ve F=C elde edilir.","Uygun sürekli türev koşullarında M_y=N_x tamlık koşuludur. Çözüm potansiyel fonksiyonun seviye eğrisi F(x,y)=C biçimindedir."],
+ "Bernoulli dönüşümü":["P(x), Q(x): bilinen katsayılar; n: sabit üs; v=y^(1−n): dönüşüm değişkeni.","y′+2y=3y³ için n=3 ve v=y^(−2) seçilir; dönüşümden sonra v için lineer birinci mertebe denklem çözülür.","Bernoulli biçimi y′+Py=Qyⁿ olup n≠0,1 durumunda bu dönüşüm uygulanır. y=0 gibi bölme sırasında kaybolabilecek özel çözümler ayrıca değerlendirilmelidir."],
+ "Başlangıç değer problemi":["y(x₀)=y₀: başlangıç koşulu; y′(x₀), y″(x₀): yüksek mertebede gereken başlangıç türevleri.","y′=2y, y(0)=5 için y=Ce^(2x); başlangıç koşulundan C=5 ve y=5e^(2x) bulunur.","n. mertebe bir problem için tipik olarak n bağımsız başlangıç koşulu gerekir. Çözümün varlığı ve tekliği katsayı/sağ taraf koşullarına bağlıdır."],
+ "Homojen ve özel çözüm":["L: lineer diferansiyel operatör; y_h: L[y_h]=0 homojen çözümü; y_p: L[y_p]=g için bir özel çözüm.","y″−y=5 için y_h=C₁e^x+C₂e^(−x), sabit özel çözüm y_p=−5; genel çözüm y=y_h−5 olur.","Lineer homojen olmayan denklemin genel çözümü, ilişkili homojen çözüm ile bir özel çözümün toplamıdır."],
+ "Karakteristik denklem":["r: karakteristik kök; a_i: sabit katsayılar. y=e^(rx) denemesi karakteristik polinomu üretir.","y″−5y′+6y=0 için r²−5r+6=0=(r−2)(r−3); y=C₁e^(2x)+C₂e^(3x).","Sabit katsayılı lineer homojen ODE için kullanılır. Köklerin gerçek, karmaşık veya tekrarlı olması çözüm biçimini belirler."],
+ "Süperpozisyon":["L: lineer operatör; g₁,g₂: sağ taraf bileşenleri; y₁,y₂: karşılık gelen özel çözümler.","L[y₁]=g₁ ve L[y₂]=g₂ ise L[y₁+y₂]=g₁+g₂ olur; toplam zorlayıcı için özel çözüm y₁+y₂ seçilebilir.","Yalnız lineer operatörlerde geçerlidir. Başlangıç koşulları uygulanırken genel çözümdeki sabitler ayrıca belirlenir."],
+ "Belirsiz katsayı denemesi":["y_p: özel çözüm denemesi; g(x): belirli fonksiyon ailesinden sağ taraf; A,B: bulunacak katsayılar.","y″−y=5 için y_p=A seçilir; yerine koyunca −A=5 ve A=−5 bulunur.","Sabit katsayılı lineer denklemlerde polinom, üstel ve sinüs-kosinüs türü sağ taraflar için uygundur. Deneme homojen çözüme çakışırsa x^s çarpanı eklenir."],
+ "Laplace türev dönüşümü":["Y(s)=L{y(t)}; y(0), y′(0): başlangıç değerleri; s: Laplace değişkeni.","y(0)=2 ve y′(0)=3 için L{y′}=sY(s)−2; L{y″}=s²Y(s)−2s−3 olur.","Başlangıç değer problemlerinde diferansiyel denklemi cebirsel denkleme dönüştürür. Başlangıç terimlerinin işaretleri dikkatle korunmalıdır."],
+ "Yay-kütle-sönümleyici modeli":["m: kütle (kg); c: sönüm katsayısı (N·s/m); k: yay rijitliği (N/m); x: yer değiştirme (m); F(t): dış kuvvet (N).","m=2, c=6, k=8 için 2x″+6x′+8x=F(t); doğal açısal frekans ω_n=√(k/m)=2 rad/s ve ζ=c/(2√mk)=0,75 olur.","Model lineer yay ve viskoz sönümleyici varsayar. Başlangıç konumu/hızı ve kuvvet geçmişi çözümü belirler; katsayılar SI birimlerinde tutarlı olmalıdır."]
+};
+
 function formulaLearningHTML(f){
  let d=null;
  if(f.course==='muk1'){const key=formulaLearning[f.title]?f.title:formulaLearningAliases[f.title];d=formulaLearning[key];}
@@ -2160,6 +2176,7 @@ function formulaLearningHTML(f){
  else if(f.course==='akiskan')d=akiskanFormulaLearning[f.title];
  else if(f.course==='malzeme')d=malzemeFormulaLearning[f.title];
  else if(f.course==='istatistik')d=istatistikFormulaLearning[f.title];
+ else if(f.course==='diferansiyel')d=diferansiyelFormulaLearning[f.title];
  if(!d)return '';
  return '<details class="checkpoint" style="margin-top:12px"><summary>Birimler, semboller ve çözümlü örnek</summary><div style="padding:10px 2px 2px"><p><b>Semboller ve birimler:</b> '+esc(d[0])+'</p><p><b>Sayısal örnek:</b> '+esc(d[1])+'</p><p><b>Kullanım koşulu:</b> '+esc(d[2])+'</p></div></details>';
 }
