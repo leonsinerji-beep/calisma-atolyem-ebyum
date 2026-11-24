@@ -1153,7 +1153,7 @@ function addTopicPracticeQuestions(){
   'Yetkili kurum, faaliyet kapsamı ve güncel resmî metni belirlemeden sonuç yazmak.'
  ];
  for(const c of courses){for(let i=0;i<c.topics.length;i++){
-  if(c.id==='akiskan'||c.id==='malzeme')continue; // Akışkanlar ve Malzeme Bilimi için konuya özgü teknik soru bankaları tanımlıdır.
+  if(c.id==='akiskan'||c.id==='malzeme'||Object.prototype.hasOwnProperty.call(fallTopicRows,c.id))continue; // Bu derslerin özgün kontrol soruları ikinci döngüde tek kez eklenir.
   const d=deepLessonData[c.id+'_'+i];if(!d)continue;
   // Mukavemet 1'in 10–15. konularındaki otomatik genel çalışma-stratejisi sorularını sınav bankasına alma.
   // Bu ileri konuların teknik soru havuzu ayrıca konuya özel hazırlanmıştır.
@@ -1320,6 +1320,41 @@ const malzemeExamQuestions = [
  q('malzeme-core-33','malzeme',10,'Zor','Sürekli ve lif doğrultusunda yüklenen, iyi bağlanmış tek yönlü lifli kompozitte boyuna elastisite modülü için basit karışım kuralı hangisidir?',['E_L=V_f E_f+V_m E_m','E_L=E_f/E_m','E_L=V_f+V_m','E_L=1/(V_f E_f+V_m E_m)'],0,'Boyuna izodeformasyon varsayımında lif ve matris aynı eksenel birim şekil değiştirmeyi yapar; basit karışım kuralı E_L=V_fE_f+V_mE_m olur.')
 ];
 questions.push(...malzemeExamQuestions);
+
+const istatistikExamQuestions = [
+ q('istat-core-01','istatistik',0,'Kolay','Bir laboratuvarda ölçülen beton basınç dayanımı (MPa) hangi değişken türüdür?',['Nitel-kategorik','Nicel-sürekli','Yalnız sıra ölçeğinde nitel','Tanımlanamayan değişken'],1,'Basınç dayanımı sayısal ölçülür ve belirli aralıkta sürekli değerler alabilir; nicel-sürekli değişkendir.'),
+ q('istat-core-02','istatistik',0,'Orta','Bir partideki tüm beton numuneleri anakütle olarak tanımlanmıştır. Bu partiden rastgele seçilen 30 numune hangi kavramdır?',['Anakütle','Örneklem','Parametre','Sınıf aralığı'],1,'Anakütle hedeflenen tüm birimlerdir; seçilen 30 numune anakütleden alınan örneklemdir.'),
+ q('istat-core-03','istatistik',0,'Zor','Bir şantiyede bir günde dökülen beton miktarı (m³) ve döküm yapılan beton sınıfı değişkenleri sırasıyla nasıl sınıflandırılır?',['Nicel-sürekli ve nitel-kategorik','Nitel-kategorik ve nicel-kesikli','İkisi de nitel-kategorik','İkisi de nicel-kesikli'],0,'Beton hacmi ölçülebilen nicel-sürekli; beton sınıfı (C25/30 gibi) kategorik nitel değişkendir.'),
+ q('istat-core-04','istatistik',1,'Kolay','20 gözlemden 5’i belirli bir sınıfa düşüyorsa bu sınıfın göreli frekansı kaçtır?',['0,05','0,20','0,25','0,40'],2,'Göreli frekans h=f/n=5/20=0,25 yani %25’tir.'),
+ q('istat-core-05','istatistik',1,'Orta','Sınıf frekansları sırasıyla 4, 6 ve 10 ise üçüncü sınıfın sonuna kadarki kümülatif frekans kaçtır?',['10','16','20','24'],2,'Kümülatif frekans biriken gözlem sayısıdır: 4+6+10=20.'),
+ q('istat-core-06','istatistik',1,'Zor','Sürekli nicel verilerin belirli sınıf aralıklarına göre dağılımını göstermek için hangi grafik uygundur?',['Histogram','Pasta grafiği zorunludur','Serbest cisim diyagramı','Mohr dairesi'],0,'Histogram nicel veriyi sınıf aralıklarıyla gösterir; bitişik sütunlar aralıkların sürekliliğini yansıtır.'),
+ q('istat-core-07','istatistik',2,'Kolay','2, 4, 4, 6 ve 9 verilerinin aritmetik ortalaması kaçtır?',['4','5','6','25'],1,'Aritmetik ortalama toplamın gözlem sayısına bölünmesidir: (2+4+4+6+9)/5=25/5=5.'),
+ q('istat-core-08','istatistik',2,'Orta','Sıralı 2, 4, 5, 7, 100 verilerinin medyanı kaçtır?',['4','5','7','100'],1,'Beş gözlemde ortadaki üçüncü değer medyandır: 5.'),
+ q('istat-core-09','istatistik',2,'Zor','Bir veri kümesinde tek bir çok büyük uç değer bulunduğunda merkezi eğilim ölçülerinden hangisi genellikle daha dayanıklıdır?',['Aritmetik ortalama','Medyan','En büyük gözlem','Varyans'],1,'Medyan sıralı verinin ortasına dayandığı için tekil uç değerlerden aritmetik ortalamaya göre daha az etkilenir.'),
+ q('istat-core-10','istatistik',3,'Kolay','Standart sapma ile varyans arasındaki ilişki hangisidir?',['Standart sapma varyansın kareköküdür.','Varyans standart sapmanın kareköküdür.','İkisi her zaman eşittir.','Varyans negatif olmak zorundadır.'],0,'Standart sapma varyansın pozitif kareköküdür; varyans kareli sapmaların ortalamasına dayanır.'),
+ q('istat-core-11','istatistik',3,'Orta','2, 4 ve 6 değerlerinden oluşan örneklemin örneklem varyansı ve standart sapması kaçtır?',['s²=2, s=√2','s²=4, s=2','s²=8, s=4','s²=16, s=4'],1,'Ortalama 4’tür; kareli sapmalar toplamı 4+0+4=8. Örneklem varyansı 8/(3−1)=4, standart sapma 2’dir.'),
+ q('istat-core-12','istatistik',3,'Zor','Örneklem varyansında paydanın n−1 kullanılmasının temel gerekçesi hangisidir?',['Örneklem ortalaması kullanıldığında varyans tahminindeki yanlılığı düzeltmek (Bessel düzeltmesi)','Varyansın birimini boyutsuz yapmak','Gözlem sayısını iki katına çıkarmak','Dağılımı zorunlu olarak normal yapmak'],0,'Örneklem ortalaması aynı veriden tahmin edildiği için serbestlik derecesi n−1 olur; bu düzeltme anakütle varyansı için yansız tahmin sağlar.'),
+ q('istat-core-13','istatistik',4,'Kolay','Olasılık değerleri hangi aralıkta bulunmalıdır?',['−1 ile 1','0 ile 1','0 ile 1000','Yalnız pozitif tam sayılar'],1,'Bir olayın olasılığı 0 ile 1 arasındadır; tüm örnek uzayın olasılığı 1’dir.'),
+ q('istat-core-14','istatistik',4,'Orta','P(A)=0,72 ise A olayının tümleyeni Aᶜ olasılığı kaçtır?',['0,18','0,28','0,72','1,72'],1,'P(Aᶜ)=1−P(A)=1−0,72=0,28.'),
+ q('istat-core-15','istatistik',4,'Zor','İki olayın birleşim olasılığını veren genel bağıntı hangisidir?',['P(A∪B)=P(A)+P(B) her koşulda','P(A∪B)=P(A)+P(B)−P(A∩B)','P(A∪B)=P(A)P(B) her koşulda','P(A∪B)=1−P(A∩B)'],1,'Birleşimde kesişim iki kez sayılmasın diye P(A∩B) bir kez çıkarılır. Ayrık olaylarda kesişim sıfır olur.'),
+ q('istat-core-16','istatistik',5,'Kolay','P(A∩B)=0,12 ve P(B)=0,30 ise P(A|B) kaçtır?',['0,04','0,12','0,40','0,42'],2,'Koşullu olasılık P(A|B)=P(A∩B)/P(B)=0,12/0,30=0,40.'),
+ q('istat-core-17','istatistik',5,'Orta','P(B)>0 iken A ve B bağımsız olaylarsa hangi eşitlik geçerlidir?',['P(A|B)=P(A)','P(A|B)=P(B)','P(A∩B)=0 her zaman','P(A∪B)=1 her zaman'],0,'Bağımsızlıkta B’nin gerçekleşmesi A’nın olasılığını değiştirmez; P(A|B)=P(A).'),
+ q('istat-core-18','istatistik',5,'Zor','Bir hastalığın yaygınlığı %10, testin duyarlılığı %90 ve sağlıklı kişilerde yanlış pozitif oranı %10’dur. Testi pozitif çıkan bir kişinin hasta olma olasılığı kaçtır?',['%10','%25','%50','%90'],2,'Bayes: P(H|+)=0,10×0,90/[0,10×0,90+0,90×0,10]=0,09/0,18=0,50.'),
+ q('istat-core-19','istatistik',6,'Kolay','Kesikli rassal değişkenin olasılık kütle fonksiyonundaki olasılıkların toplamı kaç olmalıdır?',['0','0,5','1','Değişkene göre sınırsız'],2,'Tüm olası değerlerin olasılıkları toplamı 1 olmalıdır.'),
+ q('istat-core-20','istatistik',6,'Orta','X rassal değişkeni 0 değerini 0,25 olasılıkla, 10 değerini 0,75 olasılıkla alıyorsa beklenen değeri kaçtır?',['2,5','5','7,5','10'],2,'E[X]=ΣxP(X=x)=0×0,25+10×0,75=7,5.'),
+ q('istat-core-21','istatistik',6,'Zor','X, 0 ve 2 değerlerini eşit olasılıkla (0,5) alıyorsa Var(X) kaçtır?',['0','0,5','1','2'],2,'E[X]=1 ve E[X²]=0,5×0²+0,5×2²=2. Var(X)=E[X²]−(E[X])²=2−1=1.'),
+ q('istat-core-22','istatistik',7,'Kolay','Sürekli rassal değişkende tek bir noktanın olasılığı P(X=a) kaçtır?',['0','0,5','1','Yoğunluk fonksiyonuna eşittir'],0,'Sürekli dağılımda tek noktanın alanı sıfır olduğundan P(X=a)=0; aralık olasılığı integral/alanla bulunur.'),
+ q('istat-core-23','istatistik',7,'Orta','Normal dağılımın temel simetri ekseni hangi değerden geçer?',['Moddan uzak en küçük değer','Ortalama μ','Standart sapma σ','Daima sıfır'],1,'Normal dağılım ortalama etrafında simetriktir; ortalama, medyan ve mod eşittir.'),
+ q('istat-core-24','istatistik',7,'Zor','Normal dağılımda yaklaşık %95 gözlem hangi aralıkta bulunur?',['μ±σ','μ±2σ','μ±3σ','μ±4σ'],1,'Yaklaşık 68–95–99,7 kuralına göre gözlemlerin %95’i ortalamanın yaklaşık iki standart sapma çevresindedir.'),
+ q('istat-core-25','istatistik',8,'Kolay','Anakütle standart sapması σ=10 ve örneklem büyüklüğü n=25 ise örneklem ortalamasının standart hatası kaçtır?',['0,4','2','5','10'],1,'SE(x̄)=σ/√n=10/5=2.'),
+ q('istat-core-26','istatistik',8,'Orta','Diğer koşullar sabitken örneklem büyüklüğü 4 katına çıkarılırsa ortalamanın standart hatası nasıl değişir?',['4 katına çıkar','2 katına çıkar','Yarıya iner','Değişmez'],2,'SE=σ/√n olduğundan n dört katına çıkınca payda iki katına çıkar ve standart hata yarıya iner.'),
+ q('istat-core-27','istatistik',8,'Zor','Standart sapma ile standart hata arasındaki temel fark hangisidir?',['Standart sapma gözlemlerin yayılımını; standart hata örneklem istatistiğinin örneklemler arası değişimini ölçer.','İkisi aynı büyüklüktür ve her zaman eşittir.','Standart hata yalnız bir ölçüm cihazının hatasıdır.','Standart sapma yalnız anakütle büyüklüğünü verir.'],0,'Standart sapma veri dağılımındaki bireysel gözlem yayılımını, standart hata ise tahmin edicinin örnekleme değişkenliğini ölçer.'),
+ q('istat-core-28','istatistik',9,'Kolay','Bir hipotez testinde p-değeri neyi ifade eder?',['H₀ doğru varsayılırken gözlenen kadar veya daha uç bir sonucun olasılığını','H₀ hipotezinin doğru olma olasılığını','H₁ hipotezinin kesin doğru olma olasılığını','Örneklem büyüklüğünü'],0,'p-değeri, sıfır hipotezi doğru kabul edildiğinde gözlenen kadar veya daha uç test istatistiği elde etme olasılığıdır.'),
+ q('istat-core-29','istatistik',9,'Orta','Anlamlılık düzeyi α=0,05 ve p-değeri 0,03 ise karar nedir?',['H₀ reddedilir.','H₀ reddedilemez.','H₀ kesin olarak doğrudur.','H₁ mutlaka yanlıştır.'],0,'p=0,03≤0,05 olduğundan H₀ reddedilir. Bu karar H₁’in kesin kanıtlandığı anlamına gelmez.'),
+ q('istat-core-30','istatistik',9,'Zor','Bir testte p=0,08 ve α=0,05 bulunursa hangi yorum doğrudur?',['H₀ kanıtlanmıştır.','H₀ reddedilemez; bu, H₀’ın doğru olduğunun kanıtı değildir.','H₁ kesin doğrudur.','Örneklem varyansı sıfırdır.'],1,'p=0,08>0,05 olduğundan H₀ reddedilemez. Reddedememek, H₀’ın kanıtlandığı anlamına gelmez.')
+];
+questions.push(...istatistikExamQuestions);
+
 
 
 
