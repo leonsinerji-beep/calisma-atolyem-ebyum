@@ -3031,7 +3031,7 @@ function startQuiz(){
  let pool=questions.filter(q=>(c==='all'||q.c===c)&&(t==='all'||q.topic===Number(t))&&(l==='all'||q.level===l));
  const seenStems=new Set();
  pool=pool.filter(q=>{
-  const stem=String(q.q||'').trim().toLocaleLowerCase('tr').replace(/\\s+/g,' ');
+  const stem=String(q.q||'').trim().toLocaleLowerCase('tr').replace(/\s+/g,' ');
   const key=q.c+'|'+(t==='all'?'all':q.topic)+'|'+stem;
   if(seenStems.has(key))return false;
   seenStems.add(key);
