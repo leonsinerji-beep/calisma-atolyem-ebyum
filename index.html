@@ -2762,8 +2762,95 @@ function timerStart(){if(timerInt)return;timerInt=setInterval(()=>{seconds++;con
 function startSession(){nav('today');setTimeout(timerStart,30)}function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
 function addSession(m,type){state.sessions.push({date:todayKey(),minutes:m,type});save()}
 function todayKey(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}function weeklyMinutes(){const now=new Date();return state.sessions.filter(s=>(now-new Date(s.date+'T00:00:00'))/86400000<7).reduce((a,s)=>a+s.minutes,0)}
-function quizView(){return `${head('Soru çözme merkezi','Ders bazlı mini test veya karma sınav oluştur. Her yanlış cevap açıklamasıyla birlikte yanlış defterine eklenir.')}<div class="grid two"><section class="panel"><h3>Testini oluştur</h3><label class="smalltext muted">Ders seç</label><select class="field" id="quizCourse" onchange="fillQuizTopics()" style="width:100%;margin:5px 0 13px"><option value="all">Tüm dersler · karma</option>${allCourses().map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select><label class="smalltext muted">Konu seç (isteğe bağlı)</label><select class="field" id="quizTopic" disabled style="width:100%;margin:5px 0 13px"><option value="all">Önce ders seç</option></select><label class="smalltext muted">Soru sayısı</label><select class="field" id="quizCount" style="width:100%;margin:5px 0 13px"><option>5</option><option selected>10</option><option>12</option><option>15</option><option>20</option><option>30</option><option>40</option><option>60</option></select><label class="smalltext muted">Sınav süresi</label><select class="field" id="quizDuration" style="width:100%;margin:5px 0 13px"><option value="0">Süresiz çalışma</option><option value="10">10 dakika</option><option value="20">20 dakika</option><option value="30">30 dakika</option><option value="45">45 dakika</option><option value="60">60 dakika</option></select><label class="smalltext muted">Zorluk</label><select class="field" id="quizLevel" style="width:100%;margin:5px 0 15px"><option value="all">Tüm seviyeler</option><option>Kolay</option><option>Orta</option><option>Zor</option></select><button class="btn teal" onclick="startQuiz()">Sınavı başlat</button></section><section class="panel"><h3>Çözüm stratejisi</h3><div class="task"><span class="dot"></span><div><b>Önce soruyu anla</b><small>Verilenleri, isteneni ve birimleri işaretle.</small></div></div><div class="task"><span class="dot" style="background:var(--teal)"></span><div><b>Şıkları ele</b><small>Formül, tanım ve fiziksel anlamla karşılaştır.</small></div></div><div class="task"><span class="dot" style="background:var(--gold)"></span><div><b>Yanlışını incele</b><small>Her yanlış için açıklama ve tekrar kaydı oluşturulur.</small></div></div><p class="smalltext muted">${questions.length} soru bulunur. Ders ve konu soru bankaları ayrı kapsamlarla hazırlanır; konu sayfalarındaki aktif hatırlama soruları ayrıca çalışılır. Soruları ders notların ve öğretim elemanının sınav kapsamıyla karşılaştırarak çalış.</p></section></div><div id="quizArea"></div>`}
+function quizView(){return `${head('Soru çözme merkezi','Ders bazlı mini test veya karma sınav oluştur. Her yanlış cevap açıklamasıyla birlikte yanlış defterine eklenir.')}<div class="grid two"><section class="panel"><h3>Testini oluştur</h3><label class="smalltext muted">Ders seç</label><select class="field" id="quizCourse" onchange="fillQuizTopics()" style="width:100%;margin:5px 0 13px"><option value="all">Tüm dersler · karma</option>${allCourses().map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select><label class="smalltext muted">Konu seç (isteğe bağlı)</label><select class="field" id="quizTopic" disabled style="width:100%;margin:5px 0 13px"><option value="all">Önce ders seç</option></select><label class="smalltext muted">Soru sayısı</label><select class="field" id="quizCount" style="width:100%;margin:5px 0 13px"><option>5</option><option selected>10</option><option>12</option><option>15</option><option>20</option><option>30</option><option>40</option><option>60</option></select><label class="smalltext muted">Sınav süresi</label><select class="field" id="quizDuration" style="width:100%;margin:5px 0 13px"><option value="0">Süresiz çalışma</option><option value="10">10 dakika</option><option value="20">20 dakika</option><option value="30">30 dakika</option><option value="45">45 dakika</option><option value="60">60 dakika</option></select><label class="smalltext muted">Zorluk</label><select class="field" id="quizLevel" style="width:100%;margin:5px 0 15px"><option value="all">Tüm seviyeler</option><option>Kolay</option><option>Orta</option><option>Zor</option></select><button class="btn teal" onclick="startQuiz()">Sınavı başlat</button></section><section class="panel"><h3>Çözüm stratejisi</h3><div class="task"><span class="dot"></span><div><b>Önce soruyu anla</b><small>Verilenleri, isteneni ve birimleri işaretle.</small></div></div><div class="task"><span class="dot" style="background:var(--teal)"></span><div><b>Şıkları ele</b><small>Formül, tanım ve fiziksel anlamla karşılaştır.</small></div></div><div class="task"><span class="dot" style="background:var(--gold)"></span><div><b>Yanlışını incele</b><small>Her yanlış için açıklama ve tekrar kaydı oluşturulur.</small></div></div><p class="smalltext muted">${questions.length} soru bulunur. Ders ve konu soru bankaları ayrı kapsamlarla hazırlanır; konu anlatımlarındaki aktif hatırlama soruları ve açıklamalı cevaplar da test bankasına aktarılır. Soruları ders notların ve öğretim elemanının sınav kapsamıyla karşılaştırarak çalış.</p></section></div><div id="quizArea"></div>`}
 function fillQuizTopics(selected='all'){const courseId=document.getElementById('quizCourse')?.value,el=document.getElementById('quizTopic');if(!el)return;const c=courseBy(courseId);if(!c){el.innerHTML='<option value="all">Önce ders seç</option>';el.disabled=true;return;}el.disabled=false;el.innerHTML='<option value="all">Tüm konular</option>'+c.topics.map((t,i)=>'<option value="'+i+'">'+(i+1)+'. '+esc(t)+'</option>').join('');el.value=String(selected)}
+
+/* Her dersin konu notlarındaki aktif hatırlama sorularını test bankasına da bağla.
+   Doğru seçenek, aynı konu anlatımında verilmiş cevap; çeldiriciler aynı dersin diğer konu cevaplarından alınır. */
+function compactDeepPracticeText(value,maxLength=165){
+ const text=String(value??'').replace(/\s+/g,' ').trim();
+ if(text.length<=maxLength)return text;
+ const firstSentence=(text.match(/^.*?[.!?](?:\s|$)/)||[])[0]?.trim()||text;
+ if(firstSentence.length<=maxLength)return firstSentence;
+ const cut=firstSentence.slice(0,maxLength-1).lastIndexOf(' ');
+ return firstSentence.slice(0,cut>50?cut:maxLength-2).trim()+'…';
+}
+const deepPracticeSourcesByCourse={};
+Object.entries(deepLessonData).forEach(([key,data])=>{
+ const split=key.lastIndexOf('_');
+ if(split<1)return;
+ const courseId=key.slice(0,split),topicIndex=Number(key.slice(split+1));
+ if(!deepPracticeSourcesByCourse[courseId])deepPracticeSourcesByCourse[courseId]=[];
+ (data.practice||[]).forEach((item,index)=>{
+  if(item?.q&&item?.a)deepPracticeSourcesByCourse[courseId].push({topic:topicIndex,stem:item.q,answer:item.a,kind:'practice',index});
+ });
+ if(data.checkq&&data.checka){
+  deepPracticeSourcesByCourse[courseId].push({topic:topicIndex,stem:data.checkq,answer:data.checka,kind:'check',index:6});
+ }
+});
+const deepPracticeQuestionBank=[];
+const deepPracticeSkipped=[];
+Object.entries(deepPracticeSourcesByCourse).forEach(([courseId,items])=>{
+ // Mukavemet 1 ve Dinamik'in konu bazlı 12 soruluk sınav bankaları zaten tamamlandı.
+ if(courseId==='muk1'||courseId==='din')return;
+ const perTopicSeen=new Set();
+ items.forEach((item)=>{
+  const course=courseBy(courseId);
+  if(!course||!course.topics[item.topic])return;
+  const stem=String(item.stem).trim().replace(/\s+/g,' ');
+  const key=courseId+'|'+item.topic+'|'+stem.toLocaleLowerCase('tr');
+  if(perTopicSeen.has(key))return;
+  perTopicSeen.add(key);
+  const alreadyExists=questions.some(existing=>existing.c===courseId&&existing.topic===item.topic&&String(existing.q||'').trim().toLocaleLowerCase('tr')===stem.toLocaleLowerCase('tr'));
+  if(alreadyExists)return;
+  const correct=compactDeepPracticeText(item.answer);
+  if(!correct)return;
+  const topicTitle=course.topics[item.topic];
+  const hasTopicContext=stem.toLocaleLowerCase('tr').includes(topicTitle.toLocaleLowerCase('tr').slice(0,Math.min(12,topicTitle.length)));
+  const questionText=hasTopicContext?stem:(topicTitle+' — '+stem);
+  const sourcePool=items
+   .filter(other=>other.topic!==item.topic&&other.stem!==item.stem)
+   .map(other=>compactDeepPracticeText(other.answer))
+   .filter(answer=>answer&&answer.toLocaleLowerCase('tr')!==correct.toLocaleLowerCase('tr'));
+  const uniquePool=[...new Map(sourcePool.map(answer=>[answer.toLocaleLowerCase('tr'),answer])).values()];
+  const sameTopicPool=items.filter(other=>other.topic===item.topic&&other.stem!==item.stem)
+   .map(other=>compactDeepPracticeText(other.answer))
+   .filter(answer=>answer&&answer.toLocaleLowerCase('tr')!==correct.toLocaleLowerCase('tr'));
+  const optionsUsed=new Set([correct.toLocaleLowerCase('tr')]);
+  const distractors=[];
+  const start=(item.topic*7+item.index*11)%Math.max(1,uniquePool.length);
+  for(let step=0;step<uniquePool.length&&distractors.length<3;step++){
+   const candidate=uniquePool[(start+step)%uniquePool.length];
+   const normalized=candidate.toLocaleLowerCase('tr');
+   if(optionsUsed.has(normalized))continue;
+   optionsUsed.add(normalized);distractors.push(candidate);
+  }
+  for(const candidate of sameTopicPool){
+   if(distractors.length>=3)break;
+   const normalized=candidate.toLocaleLowerCase('tr');
+   if(optionsUsed.has(normalized))continue;
+   optionsUsed.add(normalized);distractors.push(candidate);
+  }
+  if(distractors.length<3){
+   deepPracticeSkipped.push({courseId,topic:item.topic,stem});
+   return;
+  }
+  const correctIndex=(item.topic*3+item.index*5)%4;
+  const options=[];let distractorIndex=0;
+  for(let optionIndex=0;optionIndex<4;optionIndex++){
+   options.push(optionIndex===correctIndex?correct:distractors[distractorIndex++]);
+  }
+  const level=item.kind==='check'?'Zor':(item.index<2?'Kolay':item.index<4?'Orta':'Zor');
+  const generated=q(
+   'deep-practice-'+courseId+'-'+item.topic+'-'+item.index,
+   courseId,item.topic,level,questionText,options,correctIndex,item.answer
+  );
+  generated.origin='Konu içi aktif hatırlama';
+  deepPracticeQuestionBank.push(generated);
+ });
+});
+questions.push(...deepPracticeQuestionBank);
+
 function startCourseQuiz(id,topicIndex=null){nav('quiz');setTimeout(()=>{document.getElementById('quizCourse').value=id;fillQuizTopics(topicIndex===null?'all':String(topicIndex));if(id==='din'&&topicIndex!==null){const count=document.getElementById('quizCount');if(count)count.value='12';}startQuiz()},20)}
 function startQuiz(){
  const c=document.getElementById('quizCourse').value;
