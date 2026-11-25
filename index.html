@@ -2851,6 +2851,61 @@ Object.entries(deepPracticeSourcesByCourse).forEach(([courseId,items])=>{
 });
 questions.push(...deepPracticeQuestionBank);
 
+/* Temel bağıntı / teknik ifade soruları: her konu kendi ders notunda tanımlanan ilişkiyle sınanır. */
+const deepFormulaSourcesByCourse={};
+Object.entries(deepLessonData).forEach(([key,data])=>{
+ const split=key.lastIndexOf('_');
+ if(split<1||!data.eq)return;
+ const courseId=key.slice(0,split),topicIndex=Number(key.slice(split+1));
+ if(!deepFormulaSourcesByCourse[courseId])deepFormulaSourcesByCourse[courseId]=[];
+ deepFormulaSourcesByCourse[courseId].push({topic:topicIndex,eq:data.eq,title:data.eq_title||'',note:data.eq_note||''});
+});
+const deepFormulaQuestionBank=[];
+Object.entries(deepFormulaSourcesByCourse).forEach(([courseId,items])=>{
+ if(courseId==='muk1'||courseId==='din')return;
+ const course=courseBy(courseId);
+ if(!course)return;
+ const uniqueEquations=[...new Map(items.map(item=>[compactDeepPracticeText(item.eq).toLocaleLowerCase('tr'),item])).values()];
+ items.forEach(item=>{
+  if(!course.topics[item.topic])return;
+  const stem=course.topics[item.topic]+' konusu için temel bağıntı veya teknik ifade hangisidir?';
+  const alreadyExists=questions.some(existing=>existing.c===courseId&&existing.topic===item.topic&&String(existing.q||'').trim().toLocaleLowerCase('tr')===stem.toLocaleLowerCase('tr'));
+  if(alreadyExists)return;
+  const correct=compactDeepPracticeText(item.eq);
+  const distractors=uniqueEquations.filter(other=>other.topic!==item.topic)
+   .map(other=>compactDeepPracticeText(other.eq))
+   .filter(answer=>answer&&answer.toLocaleLowerCase('tr')!==correct.toLocaleLowerCase('tr'));
+  const uniqueDistractors=[...new Map(distractors.map(answer=>[answer.toLocaleLowerCase('tr'),answer])).values()];
+  if(uniqueDistractors.length<3)return;
+  const correctIndex=(item.topic*5+3)%4;
+  const options=[],used=[];
+  let next=0;
+  for(let pos=0;pos<4;pos++){
+   if(pos===correctIndex){options.push(correct);continue;}
+   let chosen='';
+   while(next<uniqueDistractors.length){
+    const candidate=uniqueDistractors[(item.topic*3+next*7)%uniqueDistractors.length];next++;
+    if(!used.includes(candidate.toLocaleLowerCase('tr'))){chosen=candidate;break;}
+   }
+   if(!chosen)return;
+   used.push(chosen.toLocaleLowerCase('tr'));options.push(chosen);
+  }
+  const explanation=[item.title,item.note].filter(Boolean).join(': ')||'Bağıntıyı konu anlatımındaki semboller, birimler ve geçerlilik koşullarıyla birlikte kullan.';
+  deepFormulaQuestionBank.push(q('deep-formula-'+courseId+'-'+item.topic,courseId,item.topic,'Orta',stem,options,correctIndex,explanation));
+ });
+});
+questions.push(...deepFormulaQuestionBank);
+
+/* Aynı ders ve konu içinde yinelenen soru gövdelerini tekilleştir. */
+const seenCourseTopicQuestionStems=new Set();
+for(let i=questions.length-1;i>=0;i--){
+ const question=questions[i];
+ const key=[question.c,question.topic,String(question.q||'').trim().replace(/\s+/g,' ').toLocaleLowerCase('tr')].join('|');
+ if(seenCourseTopicQuestionStems.has(key))questions.splice(i,1);
+ else seenCourseTopicQuestionStems.add(key);
+}
+
+
 function startCourseQuiz(id,topicIndex=null){nav('quiz');setTimeout(()=>{document.getElementById('quizCourse').value=id;fillQuizTopics(topicIndex===null?'all':String(topicIndex));if(id==='din'&&topicIndex!==null){const count=document.getElementById('quizCount');if(count)count.value='12';}startQuiz()},20)}
 function startQuiz(){
  const c=document.getElementById('quizCourse').value;
