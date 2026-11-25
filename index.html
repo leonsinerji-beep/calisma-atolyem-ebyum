@@ -504,6 +504,19 @@ const courseTeachingProfiles = {
 };
 
 const topicFormulaRules = {
+  malzeme: [
+    ['Atomik bağ ve elektrostatik etkileşim','F = (1/(4πε₀))·|q₁q₂|/r²','Bu ifade iki noktasal yük arasındaki vakum elektrostatik kuvvetinin büyüklüğüdür; gerçek iyonik katıda çok sayıda iyon ve kristal örgü etkisi vardır.','q₁=+e, q₂=−e, r=0,25 nm için ideal noktasal yük yaklaşımıyla F≈3,7×10⁻⁹ N bulunur. Bu tek çift etkileşimidir; kristalin toplam bağ enerjisi değildir.'],
+    ['Kristal atomik paketleme faktörü','APF=V_atomlar/V_birim hücre','İdeal sert-küre yaklaşımında SC≈0,52; BCC≈0,68; FCC/HCP≈0,74. Birim hücredeki etkin atom sayısı ve atom-yarıçap/kenar ilişkisi doğru kurulmalıdır.','BCC için 2 etkin atom ve 4r=√3a olduğundan APF=2(4πr³/3)/a³≈0,68 olur.'],
+    ['Fick’in birinci difüzyon yasası','J=−D(dC/dx)','J madde akısı, D difüzyon katsayısı, dC/dx derişim gradyanıdır. Kararlı, tek boyutlu ve sabit D kabulünde kullanılır.','D=1×10⁻¹⁰ m²/s ve dC/dx=1000 kg/m⁴ ise J=−1×10⁻⁷ kg/(m²·s) bulunur.'],
+    ['İkili faz diyagramında kaldıraç kuralı','W_α=(C_β−C₀)/(C_β−C_α); W_β=(C₀−C_α)/(C_β−C_α)','İki fazlı bölgede yatay bağ çizgisinin uçları faz bileşimlerini, toplam bileşim C₀ ise faz miktarlarını belirler. W_α+W_β=1 olmalıdır.','C₀=30, C_α=10, C_β=50 için W_α=20/40=0,50 ve W_β=20/40=0,50 olur.'],
+    ['Demir–karbon ötektoid dönüşümü','γ (≈0,76%C) → α + Fe₃C (perlit)','Yaklaşık 727°C’de ötektoid bileşimli östenit, ferrit ve sementitin lamelli karışımı olan perlite dönüşür. Fe–Fe₃C diyagramı metastabil denge diyagramıdır.','%0,40 C çelik ötektoid altıdır; yavaş soğutmada proötektoid ferrit ve kalan östenitten perlit oluşur. Bu yorum dengeye yakın soğuma içindir.'],
+    ['Isıl işlemde soğuma hızı','R_T=|ΔT/Δt|','Soğuma hızı sıcaklık-zaman eğrisinin eğimidir. Mikroyapı; bileşim, kesit kalınlığı, östenitleştirme, bekletme ve soğutma ortamıyla birlikte değişir.','Bir numune 800°C’den 200°C’ye 10 s’de soğursa ortalama soğuma hızı 60°C/s olur. Bu tek başına martenzit garantisi vermez; çeliğin sertleşebilirliği de önemlidir.'],
+    ['Çekme deneyinde mühendislik gerilmesi ve elastisite modülü','σ_müh=P/A₀; ε_müh=ΔL/L₀; E=Δσ/Δε','A₀ başlangıç kesit alanı, L₀ başlangıç ölçü boyudur. E eğrinin doğrusal elastik bölgesinin eğimidir.','P=20 kN, A₀=100 mm² ise σ=200 MPa. Doğrusal bölgede 100 MPa gerilme 0,0005 şekil değiştirme oluşturuyorsa E=200 GPa olur.'],
+    ['Elastik deformasyon ve modül ilişkisi','σ=Eε; G=E/[2(1+ν)]','İlk bağıntı doğrusal elastik tek eksenli davranış için; ikinci bağıntı izotropik, homojen ve doğrusal elastik malzeme için geçerlidir.','E=200 GPa ve ν=0,25 ise G=200/[2×1,25]=80 GPa bulunur.'],
+    ['Kırılma mekaniği ve yorulma','K_I=Yσ√(πa); da/dN=C(ΔK)^m','K_I Mod I gerilme şiddetidir. Paris yasası yorulma çatlak ilerlemesinin kararlı orta bölgesini yaklaşık tanımlar; sabitler deneyle belirlenir.','Y=1, σ=100 MPa, a=0,01 m için K_I≈17,7 MPa√m. K_IC ile karşılaştırma yapılırken geometri ve lineer elastik kırılma koşulları sağlanmalıdır.'],
+    ['Elektrokimyasal korozyonda anot reaksiyonu','M → Mⁿ⁺ + ne⁻','Anotta metal oksitlenerek elektron verir ve iyon hâlinde çözünebilir. Elektronlar metalik yol üzerinden katoda; iyonik akım elektrolit üzerinden taşınır.','Demir için basitleştirilmiş anodik tepkime Fe→Fe²⁺+2e⁻ biçimindedir. Korozyonun hızı elektrolit, oksijen, pH, sıcaklık ve polarizasyona bağlıdır.'],
+    ['Kompozitte boyuna elastisite modülü','E_L=V_fE_f+V_mE_m; V_f+V_m=1','Lif doğrultusunda izodeformasyon ve iyi ara yüzey bağı varsayımındaki basit karışım kuralıdır. Enine doğrultu için aynı bağıntı kullanılmaz.','V_f=0,60, E_f=70 GPa, V_m=0,40 ve E_m=3 GPa için E_L=0,60×70+0,40×3=43,2 GPa olur.']
+  ],
   muk2: [
     ['Elastik eğilme gerilmesi','σ=My/I','M: N·mm, y: mm, I: mm⁴; sonuç N/mm²=MPa. Doğrusal elastik, kiriş teorisi ve uygun kesit kabulleri gerekir.','M=12 kN·m, I=8,0×10⁶ mm⁴, y=150 mm ise M=12×10⁶ N·mm; σ=12×10⁶×150/(8×10⁶)=225 MPa.'],
     ['Dikdörtgen kesitin alan atalet momenti','I_x=bh³/12','b genişlik, h eğilme doğrultusundaki kesit yüksekliği. Birim mm⁴. Eksen seçimi önemlidir.','b=200 mm ve h=300 mm için I=200×300³/12=450×10⁶ mm⁴.'],
@@ -578,6 +591,7 @@ const topicFormulaRules = {
 function topicRule(c,t,i){
  const id=c.id, n=t.toLocaleLowerCase('tr');
  const arr=topicFormulaRules[id]||[];
+ if(id==='malzeme') return arr[i]||arr[0];
  if(id==='muk2') return arr[i]||arr[0];
  if(id==='yalitim'){
    if(/yoğuşma|buhar|nem/.test(n)) return arr[3]||arr[0];
