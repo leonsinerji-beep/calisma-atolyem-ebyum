@@ -2667,6 +2667,129 @@ for(const [courseId, topics] of Object.entries(fallTopicDeepening)){
  });
 }
 
+const fallTopicDeepening2 = {
+lineer:[
+[
+['Matrisin yapısını ve boyutunu oku','Matris m satır ve n sütundan oluşan sayı tablosudur ve m×n boyutuyla gösterilir. Aᵢⱼ, i. satır j. sütundaki elemandır. Toplama yalnız aynı boyutlu matrislerde yapılır; çarpımda soldaki matrisin sütun sayısı sağdakinin satır sayısına eşit olmalıdır. Birim matris çarpımda sayıyı değiştirmez; transpoz satırları sütun yapar.'],
+['Mühendislikte matris neyi temsil eder','Düğüm deplasmanları, eleman rijitlikleri, yük vektörleri ve koordinat dönüşümleri matrislerle düzenlenir. Bir matris işlemi yapmadan önce boyut kontrolü yap; örneğin 3×2 ile 2×4 matrisinin çarpımı 3×4 sonuç verir. Boyutu yanlış işlem, sayısal olarak anlamlı görünse bile fiziksel olarak geçersiz olabilir.']
+],
+[
+['Determinant tersinirliği nasıl gösterir','Kare A matrisi için det(A)≠0 ise A tersinirdir ve Ax=b sistemi tek çözüme sahiptir. det(A)=0 olduğunda sütunlar doğrusal bağımlıdır; ters matris yoktur. İki boyutta determinant ad−bc biçiminde hesaplanır. Determinant matrisin yönelim/hacim ölçeğiyle de ilişkilidir; sıfır olması dönüşümün boyut düşürdüğünü gösterir.'],
+['Ters matrisi ne zaman kullan','A⁻¹A=I ve x=A⁻¹b bağıntıları yalnız kare ve tersinir A için geçerlidir. Küçük sistemlerde teorik olarak kullanışlıdır; büyük sayısal sistemlerde doğrudan ters almak yerine Gauss veya LU gibi çözüm yöntemleri daha kararlıdır. Sınavda önce det(A) ile tersinirliği kontrol et; determinant sıfırsa ters matris yazma.']
+],
+[
+['Lineer sistemin çözüm sayısı','Ax=b sisteminde her satır bir denklemi, her sütun bir bilinmeyeni temsil eder. Sistem tutarlıysa en az bir çözüm vardır. Katsayı matrisi A ve genişletilmiş matris [A|b] için rank(A)=rank([A|b]) tutarlılık koşuludur; ortak rank bilinmeyen sayısına eşitse tek çözüm, daha küçükse serbest değişkenli sonsuz çözüm bulunur.'],
+['Sistemi geometrik yorumla','İki bilinmeyenli iki denklem düzlemde iki doğruyu temsil eder. Kesişen doğrular tek çözüm, çakışan doğrular sonsuz çözüm, paralel farklı doğrular çözümsüz sistem verir. Mühendislikte yük ve denge denklemleri aynı tip lineer sistemi oluşturabilir; çözüm bulunduğunda bilinmeyenlerin işaret ve birimleri de fiziksel olarak kontrol edilir.']
+],
+[
+['Gauss eliminasyonunun temel ilkesi','Genişletilmiş matris üzerinde satır değiştirme, bir satırı sıfırdan farklı sayıyla çarpma ve bir satıra diğer satırın katını ekleme işlemleri çözüm kümesini korur. Amaç pivotların altında sıfır oluşturarak basamaklı biçime ulaşmaktır. Pivot, satırdaki ilk sıfır olmayan temel elemandır; sütun sıfırsa serbest değişken oluşabilir.'],
+['Geri yerine koyma ve pivot seçimi','Basamaklı biçimde son satırdan başlayıp bilinmeyenleri geriye doğru bul. Çok küçük pivotlar sayısal hatayı büyütebilir; hesapta satır değişimi veya kısmi pivotlama tercih edilir. Çözümü başlangıç denklemlerinde doğrula. Sınavda her satır işleminde tüm satırın değiştiğini ve sağ taraf sütununun da aynı işlemden geçtiğini unutma.']
+],
+[
+['Vektör uzayının koşulları','Vektör uzayı, vektör toplama ve skalerle çarpma altında kapalı olan bir kümedir; sıfır vektör, toplamsal ters ve birleşme/dağılma kuralları sağlanır. Alt uzay olmak için boş olmayan kümenin toplama ve skaler çarpma altında kapalı olması yeterlidir. R², R³ ve uygun fonksiyon kümeleri temel örneklerdir.'],
+['Alt uzay testini uygula','Bir kümenin alt uzay olup olmadığını kontrol ederken sıfır vektörün kümeye ait olup olmadığını, iki elemanın toplamının ve skaler katın kümede kalıp kalmadığını incele. Örneğin x+y=0 koşulunu sağlayan R² vektörleri bir doğru oluşturur ve alt uzaydır; x+y=1 doğrusu sıfır vektörü içermediği için alt uzay değildir.']
+],
+[
+['Bağımsızlık, germe ve baz','v₁,…,vₖ vektörleri için c₁v₁+…+cₖvₖ=0 eşitliğinin yalnız cᵢ=0 çözümü varsa bağımsızdır. Bir kümenin doğrusal kombinasyonları uzayın tamamını oluşturuyorsa küme uzayı gerer. Baz bu iki koşulu birlikte sağlar; bazdaki vektör sayısı uzayın boyutudur.'],
+['Rank ve baz bağlantısı','Bir matrisin sütun uzayı için pivot sütunları baz oluşturur; pivot sayısı rank değeridir. Rⁿ’de n bağımsız vektör aynı zamanda bazdır. Dik olmak bağımsızlık için yeterli bir koşul olabilir, ancak bağımsızlığın tanımı diklik değildir. Sınavda doğrusal bağımsızlık için homojen sistemi çöz veya rank/pivot sayısını incele.']
+],
+[
+['Özdeğer ve özvektörün anlamı','A kare matrisi için Av=λv eşitliğini sağlayan sıfırdan farklı vektör v özvektör, λ ise özdeğerdir. Bu vektör dönüşüm altında aynı doğrultuda kalır; yalnız büyüklüğü veya yönü ölçeklenir. Özdeğerler det(A−λI)=0 karakteristik denkleminin kökleridir.'],
+['Özdeğerleri hesaplama ve yorumlama','Önce A−λI matrisini kur, determinantı sıfıra eşitle ve λ değerlerini bul. Her λ için (A−λI)v=0 sistemini çözerek özvektörü elde et. Tekrarlı özdeğerlerin bağımsız özvektör sayısı cebirsel çokluktan az olabilir; bu durum köşegenleştirilebilirliği etkiler. Özdeğerler titreşim modları ve kararlılık analizinde önemlidir.']
+],
+[
+['Doğrusal dönüşüm','T:V→W dönüşümü T(u+v)=T(u)+T(v) ve T(cv)=cT(v) koşullarını sağlıyorsa doğrusaldır. Sonlu boyutlu uzaylarda baz seçildiğinde dönüşüm bir matrisle temsil edilir. Girdi vektörü bu matrisle çarpılarak çıktı vektörü elde edilir; baz değişirse temsil matrisi de değişir.'],
+['Çekirdek, görüntü ve rank','Ker(T), sıfıra giden vektörlerden; Im(T), elde edilebilen tüm çıktı vektörlerinden oluşur. Rank-nullity teoremi boyut(V)=rank(T)+nullity(T) bağıntısını verir. Tersinirlik için çekirdeğin yalnız sıfır vektörü olması gerekir. Koordinat dönüşümü ve yapısal modelde serbestlik derecelerinin indirgenmesi bu kavramlarla açıklanabilir.']
+]
+],
+muhmat:[
+[
+['Karmaşık sayının cebirsel yapısı','z=a+bi biçiminde gerçek kısım Re(z)=a, sanal kısım Im(z)=b’dir ve i²=−1 kabul edilir. Toplama bileşen bileşen yapılır; çarpımda i²=−1 kullanılır. Eşlenik z̄=a−bi, modül |z|=√(a²+b²) değeridir. z·z̄=|z|² ilişkisi bölme ve kutupsal gösterimde işe yarar.'],
+['Kutupsal ve üstel gösterim','z=r(cosθ+i sinθ)=r e^(iθ) biçiminde yazılabilir; r modül, θ argümandır. Çarpımda modüller çarpılır, açılar toplanır; bölümde modüller bölünür, açılar çıkarılır. De Moivre bağıntısı kuvvet ve kök hesaplarını kolaylaştırır. Mühendislikte fazörler ve harmonik sinyaller bu gösterimle sadeleşir.']
+],
+[
+['Kompleks fonksiyon ve türev','Kompleks fonksiyon f(z), z=x+iy girdisini kompleks bir değere dönüştürür. f(z)=u(x,y)+iv(x,y) yazıldığında u ve v gerçek değişkenli iki fonksiyondur. Kompleks türev, farklı yaklaşım yönlerinden aynı limite sahip olmalıdır; bu koşul gerçek değişkenli türeve göre daha kısıtlayıcıdır.'],
+['Cauchy–Riemann koşulları','Uygun düzgünlük koşullarında analitiklik için uₓ=vᵧ ve uᵧ=−vₓ bağıntıları sağlanır. Bu koşullar tek başına her noktada analitikliği garanti etmek için yeterli olmayabilir; kısmi türevlerin sürekliliği gibi koşullar da göz önünde bulundurulur. Sınavda önce u ve v’yi ayır, kısmi türevleri hesapla ve iki eşitliği ayrı ayrı kontrol et.']
+],
+[
+['İki bağımsız değişkenli fonksiyon','f(x,y) her (x,y) noktasına bir sayı atar; bu sayı yüzey yüksekliği, sıcaklık, basınç veya kot gibi yorumlanabilir. Tanım bölgesi, fonksiyonun anlamlı olduğu (x,y) çiftlerini belirtir. Seviye eğrisi f(x,y)=c eşitliğinin düzlemde oluşturduğu eğridir; yüzeyin yatay kesitini temsil eder.'],
+['Yüzeyi ve seviye eğrisini birlikte oku','Bir yüzey grafiğinde yatay koordinatlar x ve y, düşey koordinat f(x,y)’dir. Aynı seviye eğrisi üzerindeki noktalar aynı fonksiyon değerine sahiptir. Sınavda tanım bölgesini, seviye eğrilerini ve fonksiyonun belirli noktadaki değerini ayrı ayrı incele; payda sıfırı veya karekök/logaritma koşulları tanım bölgesini sınırlar.']
+],
+[
+['Kısmi türev ve değişken sabitleme','f(x,y) fonksiyonunun x’e göre kısmi türevinde y sabit tutulur; y’ye göre türevde x sabittir. Bu türevler yüzeyin x ve y yönlerindeki yerel eğimlerini verir. İkinci mertebe kısmi türevler eğriliği ve karışık türevler iki değişkenin birlikte etkisini inceler. Uygun süreklilikte f_xy=f_yx eşitliği geçerlidir.'],
+['Toplam diferansiyel ve zincir kuralı','Küçük değişimlerde df≈fₓdx+fᵧdy yaklaşımı kullanılır. x ve y başka bir t değişkenine bağlıysa zincir kuralı df/dt=fₓ dx/dt+fᵧ dy/dt biçimindedir. Bu ifade hassasiyet ve hata yayılımında kullanılır. Sınavda bağımsız ve bağımlı değişkenleri açıkça yaz; kısmi türev ile toplam türevi karıştırma.']
+],
+[
+['Çift ve üçlü integralin anlamı','Çift integral ∬D f(x,y)dA, bölgedeki küçük katkıları toplar. f=1 ise alanı; f yüzey yoğunluğu ise kütleyi verir. Üçlü integral hacim bölgesinde yoğunluk toplamı, hacim veya yük gibi birikimli büyüklükleri hesaplar. İntegral sınırları bölgenin geometrik tanımından çıkarılır; sıra değişirse sınırlar yeniden yazılmalıdır.'],
+['Değişken dönüşümü ve Jacobian','Kartezyen koordinatlardan kutupsal koordinatlara geçişte x=r cosθ, y=r sinθ ve dA=r dr dθ olur. Buradaki r çarpanı Jacobian determinantından gelir; unutulursa alan ve hacim yanlış hesaplanır. Sınavda önce bölgeyi çiz, sonra koordinat sistemini ve sınırları belirle, en son integrali kur.']
+],
+[
+['Gradyan ve yönlü türev','Gradyan ∇f=(fₓ,fᵧ) veya üç boyutta (fₓ,fᵧ,f_z) vektörüdür. En hızlı artış yönünü gösterir; normu o noktadaki maksimum yönlü türevdir. Birim u yönündeki değişim Dᵤf=∇f·u skaler çarpımıyla bulunur. Yön vektörünü önce birim vektöre dönüştürmek gerekir.'],
+['Seviye yüzeyine diklik','Gradyan, düzenli bir noktada f(x,y,z)=c seviye yüzeyine diktir. Bu özellik yüzey normali, en dik eğim ve optimizasyon problemlerinde kullanılır. Örneğin topografik yükseklik fonksiyonunda gradyan en dik yükseliş yönünü; negatif gradyan en dik iniş yönünü gösterir. Sınavda nokta, fonksiyon ve yön vektörünü aynı sırada değerlendir.']
+],
+[
+['Diverjans ve rotasyonel','Bir vektör alanı F=(P,Q,R) için diverjans ∇·F=Pₓ+Qᵧ+R_z skaler bir büyüklüktür ve yerel net dışarı akış yoğunluğunu ifade eder. Rotasyonel ∇×F vektördür; alanın yerel dönme eğilimini ve yönünü gösterir. Diverjans kaynak/çukur etkisini, rotasyonel girdap benzeri davranışı yorumlamaya yardım eder.'],
+['Akı, dolaşım ve integral teoremleri','Bir yüzeyden geçen akı F·n bileşeninin yüzey integraliyle; kapalı eğri boyunca dolaşım ise çizgi integraliyle ölçülür. Gauss teoremi kapalı yüzey akısını hacim içi diverjans integraline, Stokes teoremi sınır eğrisi dolaşımını yüzey rotasyonel akısına bağlar. Bu teoremler sınır geometrisi ve yönlendirme doğru seçildiğinde uygulanır.']
+],
+[
+['Fourier serisinin bileşenleri','Periyodu 2L olan uygun bir fonksiyon sinüs ve kosinüs bileşenlerine ayrılabilir: f(x)≈a₀/2+Σ[aₙcos(nπx/L)+bₙsin(nπx/L)]. aₙ ve bₙ katsayıları bir periyot boyunca integralle bulunur. Temel frekans ve onun tam sayı katları harmonikleri oluşturur.'],
+['Simetri katsayı hesabını sadeleştirir','Fonksiyon çiftse sinüs katsayıları sıfır; tekse sabit ve kosinüs katsayıları sıfır olur. Böylece katsayı integralinin yarısı veya tek bir bileşen hesaplanır. Terim sayısı arttıkça yaklaşım genellikle iyileşir; süreksizlik çevresinde Gibbs taşması görülebilir. Sınavda önce periyodu, tek/çift simetriyi ve katsayı tanımını belirle.']
+],
+[
+['Matematiksel model kurma','Bir mühendislik problemini modele dönüştürürken önce sistem sınırı, bilinenler, bilinmeyenler ve ölçüm birimleri tanımlanır. Ardından kütle, enerji, momentum veya geometrik kısıt gibi korunum/ilişki ilkesi seçilir. Model denklemi varsayımları açıkça belirtmelidir; örneğin sabit yoğunluk, kararlı durum veya küçük şekil değiştirme.'],
+['Boyut analizi ve model doğrulama','Her denklemde iki tarafın boyutları aynı olmalıdır. Birim analizi, yanlış kuvvet/uzunluk/alan dönüşümlerini ve eksik fiziksel büyüklükleri ortaya çıkarabilir. Modeli sınır durumlarında, başlangıç koşullarında ve bilinen özel çözümlerde denetle. Sayısal sonuç yalnız hesap makinesi çıktısı değildir; büyüklük ve fiziksel anlam bakımından yorumlanmalıdır.']
+]
+],
+myd1:[
+[
+['Teknik isim tamlamasını çöz','İngilizcede teknik isim gruplarında ana isim çoğu zaman grubun sonundadır. “reinforced concrete beam” ifadesinde ana isim beam, reinforced concrete ise kirişin niteliğini açıklar. Kelimeleri tek tek çevirmek yerine önce ana ismi bul, sonra niteleyicileri Türkçe sırayla bağla. Tireli bileşikler ve kısaltmalar da aynı bağlam içinde değerlendirilmelidir.'],
+['Kısa teknik sözlük nasıl oluşturulur','Her terim için Türkçe karşılık, kısa İngilizce tanım ve bir mühendislik cümlesi kaydet. “load-bearing wall”, “retaining wall” ve “shear wall” gibi benzer kelimeleri ayrı kartlarda karşılaştır; hepsi duvar olsa da görevleri farklıdır. Kelimeyi tek başına ezberlemek yerine çizim veya eleman üzerinde yerini göster.']
+],
+[
+['Malzeme terimleri ve özellikler','Concrete beton, cement çimento, aggregate agrega, reinforcement donatı, steel çelik ve timber ahşap anlamına gelir. Strength dayanım, stiffness rijitlik, durability dayanıklılık, density yoğunluk ve workability işlenebilirliktir. Strength ile stiffness aynı şey değildir: biri kırılmaya/akmaya karşı kapasiteyi, diğeri yük altındaki şekil değiştirmeye karşı direnci ifade eder.'],
+['Teknik föy okuma','Bir malzeme föyünde compressive strength, tensile strength, density, water absorption ve exposure class gibi başlıkları ayırt et. Sayısal değeri birimi ve deney standardıyla birlikte oku; 30 MPa ile 30 GPa aynı büyüklük değildir. Karşılaştırma yaparken numune yaşı, kür koşulu ve test yöntemi aynı mı kontrol et.']
+],
+[
+['Şantiye alanı ve ekipman','Construction site şantiye alanıdır; excavation kazı, backfilling geri dolgu, lifting kaldırma, compaction sıkıştırma ve hauling taşıma işlemleridir. Excavator kazı ve yükleme, loader malzeme toplama/yükleme, crane kaldırma, roller sıkıştırma işleriyle ilişkilendirilir. Ekipman adını işleviyle eşleştir; farklı makinelerin görevlerini yalnız kelime benzerliğine göre karıştırma.'],
+['Talimatı ve makine işlevini eşleştir','“Excavate the trench to the specified depth” ifadesinde trench hendek, specified depth belirtilen derinliktir. “The loader transports aggregate to the stockpile” cümlesinde loader işi yapan öznedir. Teknik cümlede özne, fiil, nesne ve yer bildiren ifadeyi işaretleyerek eylem sırasını çıkar.']
+],
+[
+['Yapı elemanlarını görevleriyle öğren','Foundation yükleri zemine aktarır; column düşey taşıyıcı, beam kiriş, slab döşeme, shear wall yatay yükleri karşılayan perde duvar, roof çatı ve footing tekil temel anlamına gelir. Elemanın adı kadar yük yolu içindeki görevi de önemlidir. “Beam-column joint” kiriş-kolon birleşimini belirtir; birden fazla ismi birbirine bağlayan tamlamayı bütün olarak çevir.'],
+['Yapı elemanı tarifini oku','“The slab transfers floor loads to the beams” cümlesinde slab özne, transfers yük aktarma fiili, floor loads nesne ve to the beams yön bilgisidir. Bu cümle yalnız kelime değil, yük aktarım sırasını da anlatır. Bir proje notunu çevirirken elemanların birbirine göre konumunu ve kuvvet yönünü koru.']
+],
+[
+['Görünüş, plan ve kesit ayrımı','Plan yatay düzlemdeki yerleşimi; elevation cephe veya görünüşü; section kesme düzleminden görülen iç düzeni; detail ise birleşim veya küçük bölgenin büyütülmüş çizimini gösterir. Dimension ölçü, scale ölçek, tolerance tolerans ve section line kesit çizgisidir. Bir çizim türü diğerinin yerine geçmez; farklı sorulara cevap verir.'],
+['Ölçeği gerçek ölçüye dönüştür','1:100 ölçek çizimde 1 birimin gerçekte 100 birim olduğu anlamına gelir. Gerçek uzunluk 3,20 m ise çizimde 32 mm olur; önce bütün büyüklükleri aynı birime çevir, sonra ölçek uygula. Ölçü çizgisindeki sayı çoğunlukla gerçek boyu verir; çizimde cetvelle ölçülen uzunlukla karıştırma.']
+],
+[
+['Miktar ve SI birimleri','Length uzunluk m veya mm; area alan m²; volume hacim m³; force kuvvet N veya kN; stress gerilme Pa veya MPa ile ifade edilir. Quantity miktar, unit birim, rate oran/birim fiyat ve total quantity toplam miktardır. Birim ön ekleri kilo 10³, milli 10⁻³ ve mega 10⁶ anlamına gelir.'],
+['Metraj cümlesini yorumla','“The concrete volume is 12.5 cubic metres” ifadesi 12,5 m³ beton hacmi demektir. “Reinforcement is measured in kilograms” donatının kilogramla ölçüldüğünü belirtir. İngilizce ondalık yazımda nokta kullanılabilir; sayıyı Türkçeye aktarırken basamak ve birim kaymasını önle. Alan ile hacim birimlerini özellikle ayır.']
+],
+[
+['İş sağlığı ve güvenliği kelimeleri','PPE kişisel koruyucu donanım, hazard tehlike kaynağı, risk olasılık ve sonuç bileşimi, warning uyarı, emergency acil durum ve first aid ilk yardımdır. Helmet baret, safety boots iş güvenliği botu, harness emniyet kemeri ve protective gloves koruyucu eldivendir. Hazard ile risk aynı kavram değildir; kaynak ile olası zarar ihtimalini ayır.'],
+['Zorunluluk, yasak ve tavsiye','MUST veya shall zorunluluk, MUST NOT yasak, SHOULD tavsiye bildirir. “Workers must wear helmets” çalışanların baret takmasının zorunlu olduğunu; “Do not enter” girişin yasak olduğunu söyler. Olumsuzluk eki, emir ve uyarı ifadeleri teknik metnin güvenlik anlamını değiştirir; çeviride yumuşatma veya atlama yapma.']
+],
+[
+['Teknik fiillerin anlamını bağlamda öğren','Cast dökmek, cure kür uygulamak, compact sıkıştırmak, install monte etmek, erect kurmak, inspect kontrol etmek, load yüklemek, unload boşaltmak ve demolish yıkmak anlamına gelebilir. Aynı fiilin günlük ve teknik anlamı farklılaşabilir. Fiili hangi elemanın yaptığına ve hangi nesne üzerinde uygulandığına bakarak seç.'],
+['Edilgen yapı ve işlem sırası','“The concrete is placed, compacted and cured” cümlesinde beton önce yerleştirilir, sonra sıkıştırılır ve kür edilir. Edilgen yapı işlemi yapan kişiden çok uygulamanın kendisini öne çıkarır; teknik raporlarda sık kullanılır. First, then, after, before ve finally bağlaçları yapım sırasını belirler.']
+],
+[
+['Teknik metni katmanlı oku','Önce başlık, şekil numarası, tablo adı ve paragrafın amacını belirle. Sonra sayılar, birimler, standart numaraları, olumsuzluk ve koşul ifadelerini işaretle. Finally/therefore sonuç, because neden, if koşul ve whereas karşılaştırma bildirir. Referans zamirleri it, they, which gibi kelimelerin hangi elemana döndüğünü bul.'],
+['Anlamı üç aşamada doğrula','Metni önce ana fikir, sonra teknik terimler, son olarak ayrıntılı işlem ve koşullar açısından oku. “If the measured deflection exceeds the limit, the member must be checked” cümlesinde koşul ve zorunluluk ilişkisini koru. Çeviriyi çizim, tablo veya formülle karşılaştır; sadece sözlük anlamı teknik bağlamı doğrulamaya yetmez.']
+]
+]
+};
+for(const [courseId, topics] of Object.entries(fallTopicDeepening2)){
+ topics.forEach((pair,i)=>{
+  const lesson=deepLessonData[courseId+'_'+i];
+  if(!lesson)return;
+  lesson.extraSections=[
+   {title:'Kavramı temelden kuralım',body:pair[0][1]},
+   {title:'İleri bağlantı ve sınavda yorum',body:pair[1][1]}
+  ];
+ });
+}
+
 function deepLessonHTML(c,i){
  const d=deepLessonData[c.id+'_'+i];
  if(!d)return '';
