@@ -122,6 +122,14 @@
 .visual-reading b{display:block;color:#1c5067;margin-bottom:4px}
 .visual-reading p{font-size:13px;line-height:1.8;margin:0;color:#40576c}
 @media(max-width:720px){.lessonbox .fall-visual{padding:13px}.lessonbox .fall-visual svg{max-height:none;padding:3px}}
+
+.lessonbox .steps-list{counter-reset:study-step;list-style:none;display:grid;gap:9px;padding:0;margin:13px 0}
+.lessonbox .steps-list li{counter-increment:study-step;position:relative;padding:11px 14px 11px 50px;background:#f7fafc;border:1px solid #dfe8ef;border-radius:10px;color:#344b62;line-height:1.8}
+.lessonbox .steps-list li::before{content:counter(study-step);position:absolute;left:12px;top:10px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#e2edf6;color:#1d4d73;font-weight:800;font-size:12px}
+.lessonbox .example-card{border:1px solid #eadcb8;background:linear-gradient(135deg,#fffaf0,#fffdf8);border-radius:14px;padding:18px 20px;margin:12px 0}
+.lessonbox .example-card h4{font-family:Georgia,"Times New Roman",serif;color:#674f24;font-size:17px;margin:0 0 9px}
+.lessonbox .example-card p{font-size:14px;line-height:1.9;color:#3b4d5f}
+
 </style></head>
 <body><div class="shell">
 <aside class="side" id="sidebar"><div class="brand"><div class="logo">ÇA</div><div><strong>Çalışma Atölyem</strong><small>EBYÜ · İnşaat Mühendisliği</small></div></div>
@@ -3016,13 +3024,15 @@ function masteryHTML(c,i){
  <div class="callout"><b>Çalışma yöntemi:</b> Anlatımı okuduktan sonra formülü ve çözüm adımlarını boş kâğıda yeniden yaz. Ardından bu konuya ait test sorularını çöz; yanlışlarını açıklamayla karşılaştır ve birim/yön kontrolünü tekrarla.</div>`;
 }
 function textbookMathLine(value){
- let x=String(value??'').replace(/Σ\s*F_?([xyz])/g,'SUM_F_$1').replace(/ΣF([xyz])/g,'SUM_F_$1').replace(/ΣM/g,'SUM_M').replace(/Σ/g,'SUM');
+ let x=String(value??'').replace(/<=/g,'≤').replace(/>=/g,'≥').replace(/!=/g,'≠').replace(/->/g,'→');
+ x=x.replace(/Σ\s*F_?([xyz])/g,'SUM_F_$1').replace(/ΣF([xyz])/g,'SUM_F_$1').replace(/ΣM/g,'SUM_M').replace(/Σ/g,'SUM');
  x=masteryEscape(x).replace(/SUM_F_([xyz])/g,'∑ F<sub>$1</sub>').replace(/SUM_M/g,'∑ M').replace(/SUM/g,'∑');
  x=x.replace(/\b([A-Za-z])_([A-Za-z0-9]+)\b/g,'$1<sub>$2</sub>').replace(/\^([0-9]+)/g,'<sup>$1</sup>');
- return x.replace(/<=/g,'≤').replace(/>=/g,'≥').replace(/!=/g,'≠').replace(/->/g,'→');
+ return x;
 }
 function textbookEquationHTML(value){
- const lines=String(value??'').trim().split(/\n+/).map(x=>x.trim()).filter(Boolean);
+ const raw=String(value??'').trim();
+ const lines=raw.split(/\n+|;/).map(x=>x.trim()).filter(Boolean);
  return '<div class="textbook-equation">'+lines.map(x=>'<span class="math-line">'+textbookMathLine(x)+'</span>').join('')+'</div>';
 }
 function fallVisualHTML(c,t,i){
