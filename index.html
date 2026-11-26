@@ -3258,7 +3258,7 @@ function masteryHTML(c,i){
 function textbookMathLine(value){
  let x=String(value??'').replace(/<=/g,'≤').replace(/>=/g,'≥').replace(/!=/g,'≠').replace(/->/g,'→');
  x=x.replace(/Σ\s*F_?([xyz])/g,'SUM_F_$1').replace(/ΣF([xyz])/g,'SUM_F_$1').replace(/ΣM/g,'SUM_M').replace(/Σ/g,'SUM');
- x=textbookMathLine(x).replace(/SUM_F_([xyz])/g,'∑ F<sub>$1</sub>').replace(/SUM_M/g,'∑ M').replace(/SUM/g,'∑');
+ x=masteryEscape(x).replace(/SUM_F_([xyz])/g,'∑ F<sub>$1</sub>').replace(/SUM_M/g,'∑ M').replace(/SUM/g,'∑');
  x=x.replace(/\b([A-Za-z])_([A-Za-z0-9]+)\b/g,'$1<sub>$2</sub>').replace(/\^([0-9]+)/g,'<sup>$1</sup>');
  return x;
 }
