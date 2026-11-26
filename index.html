@@ -164,6 +164,15 @@
 .matrix-result .math-matrix{font-size:19px}
 .matrix-explanation{font-size:13px;color:#52677d;margin:8px 0 0}
 @media(max-width:720px){.matrix-calculations{grid-template-columns:minmax(0,1fr)}.matrix-equation{gap:8px;padding:10px}.matrix-operand{gap:6px}}
+/* Matrisli çözümlü örnekler: her denklem ayrı görüntü satırında */
+.matrix-display-stack{display:grid;gap:12px;margin:14px 0;min-width:0}
+.matrix-display-row{display:flex;align-items:center;justify-content:flex-start;gap:12px;flex-wrap:wrap;width:100%;min-width:0;padding:12px 14px;background:#fff;border:1px solid #e1e8ef;border-radius:10px}
+.matrix-display-label{font:700 18px/1.4 'Cambria Math','Times New Roman',serif;color:#17324f;white-space:nowrap}
+.matrix-display-row .math-matrix{font-size:19px}
+.matrix-display-dimension{font:12px/1.4 Inter,Arial,sans-serif;color:#64748b;white-space:nowrap}
+.matrix-display-caption{margin:0!important;color:#52677d!important;font-size:14px!important;line-height:1.7!important}
+.matrix-display-law{display:block;width:fit-content;max-width:100%;padding:12px 18px;border-left:4px solid var(--blue);background:#f1f6fb;border-radius:8px;color:#17324f;font:700 20px/1.5 'Cambria Math','Times New Roman',serif;overflow-wrap:anywhere}
+@media(max-width:720px){.matrix-display-row{gap:8px;padding:10px}.matrix-display-row .math-matrix{font-size:17px}.matrix-display-law{font-size:18px}}
 </style></head>
 <body><div class="shell">
 <aside class="side" id="sidebar"><div class="brand"><div class="logo">ÇA</div><div><strong>Çalışma Atölyem</strong><small>EBYÜ · İnşaat Mühendisliği</small></div></div>
@@ -3003,8 +3012,23 @@ function lineerMatrixWorkedExamplesHTML(d){
   [[1,2,0],[-1,3,1]],'(2×3)',[[2,1],[0,-1],[4,2]],'(3×2)',[[2,-1],[2,-2]],'(2×2)',
   ['c_{11}=1·2+2·0+0·4=2','c_{12}=1·1+2·(−1)+0·2=−1','c_{21}=(−1)·2+3·0+1·4=2','c_{22}=(−1)·1+3·(−1)+1·2=−2'],
   'Sonuç matrisinin satır sayısı A’dan, sütun sayısı B’den gelir: 2×2.');
- const retained=(d.examples||[]).slice(1).map((x,k)=>'<section class="learn-section"><div class="learning-kicker">Çözümlü uygulama · '+(k+3)+'</div><div class="example-card"><h4>'+textbookMathLine(x.title)+'</h4><p>'+textbookMathLine(x.text)+'</p></div></section>').join('');
- return first+second+retained;
+ const transpose='<section class="learn-section">' +
+  '<div class="learning-kicker">Çözümlü uygulama · 3</div>' +
+  '<div class="example-card matrix-worked-example">' +
+   '<h4>Transpoz ve matris boyutu</h4>' +
+   '<p>Verilen A matrisi 2 satır ve 3 sütundan oluşmaktadır. Transpoz alınırken satırlar sütun, sütunlar satır hâline getirilir.</p>' +
+   '<div class="matrix-display-stack">' +
+    '<div class="matrix-display-row" aria-label="A matrisi, ikiye üç boyutunda"><span class="matrix-display-label">A =</span>'+matrix([[1,2,3],[4,5,6]])+'<span class="matrix-display-dimension">(2×3)</span></div>' +
+    '<p class="matrix-display-caption">A matrisinin birinci satırı (1, 2, 3), ikinci satırı (4, 5, 6) şeklindedir. Transpozda bu satırlar sütunlara aktarılır.</p>' +
+    '<div class="matrix-display-row" aria-label="A transpoz matrisi, üçe iki boyutunda"><span class="matrix-display-label">A<sup>T</sup> =</span>'+matrix([[1,4],[2,5],[3,6]])+'<span class="matrix-display-dimension">(3×2)</span></div>' +
+    '<p class="matrix-display-caption">Böylece A<sup>T</sup> matrisi 3 satır ve 2 sütunlu olur. Genel boyut kuralı: A<sup>T</sup> matrisi, A matrisi m×n ise n×m boyutundadır.</p>' +
+    '<div class="matrix-display-law" aria-label="Matris çarpımının transpozu kuralı">(AB)<sup>T</sup> = B<sup>T</sup>A<sup>T</sup></div>' +
+    '<p class="matrix-display-caption">Matris çarpımının transpozu alınırken çarpanların sırası tersine döner.</p>' +
+   '</div>' +
+  '</div>' +
+ </section>';
+ const retained=(d.examples||[]).slice(2).map((x,k)=>'<section class="learn-section"><div class="learning-kicker">Çözümlü uygulama · '+(k+4)+'</div><div class="example-card"><h4>'+textbookMathLine(x.title)+'</h4><p>'+textbookMathLine(x.text)+'</p></div></section>').join('');
+ return first+second+transpose+retained;
 }
 function deepLessonHTML(c,i){
  const d=deepLessonData[c.id+'_'+i];
