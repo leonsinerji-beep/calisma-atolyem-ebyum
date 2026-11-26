@@ -173,6 +173,19 @@
 .matrix-display-caption{margin:0!important;color:#52677d!important;font-size:14px!important;line-height:1.7!important}
 .matrix-display-law{display:block;width:fit-content;max-width:100%;padding:12px 18px;border-left:4px solid var(--blue);background:#f1f6fb;border-radius:8px;color:#17324f;font:700 20px/1.5 'Cambria Math','Times New Roman',serif;overflow-wrap:anywhere}
 @media(max-width:720px){.matrix-display-row{gap:8px;padding:10px}.matrix-display-row .math-matrix{font-size:17px}.matrix-display-law{font-size:18px}}
+/* Matris gösteriminin sağlam, geçerli HTML ile kitap biçiminde çizilmesi */
+.math-matrix{display:inline-grid!important;grid-template-columns:.44em max-content .44em!important;grid-template-rows:auto!important;align-items:stretch!important;vertical-align:middle;margin:0 .13em;column-gap:.1em;row-gap:0;color:inherit;line-height:1.25;white-space:normal}
+.math-matrix>.matrix-bracket{display:block!important;box-sizing:border-box;width:auto!important;min-width:0;min-height:100%;height:auto;align-self:stretch!important;justify-self:stretch}
+.math-matrix>.matrix-left{grid-column:1;grid-row:1;border-left:1.8px solid currentColor;border-top:1.8px solid currentColor;border-bottom:1.8px solid currentColor;border-right:0;border-radius:0}
+.math-matrix>.matrix-table{display:table!important;grid-column:2;grid-row:1;border-collapse:separate;border-spacing:.48em .10em;font-family:'Cambria Math','STIX Two Math','Times New Roman',serif;font-size:1em;line-height:1.35;margin:0;white-space:nowrap}
+.math-matrix .matrix-row{display:table-row!important}
+.math-matrix .matrix-cell{display:table-cell!important;text-align:center;padding:0 .04em;white-space:nowrap}
+.math-matrix>.matrix-right{grid-column:3;grid-row:1;border-right:1.8px solid currentColor;border-top:1.8px solid currentColor;border-bottom:1.8px solid currentColor;border-left:0;border-radius:0}
+.textbook-equation .math-matrix{font-size:1em}
+.example-card .math-matrix{font-size:1.02em}
+.matrix-result .math-matrix{font-size:19px}
+.matrix-display-row .math-matrix{font-size:19px}
+@media(max-width:720px){.math-matrix{margin:0 .08em;column-gap:.08em}.math-matrix>.matrix-table{border-spacing:.3em .08em}.matrix-display-row .math-matrix{font-size:17px}}
 </style></head>
 <body><div class="shell">
 <aside class="side" id="sidebar"><div class="brand"><div class="logo">ÇA</div><div><strong>Çalışma Atölyem</strong><small>EBYÜ · İnşaat Mühendisliği</small></div></div>
@@ -3507,12 +3520,11 @@ function textbookScalarHTML(value){
 function textbookMatrixHTML(raw){
  const rowMatches=raw.slice(1,-1).match(/\[[^\[\]]*\]/g)||[];
  if(!rowMatches.length)return masteryEscape(raw);
- const rows=rowMatches.map(row=>{
-  const cells=row.slice(1,-1).split(',');
-  return '<tr>'+cells.map(cell=>'<td>'+textbookScalarHTML(cell.trim())+'</td>').join('')+'</tr>';
- }).join('');
- const cols=(rowMatches[0].slice(1,-1).split(',')).length;
- return '<span class="math-matrix" role="math" aria-label="Matris, '+rowMatches.length+' satır ve '+cols+' sütun"><span class="matrix-bracket matrix-left" aria-hidden="true"></span><table class="matrix-table"><tbody>'+rows+'</tbody></table><span class="matrix-bracket matrix-right" aria-hidden="true"></span></span>';
+ const parsedRows=rowMatches.map(row=>row.slice(1,-1).split(',').map(cell=>cell.trim()));
+ const cols=parsedRows[0].length;
+ if(!cols||parsedRows.some(row=>row.length!==cols))return masteryEscape(raw);
+ const rows=parsedRows.map(cells=>'<span class="matrix-row">'+cells.map(cell=>'<span class="matrix-cell">'+textbookScalarHTML(cell)+'</span>').join('')+'</span>').join('');
+ return '<span class="math-matrix" role="math" aria-label="Matris, '+parsedRows.length+' satır ve '+cols+' sütun"><span class="matrix-bracket matrix-left" aria-hidden="true"></span><span class="matrix-table">'+rows+'</span><span class="matrix-bracket matrix-right" aria-hidden="true"></span></span>';
 }
 function textbookMathLine(value){
  const raw=String(value??'');
