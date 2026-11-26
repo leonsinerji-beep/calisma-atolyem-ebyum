@@ -130,6 +130,10 @@
 .lessonbox .example-card h4{font-family:Georgia,"Times New Roman",serif;color:#674f24;font-size:17px;margin:0 0 9px}
 .lessonbox .example-card p{font-size:14px;line-height:1.9;color:#3b4d5f}
 
+
+.lessonbox .learn-section sub{font-size:.72em;vertical-align:-.25em;line-height:0}
+.lessonbox .learn-section sup{font-size:.72em;vertical-align:.45em;line-height:0}
+.lessonbox .learn-section p{overflow-wrap:anywhere}
 </style></head>
 <body><div class="shell">
 <aside class="side" id="sidebar"><div class="brand"><div class="logo">ÇA</div><div><strong>Çalışma Atölyem</strong><small>EBYÜ · İnşaat Mühendisliği</small></div></div>
@@ -2794,26 +2798,26 @@ function deepLessonHTML(c,i){
  const d=deepLessonData[c.id+'_'+i];
  if(!d)return '';
  const safe=masteryEscape;
- const paragraphs=String(d.explanation||'').split(/\n\n+/).map(x=>`<p>${safe(x)}</p>`).join('');
- const extra=(d.extraSections||[]).map(x=>`<section class="learn-section"><div class="learning-kicker">Derinleştirme</div><h3>${safe(x.title)}</h3><p>${safe(x.body)}</p></section>`).join('');
- const examples=(d.examples||[]).map((x,k)=>`<section class="learn-section"><div class="learning-kicker">Çözümlü uygulama · ${k+2}</div><div class="example-card"><h4>${safe(x.title)}</h4><p>${safe(x.text)}</p></div></section>`).join('');
- const vocab=(d.vocabulary||[]).length?`<section class="learn-section"><div class="learning-kicker">Terim kartları</div><div class="vocab-grid">${d.vocabulary.map(v=>`<div class="vocab-card"><b>${safe(v.term)}</b><p>${safe(v.meaning)}</p></div>`).join('')}</div></section>`:'';
- const practice=(d.practice||[]).length?`<section class="learn-section"><div class="learning-kicker">Konu sonu aktif hatırlama</div><h3>Kitabı kapat ve kendini sın</h3><p>Önce soruya kendi cümlenle yanıt ver. Ardından açıklamayı açıp cevabındaki eksikleri kontrol et.</p><div class="practice-stack">${d.practice.map((q,k)=>`<details class="practice-card"><summary><span>${k+1}. ${safe(q.q)}</span></summary><div class="practice-answer"><b>Beklenen yanıt / çözüm yaklaşımı</b><p>${safe(q.a)}</p></div></details>`).join('')}</div></section>`:'';
+ const paragraphs=String(d.explanation||'').split(/\n\n+/).map(x=>`<p>${textbookMathLine(x)}</p>`).join('');
+ const extra=(d.extraSections||[]).map(x=>`<section class="learn-section"><div class="learning-kicker">Derinleştirme</div><h3>${textbookMathLine(x.title)}</h3><p>${textbookMathLine(x.body)}</p></section>`).join('');
+ const examples=(d.examples||[]).map((x,k)=>`<section class="learn-section"><div class="learning-kicker">Çözümlü uygulama · ${k+2}</div><div class="example-card"><h4>${textbookMathLine(x.title)}</h4><p>${textbookMathLine(x.text)}</p></div></section>`).join('');
+ const vocab=(d.vocabulary||[]).length?`<section class="learn-section"><div class="learning-kicker">Terim kartları</div><div class="vocab-grid">${d.vocabulary.map(v=>`<div class="vocab-card"><b>${textbookMathLine(v.term)}</b><p>${textbookMathLine(v.meaning)}</p></div>`).join('')}</div></section>`:'';
+ const practice=(d.practice||[]).length?`<section class="learn-section"><div class="learning-kicker">Konu sonu aktif hatırlama</div><h3>Kitabı kapat ve kendini sın</h3><p>Önce soruya kendi cümlenle yanıt ver. Ardından açıklamayı açıp cevabındaki eksikleri kontrol et.</p><div class="practice-stack">${d.practice.map((q,k)=>`<details class="practice-card"><summary><span>${k+1}. ${textbookMathLine(q.q)}</span></summary><div class="practice-answer"><b>Beklenen yanıt / çözüm yaklaşımı</b><p>${textbookMathLine(q.a)}</p></div></details>`).join('')}</div></section>`:'';
  return `<div class="lesson-badge">AYRINTILI DERS NOTU · ${d.extraSections?'DERS ALANINA ÖZEL':'KONUYA ÖZEL'}</div>
- <section class="learn-section"><div class="learning-kicker">Öğrenme hedefi</div><h3>Bu konunun sonunda ne yapabilmelisin?</h3><p>${safe(d.objective)}</p></section>
- <section class="learn-section"><div class="learning-kicker">Başlamadan önce</div><h3>Ön koşul bilgi</h3><p>${safe(d.prerequisites)}</p></section>
+ <section class="learn-section"><div class="learning-kicker">Öğrenme hedefi</div><h3>Bu konunun sonunda ne yapabilmelisin?</h3><p>${textbookMathLine(d.objective)}</p></section>
+ <section class="learn-section"><div class="learning-kicker">Başlamadan önce</div><h3>Ön koşul bilgi</h3><p>${textbookMathLine(d.prerequisites)}</p></section>
  <section class="learn-section"><div class="learning-kicker">Kavramsal anlatım</div><h3>Konuyu adım adım anlayalım</h3>${paragraphs}</section>
  ${extra}
  ${vocab}
- <section class="learn-section"><div class="learning-kicker">Formülün / yöntemin anlamı</div><h3>${safe(d.eq_title)}</h3><div class="equation-card"><div class="eq">${textbookEquationHTML(d.eq)}</div><p class="symbol-note">${safe(d.eq_note)}</p></div></section>
- <section class="learn-section"><div class="learning-kicker">Çözümlü uygulama · 1</div><div class="example-card"><h4>${safe(d.example_title)}</h4><p>${safe(d.example)}</p></div></section>
+ <section class="learn-section"><div class="learning-kicker">Formülün / yöntemin anlamı</div><h3>${textbookMathLine(d.eq_title)}</h3><div class="equation-card"><div class="eq">${textbookEquationHTML(d.eq)}</div><p class="symbol-note">${textbookMathLine(d.eq_note)}</p></div></section>
+ <section class="learn-section"><div class="learning-kicker">Çözümlü uygulama · 1</div><div class="example-card"><h4>${textbookMathLine(d.example_title)}</h4><p>${textbookMathLine(d.example)}</p></div></section>
  ${examples}
- <section class="learn-section"><div class="learning-kicker">Problem çözme yöntemi</div><h3>Bu tip soruyu nasıl çözmelisin?</h3><ol class="steps-list">${(d.steps||[]).map(x=>`<li>${safe(x)}</li>`).join('')}</ol></section>
- <section class="learn-section"><div class="learning-kicker">Mesleki bağlantı</div><h3>İnşaat mühendisliğinde nerede kullanılır?</h3><p>${safe(d.engineering)}</p></section>
- <section class="learn-section"><div class="learning-kicker">Hata önleme</div><h3>Sınavda ve uygulamada dikkat et</h3><ul class="pitfall-list">${(d.pitfalls||[]).map(x=>`<li>${safe(x)}</li>`).join('')}</ul></section>
- <div class="checkpoint"><details><summary>Kendini kontrol et: ${safe(d.checkq)}</summary><p><b>Yanıt ve açıklama:</b> ${safe(d.checka)}</p></details></div>
+ <section class="learn-section"><div class="learning-kicker">Problem çözme yöntemi</div><h3>Bu tip soruyu nasıl çözmelisin?</h3><ol class="steps-list">${(d.steps||[]).map(x=>`<li>${textbookMathLine(x)}</li>`).join('')}</ol></section>
+ <section class="learn-section"><div class="learning-kicker">Mesleki bağlantı</div><h3>İnşaat mühendisliğinde nerede kullanılır?</h3><p>${textbookMathLine(d.engineering)}</p></section>
+ <section class="learn-section"><div class="learning-kicker">Hata önleme</div><h3>Sınavda ve uygulamada dikkat et</h3><ul class="pitfall-list">${(d.pitfalls||[]).map(x=>`<li>${textbookMathLine(x)}</li>`).join('')}</ul></section>
+ <div class="checkpoint"><details><summary>Kendini kontrol et: ${textbookMathLine(d.checkq)}</summary><p><b>Yanıt ve açıklama:</b> ${textbookMathLine(d.checka)}</p></details></div>
  ${practice}
- ${d.sourceNote?`<div class="callout lesson-source-note">${safe(d.sourceNote)}</div>`:''}`;
+ ${d.sourceNote?`<div class="callout lesson-source-note">${textbookMathLine(d.sourceNote)}</div>`:''}`;
 }
 
 // Mukavemet 1 için genişletilmiş öğretim modülleri: kavram, türetim, iki çözümlü örnek ve kontrol soruları.
@@ -3238,23 +3242,23 @@ function masteryHTML(c,i){
  if(!d||!guide)return '';
  const label=isDin?'DİNAMİK':'MUKAVEMET 1';
  return `<div class="lesson-badge">DERİNLEŞTİRİLMİŞ ÜNİVERSİTE DERSİ · ${label}</div>
- <section class="learn-section"><div class="learning-kicker">Derse giriş</div><h3>Bu konuyu neden öğreniyoruz?</h3><p>${masteryEscape(d.intro)}</p></section>
- <section class="learn-section"><div class="learning-kicker">Başlamadan önce</div><h3>Gerekli temel bilgiler</h3><p>${masteryEscape(guide.pre)}</p></section>
- <section class="learn-section"><div class="learning-kicker">Öğrenme hedefleri</div><h3>Bu konuyu bitirdiğinde yapabilmelisin</h3><ul class="pitfall-list">${guide.out.map(x=>`<li>${masteryEscape(x)}</li>`).join("")}</ul></section>
+ <section class="learn-section"><div class="learning-kicker">Derse giriş</div><h3>Bu konuyu neden öğreniyoruz?</h3><p>${textbookMathLine(d.intro)}</p></section>
+ <section class="learn-section"><div class="learning-kicker">Başlamadan önce</div><h3>Gerekli temel bilgiler</h3><p>${textbookMathLine(guide.pre)}</p></section>
+ <section class="learn-section"><div class="learning-kicker">Öğrenme hedefleri</div><h3>Bu konuyu bitirdiğinde yapabilmelisin</h3><ul class="pitfall-list">${guide.out.map(x=>`<li>${textbookMathLine(x)}</li>`).join("")}</ul></section>
  ${masteryDiagram(d.diagram)}
- ${d.sections.map((x,k)=>`<section class="learn-section"><div class="learning-kicker">Konu anlatımı · ${k+1}. bölüm</div><h3>${masteryEscape(x[0])}</h3><p>${masteryEscape(x[1])}</p></section>`).join('')}
- <section class="learn-section"><div class="learning-kicker">Temel bağıntı</div><h3>Formül ve semboller</h3><div class="equation-card"><div class="eq">${textbookEquationHTML(d.formula)}</div><p class="symbol-note">${masteryEscape(d.meaning)}</p></div></section>
- <section class="learn-section"><div class="learning-kicker">Formülün nereden geldiği</div><h3>Fiziksel/matematiksel dayanak</h3><p>${masteryEscape(d.derivation)}</p></section>
- ${d.examples.map((e,j)=>`<section class="learn-section"><div class="learning-kicker">Çözümlü örnek ${j+1}</div><div class="example-card"><h4>${masteryEscape(e[0])}</h4><p>${masteryEscape(e[1])}</p><ol class="steps-list">${e[2].map(st=>`<li>${masteryEscape(st)}</li>`).join('')}</ol><p><b>${masteryEscape(e[3])}</b></p></div></section>`).join('')}
- <section class="learn-section"><div class="learning-kicker">Saha ve proje bağlantısı</div><h3>İnşaat mühendisliğinde nerede kullanılır?</h3><p>${masteryEscape(d.engineering)}</p></section>
- <section class="learn-section"><div class="learning-kicker">Hata önleme</div><h3>En sık yapılan hatalar</h3><ul class="pitfall-list">${d.pitfalls.map(x=>`<li>${masteryEscape(x)}</li>`).join('')}</ul></section>
- <section class="learn-section"><div class="learning-kicker">Kendini sına</div><h3>Kontrol soruları</h3>${d.checks.map((x,j)=>`<details class="checkpoint"><summary>${j+1}. ${masteryEscape(x[0])}</summary><p><b>Açıklamalı cevap:</b> ${masteryEscape(x[1])}</p></details>`).join('')}</section>
+ ${d.sections.map((x,k)=>`<section class="learn-section"><div class="learning-kicker">Konu anlatımı · ${k+1}. bölüm</div><h3>${textbookMathLine(x[0])}</h3><p>${textbookMathLine(x[1])}</p></section>`).join('')}
+ <section class="learn-section"><div class="learning-kicker">Temel bağıntı</div><h3>Formül ve semboller</h3><div class="equation-card"><div class="eq">${textbookEquationHTML(d.formula)}</div><p class="symbol-note">${textbookMathLine(d.meaning)}</p></div></section>
+ <section class="learn-section"><div class="learning-kicker">Formülün nereden geldiği</div><h3>Fiziksel/matematiksel dayanak</h3><p>${textbookMathLine(d.derivation)}</p></section>
+ ${d.examples.map((e,j)=>`<section class="learn-section"><div class="learning-kicker">Çözümlü örnek ${j+1}</div><div class="example-card"><h4>${textbookMathLine(e[0])}</h4><p>${textbookMathLine(e[1])}</p><ol class="steps-list">${e[2].map(st=>`<li>${textbookMathLine(st)}</li>`).join('')}</ol><p><b>${textbookMathLine(e[3])}</b></p></div></section>`).join('')}
+ <section class="learn-section"><div class="learning-kicker">Saha ve proje bağlantısı</div><h3>İnşaat mühendisliğinde nerede kullanılır?</h3><p>${textbookMathLine(d.engineering)}</p></section>
+ <section class="learn-section"><div class="learning-kicker">Hata önleme</div><h3>En sık yapılan hatalar</h3><ul class="pitfall-list">${d.pitfalls.map(x=>`<li>${textbookMathLine(x)}</li>`).join('')}</ul></section>
+ <section class="learn-section"><div class="learning-kicker">Kendini sına</div><h3>Kontrol soruları</h3>${d.checks.map((x,j)=>`<details class="checkpoint"><summary>${j+1}. ${textbookMathLine(x[0])}</summary><p><b>Açıklamalı cevap:</b> ${textbookMathLine(x[1])}</p></details>`).join('')}</section>
  <div class="callout"><b>Çalışma yöntemi:</b> Anlatımı okuduktan sonra formülü ve çözüm adımlarını boş kâğıda yeniden yaz. Ardından bu konuya ait test sorularını çöz; yanlışlarını açıklamayla karşılaştır ve birim/yön kontrolünü tekrarla.</div>`;
 }
 function textbookMathLine(value){
  let x=String(value??'').replace(/<=/g,'≤').replace(/>=/g,'≥').replace(/!=/g,'≠').replace(/->/g,'→');
  x=x.replace(/Σ\s*F_?([xyz])/g,'SUM_F_$1').replace(/ΣF([xyz])/g,'SUM_F_$1').replace(/ΣM/g,'SUM_M').replace(/Σ/g,'SUM');
- x=masteryEscape(x).replace(/SUM_F_([xyz])/g,'∑ F<sub>$1</sub>').replace(/SUM_M/g,'∑ M').replace(/SUM/g,'∑');
+ x=textbookMathLine(x).replace(/SUM_F_([xyz])/g,'∑ F<sub>$1</sub>').replace(/SUM_M/g,'∑ M').replace(/SUM/g,'∑');
  x=x.replace(/\b([A-Za-z])_([A-Za-z0-9]+)\b/g,'$1<sub>$2</sub>').replace(/\^([0-9]+)/g,'<sup>$1</sup>');
  return x;
 }
@@ -3314,7 +3318,7 @@ else if(c.id==='akiskan'){
   else if(i<7)svg='<svg viewBox="0 0 720 210" role="img" aria-label="Vektör alanında gradyan ve dönme"><g stroke="#d6e2ec" stroke-width="1"><path d="M45 45 H300 M45 90 H300 M45 135 H300 M45 180 H300 M90 25 V190 M140 25 V190 M190 25 V190 M240 25 V190"/></g><g stroke="#197d78" stroke-width="3" fill="none"><path d="M90 155 L125 125 M113 125 L129 123 L125 140 M145 155 L185 110 M173 110 L189 107 L185 124 M200 155 L245 100 M233 101 L250 97 L245 115"/></g><circle cx="500" cy="105" r="65" fill="#edf4fa" stroke="#315f91" stroke-width="2"/><path d="M500 40 C580 45 580 165 500 170 C420 165 420 45 500 40" stroke="#b54745" stroke-width="3" fill="none"/><text x="70" y="20" fill="#216548" font-size="14">∇f</text><text x="445" y="195" fill="#b54745" font-size="14">∇×F</text></svg>';
   else svg='<svg viewBox="0 0 720 210" role="img" aria-label="Fourier serisi ile periyodik sinyal"><line x1="45" y1="165" x2="690" y2="165" stroke="#475569" stroke-width="2"/><path d="M50 95 C90 15 130 175 170 95 S250 15 290 95 S370 175 410 95 S490 15 530 95 S610 175 650 95" stroke="#315f91" stroke-width="3.5" fill="none"/><path d="M50 95 C100 62 145 62 190 95 S280 128 325 95 S415 62 460 95 S550 128 595 95 S640 80 650 95" stroke="#197d78" stroke-width="2.5" stroke-dasharray="5 4" fill="none"/><text x="70" y="20" fill="#24466a" font-size="13">f(t)</text><text x="620" y="195" fill="#64748b" font-size="12">t</text></svg>';
  }
- return '<section class="learning-visual fall-visual"><div class="learning-kicker">Görsel anlatım · kavramı somutlaştıralım</div><h3>'+masteryEscape(title||t)+'</h3>'+svg+'<div class="visual-reading"><b>Şekil nasıl okunur?</b><p>'+masteryEscape(caption)+'</p></div><div class="visual-legend"><span>Şematik anlatım</span><span>Ölçekli proje çizimi değildir</span><span>Defterine yeniden çiz</span></div></section>';
+ return '<section class="learning-visual fall-visual"><div class="learning-kicker">Görsel anlatım · kavramı somutlaştıralım</div><h3>'+textbookMathLine(title||t)+'</h3>'+svg+'<div class="visual-reading"><b>Şekil nasıl okunur?</b><p>'+textbookMathLine(caption)+'</p></div><div class="visual-legend"><span>Şematik anlatım</span><span>Ölçekli proje çizimi değildir</span><span>Defterine yeniden çiz</span></div></section>';
 }
 function lessonHTML(c,i){
  const t=c.topics[i],formula=null; // Her konu kendi ders notunda doğru bağıntıyı gösterir; rastgele formül kartı gösterilmez.
