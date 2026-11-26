@@ -3039,7 +3039,7 @@ function lineerMatrixWorkedExamplesHTML(d){
     '<p class="matrix-display-caption">Matris çarpımının transpozu alınırken çarpanların sırası tersine döner.</p>' +
    '</div>' +
   '</div>' +
- </section>';
+ '</section>';
  const retained=(d.examples||[]).slice(2).map((x,k)=>'<section class="learn-section"><div class="learning-kicker">Çözümlü uygulama · '+(k+4)+'</div><div class="example-card"><h4>'+textbookMathLine(x.title)+'</h4><p>'+textbookMathLine(x.text)+'</p></div></section>').join('');
  return first+second+transpose+retained;
 }
