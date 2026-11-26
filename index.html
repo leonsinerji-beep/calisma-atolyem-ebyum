@@ -2562,6 +2562,111 @@ hidrolikLessonModules.forEach((d,i)=>{
  };
 });
 
+const fallTopicDeepening = {
+istatistik:[
+[
+['Veriyi tanımlamadan hesap yapma','İstatistiksel çözümün ilk adımı değişkenin neyi ölçtüğünü tanımlamaktır. Nitel değişken sınıf veya kategori bildirir; nicel değişken sayısal bir büyüklüktür. Nicel değişkenler kesikli (örneğin kusur sayısı) veya sürekli (örneğin beton basınç dayanımı) olabilir. Nominal, sıralı, eşit aralıklı ve oranlı ölçme düzeyleri hangi işlemlerin anlamlı olduğunu belirler.'],
+['Mühendislikte doğru veri tanımı','Numune kimliği bir kategori, numune yaşı gün cinsinden nicel, kırılma yükü kN cinsinden nicel değişkendir. Aynı sütunda birimleri karıştırmak analizden önce düzeltilmelidir. Sınavda önce anakütle, gözlem birimi, değişken türü ve ölçme düzeyini yaz; ardından grafik veya hesap yöntemini seç.']
+],
+[
+['Frekans tablosunun mantığı','Frekans, bir değerin veya sınıfın kaç kez gözlendiğini gösterir. Göreli frekans fi/n, yüzde frekans 100 fi/n ve birikimli frekans sıralı sınıflardaki toplam gözlem sayısıdır. Sınıf aralığı genişliği, alt ve üst sınıf sınırlarının farkıdır; sınıflar çakışmamalı ve bütün verileri kapsamalıdır.'],
+['Grafiği veri türüne göre seç','Kategorik veri için sütun grafiği; sürekli ölçümün sınıflanmış dağılımı için histogram kullanılır. Histogramda bitişik sütunlar sınıf aralıklarını, sütun alanı ise frekansı temsil eder; sınıf genişlikleri eşit değilse frekans yoğunluğu dikkate alınmalıdır. Birikimli frekans eğrisi medyan ve yüzdeliklerin yaklaşık okunmasına yardım eder.']
+],
+[
+['Merkezî eğilim ölçülerini karşılaştır','Aritmetik ortalama tüm gözlemleri kullanır ve uç değerlere duyarlıdır. Medyan sıralanmış verinin ortasındaki değerdir; gözlem sayısı çiftse iki orta değerin ortalaması alınır. Mod en sık görülen değerdir ve birden fazla mod bulunabilir. Simetrik, aykırı değeri az dağılımda ortalama; çarpık veya aykırı değerli dağılımda medyan daha temsil edici olabilir.'],
+['Bir ölçüyü seçerken dağılıma bak','Örneğin şantiyede iş makinesi bekleme sürelerinin çoğu kısa, birkaç tanesi çok uzun olabilir. Bu durumda ortalama yükselir; medyan tipik bekleme süresini daha iyi gösterebilir. Sınavda yalnızca formülü uygulama: dağılımın çarpıklığını, aykırı değerleri ve hangi merkez ölçüsünün amaca uygun olduğunu da yorumla.']
+],
+[
+['Varyansın neden karesel olduğu','Varyans, her gözlemin ortalamadan sapmasının karesini alıp ortalamasını hesaplar. Kare alma pozitif ve negatif sapmaların birbirini götürmesini önler ve büyük sapmalara daha fazla ağırlık verir. Örneklem varyansı s²=Σ(xᵢ−x̄)²/(n−1); anakütle varyansı σ²=Σ(xᵢ−μ)²/N biçimindedir. Standart sapma varyansın kareköküdür.'],
+['n−1 düzeltmesi ve birim yorumu','Örneklem ortalaması aynı veriden hesaplandığı için sapmaların toplamı sıfırdır ve bir serbestlik derecesi kaybolur; bu nedenle örneklem varyansında n−1 kullanılır. Varyansın birimi ölçüm biriminin karesidir, standart sapmanın birimi ölçümle aynıdır. MPa cinsinden dayanım verisinin standart sapması MPa, varyansı MPa² olur.']
+],
+[
+['Olasılığı örnek uzayla kur','Örnek uzay S, deneyin olası bütün sonuçlarını; olay A ise bu sonuçların bir alt kümesini gösterir. Eş olasılıklı sonlu durumda P(A)=n(A)/n(S). Her zaman 0≤P(A)≤1, P(S)=1 ve P(Aᶜ)=1−P(A) koşulları sağlanır. Birleşim için P(A∪B)=P(A)+P(B)−P(A∩B) kullanılır.'],
+['Ayrık olay ile bağımsız olayı ayır','Ayrık iki olay aynı denemede birlikte gerçekleşemez; kesişimleri boş olduğundan P(A∩B)=0 olur. Bağımsız olaylarda ise birinin oluşması diğerinin olasılığını değiştirmez ve P(A∩B)=P(A)P(B) bağıntısı geçerlidir. Ayrıklık bağımsızlık demek değildir; olasılık sorularında bu iki kavramı karıştırmak temel hata kaynağıdır.']
+],
+[
+['Koşullu olasılık ve Bayes','B gerçekleşmişken A olasılığı P(A|B)=P(A∩B)/P(B) biçiminde tanımlanır; P(B)>0 olmalıdır. Bayes teoremi P(A|B)=P(B|A)P(A)/P(B) ile gözlenen kanıttan önceki olasılığı günceller. Birden fazla durum varsa toplam olasılık kuralı paydadaki P(B) değerini her olası durum üzerinden toplar.'],
+['Mühendislikte yanlış alarmı yorumla','Bir beton kusur tespit cihazının pozitif uyarı vermesi, kusurun kesin var olduğu anlamına gelmez. Testin duyarlılığı, yanlış pozitif oranı ve kusurun başlangıç sıklığı birlikte değerlendirilmelidir. Bayes, pozitif uyarı sonrasında gerçek kusur olasılığını bulur; yalnız test doğruluğunu kullanmak taban oranını gözden kaçırır.']
+],
+[
+['Kesikli rassal değişkenin dağılımı','Kesikli rassal değişken sayılabilir sonuçlara olasılık atar. Olasılık kütle fonksiyonu p(x)=P(X=x) için tüm değerlerde p(x)≥0 ve Σp(x)=1 olmalıdır. Beklenen değer E[X]=Σx p(x), varyans Var(X)=E[X²]−(E[X])² bağıntısıyla bulunur. Beklenen değer uzun dönem ortalamasını temsil eder; tek bir deneyde mutlaka gerçekleşecek değer değildir.'],
+['Binom modelinin koşullarını kontrol et','Binom dağılımı n sabit deneme, her denemede başarı/başarısızlık, sabit başarı olasılığı p ve bağımsız denemeler koşullarında kullanılır. P(X=k)=C(n,k)pᵏ(1−p)ⁿ⁻ᵏ, E[X]=np ve Var(X)=np(1−p). Örneğin belirli bir üretim partisindeki kusurlu numune sayısı, bu koşullar sağlanıyorsa binom modeliyle incelenebilir.']
+],
+[
+['Sürekli dağılım ve normal model','Sürekli değişkende tek bir noktanın olasılığı sıfırdır; olasılık bir aralık için yoğunluk eğrisinin altında kalan alanla hesaplanır. Normal dağılım μ ortalaması ve σ standart sapmasıyla tanımlanan çan biçimli simetrik bir dağılımdır. Standartlaştırma z=(x−μ)/σ ile değişkeni standart normal dağılıma taşır; tablo veya yazılım üzerinden birikimli olasılık okunur.'],
+['Normal modelin sınırlarını bil','Yaklaşık %68, %95 ve %99,7 değerleri sırasıyla μ±σ, μ±2σ ve μ±3σ aralıklarına düşen gözlemlerin oranını ifade eder. Bu kural normal modele yaklaşıldığında kullanılır; her veri seti normal değildir. Beton dayanımı, ölçüm hatası veya üretim toleransı verilerinde önce histogram, aykırı değerler ve dağılım varsayımı incelenmelidir.']
+],
+[
+['Örnekleme ve standart hata','Anakütleden seçilen örneklem, parametreyi tahmin etmek için kullanılır. Örneklem ortalamasının standart hatası, bağımsız ve benzer dağılımlı gözlemlerde s/√n ile yaklaşık hesaplanır; n büyüdükçe örnekleme belirsizliği azalır. Güven aralığı tahmin ± kritik değer × standart hata biçiminde kurulur; kritik değer örneklem büyüklüğüne ve dağılım varsayımına bağlıdır.'],
+['Güven düzeyini doğru yorumla','%95 güven düzeyi, aynı yöntem çok sayıda örneklemde tekrarlandığında oluşturulan aralıkların yaklaşık %95’inin sabit anakütle parametresini kapsaması anlamına gelir. Tek bir hesaplanan aralık için parametrenin %95 olasılıkla bu aralıkta olduğu şeklinde yorum yapılmaz. Sınavda güven düzeyi, kritik değer, standart hata ve aralık genişliğini ayrı ayrı tanımla.']
+],
+[
+['Hipotez testi bir karar sürecidir','Önce sıfır hipotezi H₀ ve alternatif hipotez H₁ kurulur. Anlamlılık düzeyi α, H₀ doğruyken onu reddetme riskinin önceden belirlenen sınırıdır. Veriden test istatistiği hesaplanır; p-değeri, H₀ doğru kabul edildiğinde gözlenen kadar veya daha uç sonucun olasılığıdır. p<α ise H₀ reddedilir; aksi durumda H₀ reddedilemez.'],
+['İstatistiksel ve pratik anlamı ayır','p-değerinin küçük olması farkın mühendislik bakımından önemli olduğu anlamına gelmez. Örneklem çok büyükse çok küçük bir dayanım farkı da istatistiksel olarak anlamlı çıkabilir. Tip I hata doğru H₀’ı reddetmek; Tip II hata yanlış H₀’ı reddedememektir. Sonuç raporunda etki büyüklüğü, güven aralığı ve mühendislik kabul sınırı da değerlendirilmelidir.']
+]
+],
+diferansiyel:[
+[
+['Diferansiyel denklemi sınıflandır','Bir diferansiyel denklem bilinmeyen fonksiyonu ve türevlerini ilişkilendirir. Mertebe, denklemdeki en yüksek türevin derecesidir; lineerlik ise bilinmeyen fonksiyon ve türevlerinin yalnız birinci kuvvette bulunmasına ve birbirleriyle çarpılmamasına bağlıdır. Bağımsız değişken, başlangıç veya sınır koşulları ve çözüm aralığı yöntemi seçmeden önce belirlenir.'],
+['Genel çözüm, özel çözüm ve model','Genel çözüm mertebe kadar bağımsız sabit içerir; başlangıç koşulları bu sabitleri belirleyerek özel çözümü verir. Sınır değer probleminde koşullar farklı noktalarda tanımlanabilir. Mühendislikte sıcaklık değişimi, titreşim, sönüm ve akış gibi süreçler diferansiyel denklemle modellenir; değişkenler ve fiziksel birimler denkleme doğru aktarılmalıdır.']
+],
+[
+['Değişkenleri ayırma mantığı','y′=g(x)h(y) biçimindeki denklemde y terimleri ve dy bir tarafa, x terimleri ve dx diğer tarafa alınır: dy/h(y)=g(x)dx. Her iki taraf integre edilir; logaritma oluşursa mutlak değer ve entegrasyon sabiti korunur. Bölme sırasında h(y)=0 yapan sabit çözüm kaybolabileceği için bu çözümler ayrıca ilk denklemde kontrol edilir.'],
+['Başlangıç koşulunu en sonda uygula','Örneğin y′=ky için dy/y=k dx, ln|y|=kx+C ve y=Ce^(kx) elde edilir. y(0)=y₀ koşulu C=y₀ verir. Bu model büyüme veya bozunmayı temsil edebilir; k pozitifse artış, negatifse azalış görülür. Çözümün başlangıç değerini ve türevini özgün denkleme koyarak doğrula.']
+],
+[
+['Birinci mertebe lineer denklemin yapısı','Standart biçim y′+P(x)y=Q(x) şeklindedir. Önce y′ katsayısı 1 yapılır; ardından integrasyon çarpanı μ(x)=e^(∫P(x)dx) hesaplanır. Çarpanla çarpıldığında sol taraf (μy)′ olur; böylece denklem tek bir toplam türeve dönüşür. Bu işlem, çarpımın türev kuralından gelir.'],
+['Çözümün genel formu','(μy)′=μQ eşitliğinin iki tarafını integre et: μy=∫μQ dx+C; son adımda y yalnız bırakılır. Örneğin y′+2y=6 için μ=e^(2x), dolayısıyla y=3+Ce^(−2x) elde edilir. Başlangıç koşulu C değerini belirler. Sınavda P(x) ve Q(x) işaretlerini standart biçime geçirmeden seçme.']
+],
+[
+['Tam diferansiyel denklemin anlamı','M(x,y)dx+N(x,y)dy=0 ifadesi bir F(x,y) potansiyel fonksiyonunun tam diferansiyeli olabilir. Bunun için uygun bölgede M_y=N_x koşulu aranır. Koşul sağlanıyorsa F_x=M ve F_y=N olacak şekilde F oluşturulur; çözüm F(x,y)=C biçiminde yazılır. Bu yaklaşım iki değişkenli fonksiyonun toplam diferansiyelinden gelir.'],
+['F fonksiyonunu kur ve iki türevle kontrol et','Önce M ifadesini x’e göre integre et; çıkan sonuçta y’ye bağlı bilinmeyen bir fonksiyon da bulunabilir. Sonra y’ye göre türev alıp N ile karşılaştırarak bu fonksiyonu belirle. Son adımda hem F_x=M hem F_y=N eşitliklerini doğrula. Yalnız birini kontrol etmek eksik çözüm bırakabilir.']
+],
+[
+['Bernoulli denklemi neden özel yöntem ister','y′+P(x)y=Q(x)yⁿ denklemi n≠0 ve n≠1 olduğunda doğrusal değildir; y^(−n) ile çarpıp uygun değişken dönüşümü yapılır. z=y^(1−n) seçildiğinde z′=(1−n)y^(−n)y′ bağıntısı kullanılır ve z için birinci mertebe lineer denklem elde edilir. Böylece bilinen integrasyon çarpanı yöntemi uygulanabilir.'],
+['Dönüşümün tersini unutma','Önce z denklemine lineer yöntemle çözüm bulunur; sonra y=z^(1/(1−n)) dönüşümü geri uygulanır. Bölme veya kuvvet alma nedeniyle dışarıda kalabilecek y=0 gibi özel çözümler ilk denklemde ayrıca incelenmelidir. Sınavda n değerini ve dönüşüm koşulunu kontrol et; n=0 veya n=1 durumlarında denklem zaten lineer olabilir.']
+],
+[
+['Başlangıç değer problemi','Bir başlangıç değer probleminde y(x₀)=y₀ gibi bir koşul çözümün belirli noktadaki değerini verir. Denklem mertebesi n ise çoğunlukla n bağımsız başlangıç koşulu gerekir. Genel çözümdeki sabitler bu koşullarla belirlenir; aynı koşulu sağlayan birden fazla çözüm çıkıp çıkmayacağı varlık ve teklik koşullarına bağlıdır.'],
+['Varlık ve teklik fikri','Birinci mertebe y′=f(x,y) denkleminde f ve y’ye göre türevi belirli bir bölgede süreklilik koşullarını sağlarsa başlangıç noktasının yakınında çözümün varlığı ve tekliği için temel koşullar sağlanır. Bu teori, sayısal çözümün hangi eğriyi izlemesi gerektiğine güven verir. Başlangıç değerini yerine koymak zorunludur; yalnız genel çözümü yazmak yeterli değildir.']
+],
+[
+['Yüksek mertebeli lineer denklem','Genel biçim aₙ(x)y⁽ⁿ⁾+…+a₁(x)y′+a₀(x)y=g(x) şeklindedir. Lineerlikte y ve türevleri birinci kuvvette kalır; katsayılar yalnız bağımsız değişkene bağlıdır. Mertebe n olduğunda genel çözümün n sabiti bulunur ve n bağımsız koşulla özel çözüm belirlenir.'],
+['Mühendislikte sistem mertebesi','İkinci mertebe modeller yay-kütle titreşimi ve basit devre davranışında; daha yüksek mertebe denklemler çoklu dinamik etkilerde görülebilir. Çözüm sırasında denklem mertebesini, katsayıların sabit/değişken oluşunu ve sağ tarafın sıfır olup olmadığını ayırt et. Yöntem bu sınıflandırmaya göre seçilir.']
+],
+[
+['Karakteristik denklem ve kökler','Sabit katsayılı homojen lineer denklemde y=e^(rx) biçiminde çözüm varsayımı yapılır. Türevler yerine yazıldığında karakteristik polinom elde edilir. Farklı gerçek kökler iki ayrı üstel çözüm; tekrarlı kök r için e^(rx) ve x e^(rx); karmaşık kök α±iβ için e^(αx)(C₁cosβx+C₂sinβx) biçimini verir.'],
+['Kök türünden çözüm ailesine','Örneğin y″−3y′+2y=0 için r²−3r+2=0 ve kökler 1 ile 2’dir. Genel çözüm y=C₁e^x+C₂e^(2x) olur. Çözümde her bağımsız kök kadar terim bulunduğunu kontrol et; ardından başlangıç koşullarıyla sabitleri bul ve ilk denklemde yerine koy.']
+],
+[
+['Homojen olmayan denklemde iki parça','L[y]=g(x) biçimindeki lineer denklemde genel çözüm y=y_h+y_p şeklindedir. y_h ilişkili homojen denklemin tamamlayıcı çözümü, y_p ise sağ tarafı karşılayan bir özel çözümdür. Lineer operatörün süperpozisyon özelliği bu ayrımı mümkün kılar.'],
+['Özel çözümün sınav mantığı','Önce homojen denklemi çöz; sonra g(x) biçimine uygun bir özel çözüm tahmin et veya parametrelerin değişimi yöntemini kullan. Özel çözüm tahmini homojen çözümle çakışıyorsa x ile çarpılarak bağımsız bir biçim oluşturulur. Son çözümün sağ tarafı karşıladığını türev alıp ilk denklemde kontrol et.']
+],
+[
+['Belirsiz katsayılar yönteminin kapsamı','Sağ taraf sabit, polinom, e^(ax), sin(bx), cos(bx) veya bunların çarpımlarından oluşuyorsa özel çözüm biçimi bu fonksiyon ailesinden tahmin edilebilir. Örneğin polinom sağ taraf için aynı veya daha düşük dereceli genel polinom; üstel sağ taraf için Ae^(ax) biçimi denenir. Katsayılar denklemde yerine koyularak bulunur.'],
+['Rezonans ve çakışma düzeltmesi','Tahmin edilen biçim homojen çözümde zaten varsa lineer bağımsızlık sağlamak için x veya gerekirse x’in daha yüksek kuvvetiyle çarpılır. Bu çakışma, karakteristik kök ile sağ tarafın üstel katsayısının aynı olmasından kaynaklanır. Sınavda önce karakteristik kökleri bul; sonra özel çözüm tahminini seç.']
+],
+[
+['Laplace dönüşümü türevleri cebirselleştirir','Laplace dönüşümü F(s)=∫₀∞e^(−st)f(t)dt biçiminde tanımlanır. Türevlerin dönüşümü başlangıç değerlerini içerir: L{y′}=sY(s)−y(0), L{y″}=s²Y(s)−s y(0)−y′(0). Böylece başlangıç değer problemindeki diferansiyel denklem s değişkeninde cebirsel denkleme dönüşür.'],
+['Kısmi kesir ve ters dönüşüm','Y(s) çözüldükten sonra ifade bilinen dönüşüm çiftlerine ayrılır; gerekirse kısmi kesirlere bölünür ve ters Laplace ile y(t) bulunur. Başlangıç koşullarının dönüşüm içinde yer alması yöntemin temel avantajıdır. Sonuçta ilk değeri kontrol et ve elde edilen zaman cevabının fiziksel davranışını yorumla.']
+],
+[
+['Mühendislik modelini denklem hâline getir','Önce sistem sınırını ve durum değişkenini seç. Kütle-yay-sönümleyicide Newton yasası m x″+c x′+k x=F(t) modelini verir; burada m atalet, c sönüm, k rijitlik ve F dış etkidir. Başlangıç yer değiştirmesi ve hızı çözümün tekil hâle gelmesi için kullanılır.'],
+['Model varsayımlarını açıkça yaz','Sabit m, c, k ve doğrusal yay varsayımı gerçek sistemin yaklaşık temsilidir. Büyük yer değiştirme, doğrusal olmayan malzeme, değişken sönüm veya dış uyarım olduğunda denklem değişebilir. Sınavda önce serbest cisim diyagramından modeli kur, sonra diferansiyel denklemi yaz ve başlangıç koşullarını uygula.']
+]
+]
+};
+for(const [courseId, topics] of Object.entries(fallTopicDeepening)){
+ topics.forEach((pair,i)=>{
+  const lesson=deepLessonData[courseId+'_'+i];
+  if(!lesson)return;
+  lesson.extraSections=[
+   {title:'Kavramı temelden kuralım',body:pair[0][1]},
+   {title:'İleri bağlantı ve sınavda yorum',body:pair[1][1]}
+  ];
+ });
+}
+
 function deepLessonHTML(c,i){
  const d=deepLessonData[c.id+'_'+i];
  if(!d)return '';
