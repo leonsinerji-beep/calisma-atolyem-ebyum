@@ -2862,7 +2862,7 @@ const lineerTextbookContent = [
   ]
  },
  {
-  eq:'R_i↔R_j;  R_i←kR_i (k≠0);  R_i←R_i+kR_j',
+  eq:'R_i↔R_j;  R_i←k·R_i (k≠0);  R_i←R_i+k·R_j',
   eq_title:'Temel satır işlemleri',
   eq_note:'Satır değiştirme, sıfırdan farklı sayıyla satır çarpma ve bir satıra diğer satırın katını ekleme, lineer sistemin çözüm kümesini değiştirmez.',
   example_title:'Gauss eliminasyonuyla çözüm',
@@ -2898,7 +2898,7 @@ const lineerTextbookContent = [
   ]
  },
  {
-  eq:'c_1v_1+⋯+c_kv_k=0 ⇒ c_1=⋯=c_k=0',
+  eq:'c_1 v_1+⋯+c_k v_k=0 ⇒ c_1=⋯=c_k=0',
   eq_title:'Doğrusal bağımsızlık ve baz',
   eq_note:'Yalnızca tüm katsayıların sıfır olduğu çözüm varsa vektörler bağımsızdır. Baz, hem bağımsız hem de uzayı geren vektör kümesidir.',
   example_title:'İki vektörün bağımlılığını inceleme',
@@ -3431,7 +3431,9 @@ function textbookScalarHTML(value){
  x=x.replace(/([A-Za-zΑ-Ωα-ω]+)_\(([^()]+)\)/g,'$1<sub>$2</sub>')
     .replace(/([A-Za-zΑ-Ωα-ω]+)_\{([^{}]+)\}/g,'$1<sub>$2</sub>')
     .replace(/\b([A-Za-zΑ-Ωα-ω])_([A-Za-z0-9]+)/g,'$1<sub>$2</sub>')
-    .replace(/\^([0-9]+)/g,'<sup>$1</sup>');
+    .replace(/\^\{([^{}]+)\}/g,'<sup>$1</sup>')
+    .replace(/\^\(([^()]+)\)/g,'<sup>$1</sup>')
+    .replace(/\^(-?[0-9]+)/g,'<sup>$1</sup>');
  return x;
 }
 function textbookMatrixHTML(raw){
@@ -3446,7 +3448,7 @@ function textbookMatrixHTML(raw){
 }
 function textbookMathLine(value){
  const raw=String(value??'');
- const matrixPattern=/\[\s*\[[^\[\]]*\](?:\s*,\s*\[[^\[\]]*\])+\s*\]/g;
+ const matrixPattern=/\[\s*\[[^\[\]]*\](?:\s*,\s*\[[^\[\]]*\])*\s*\]/g;
  let out='',last=0,match;
  while((match=matrixPattern.exec(raw))!==null){
   out+=textbookScalarHTML(raw.slice(last,match.index));
