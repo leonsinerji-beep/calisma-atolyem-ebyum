@@ -134,6 +134,18 @@
 .lessonbox .learn-section sub{font-size:.72em;vertical-align:-.25em;line-height:0}
 .lessonbox .learn-section sup{font-size:.72em;vertical-align:.45em;line-height:0}
 .lessonbox .learn-section p{overflow-wrap:anywhere}
+
+/* Linear algebra: properly typeset matrices and mathematical notation */
+.math-matrix{display:inline-flex;align-items:stretch;vertical-align:middle;margin:0 .13em;gap:.12em;color:inherit;line-height:1.25}
+.matrix-bracket{display:block;align-self:stretch;width:.42em;min-height:1.35em}
+.matrix-left{border-left:1.6px solid currentColor;border-top:1.6px solid currentColor;border-bottom:1.6px solid currentColor;border-radius:5px 0 0 5px}
+.matrix-right{border-right:1.6px solid currentColor;border-top:1.6px solid currentColor;border-bottom:1.6px solid currentColor;border-radius:0 5px 5px 0}
+.matrix-table{border-collapse:separate;border-spacing:.48em .10em;font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1em;line-height:1.35;margin:0}
+.matrix-table td{text-align:center;padding:0 .04em;white-space:nowrap}
+.textbook-equation .math-matrix{font-size:1em}
+.example-card .math-matrix{font-size:1.02em}
+.lessonbox .equation-card .eq{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif}
+@media(max-width:720px){.matrix-table{border-spacing:.3em .08em}.math-matrix{margin:0 .08em}}
 </style></head>
 <body><div class="shell">
 <aside class="side" id="sidebar"><div class="brand"><div class="logo">ÇA</div><div><strong>Çalışma Atölyem</strong><small>EBYÜ · İnşaat Mühendisliği</small></div></div>
@@ -2794,6 +2806,162 @@ for(const [courseId, topics] of Object.entries(fallTopicDeepening2)){
  });
 }
 
+const lineerTextbookContent = [
+ {
+  eq:'A_{m×n}B_{n×p}=C_{m×p}',
+  eq_title:'Matris çarpımının boyutu ve tanımı',
+  eq_note:'İlk matrisin sütun sayısı ikinci matrisin satır sayısına eşit olmalıdır. Sonuç matrisinin boyutu dış boyutlardan, m×p, oluşur. C_{ij}=∑_{k=1}^{n}a_{ik}b_{kj}.',
+  example_title:'2×2 matrislerin çarpımı',
+  example:'A=[[1,2],[3,4]] ve B=[[2,0],[1,2]] için AB=[[4,4],[10,8]] bulunur. Örneğin c_{11}=1·2+2·1=4; c_{12}=1·0+2·2=4.',
+  steps:['A matrisinin satır ve sütun sayısını, B matrisinin satır ve sütun sayısını yaz.','A’nın sütun sayısı ile B’nin satır sayısını karşılaştır; eşit değilse AB tanımlı değildir.','Sonuç matrisinin m×p boyutunu belirle.','Her c_{ij} elemanını A’nın i. satırı ile B’nin j. sütununu çarparak topla.','Sonuç boyutunu ve en az bir elemanı bağımsız hesapla kontrol et.'],
+  examples:[
+   {title:'Çözümlü örnek — Dikdörtgen matris çarpımı',text:'A=[[1,2,0],[-1,3,1]] (2×3) ve B=[[2,1],[0,-1],[4,2]] (3×2) için AB=[[2,-1],[2,-2]] elde edilir. Sonuç 2×2 boyutundadır; her eleman satır-sütun çarpımlarının toplamıdır.'},
+   {title:'Çözümlü örnek — Transpoz ve boyut',text:'A=[[1,2,3],[4,5,6]] matrisi 2×3 boyutundadır. Aᵀ=[[1,4],[2,5],[3,6]] olur ve transpozun boyutu 3×2’dir. Genel olarak (AB)ᵀ=BᵀAᵀ bağıntısında çarpım sırası tersine döner.'}
+  ],
+  practice:[
+   {q:'A matrisi 3×2, B matrisi 2×5 ise AB matrisinin boyutu nedir?',a:'3×5 boyutundadır; iç boyutlar 2’de eşleşir.'},
+   {q:'A matrisi 2×3, B matrisi 4×2 ise AB tanımlı mıdır?',a:'Hayır. A’nın sütun sayısı 3, B’nin satır sayısı 4’tür; eşit değildir.'},
+   {q:'Bir matrisin transpozunda hangi işlem yapılır?',a:'Satırlar sütun, sütunlar satır hâline gelir; m×n boyutlu matris n×m olur.'},
+   {q:'Genel matris çarpımında c_{ij} nasıl hesaplanır?',a:'A’nın i. satırı ile B’nin j. sütunundaki karşılıklı elemanlar çarpılır ve toplanır: c_{ij}=∑a_{ik}b_{kj}.'}
+  ]
+ },
+ {
+  eq:'det(A)=ad−bc;  A^{-1}=(1/det(A)) [[d,-b],[-c,a]]',
+  eq_title:'Determinant ve 2×2 matrisin tersi',
+  eq_note:'A=[[a,b],[c,d]] için ters matris ancak det(A)=ad−bc≠0 olduğunda vardır. A^{-1}A=AA^{-1}=I koşulu sonucu doğrular.',
+  example_title:'Determinantı ve tersi bulma',
+  example:'A=[[2,1],[3,2]] için det(A)=2·2−1·3=1 olur. Bu nedenle A^{-1}=[[2,-1],[-3,2]] bulunur.',
+  steps:['Matrisin kare olup olmadığını kontrol et.','2×2 matris için det(A)=ad−bc değerini hesapla.','Determinant sıfır değilse köşegen elemanları yer değiştir, köşegen dışı elemanların işaretini değiştir.','Elde edilen matrisi determinant değerine böl.','A·A^{-1}=I çarpımını yaparak kontrol et.'],
+  examples:[
+   {title:'Çözümlü örnek — Terslenemeyen matris',text:'A=[[1,2],[2,4]] için det(A)=1·4−2·2=0’dır. Satırlar birbirinin katı olduğundan matris tekil (singular) matristir; A^{-1} yoktur.'},
+   {title:'Çözümlü örnek — Determinantın çarpım özelliği',text:'A=[[2,1],[3,2]] ve B=[[1,0],[2,1]] için det(A)=1, det(B)=1’dir. det(AB)=det(A)det(B)=1 olur. Kare ve aynı boyutlu matrislerde determinant çarpım özelliği bu şekilde kullanılır.'}
+  ],
+  practice:[
+   {q:'A=[[3,1],[2,1]] matrisinin determinantı kaçtır?',a:'det(A)=3·1−1·2=1.'},
+   {q:'det(A)=0 ise A^{-1} var mıdır?',a:'Hayır. Matris tekildir ve ters matrisi yoktur.'},
+   {q:'2×2 matrisin tersi hangi koşulda vardır?',a:'Matris kare olmalı ve determinantı sıfırdan farklı olmalıdır.'},
+   {q:'Bulduğun ters matrisin doğruluğunu nasıl kontrol edersin?',a:'A·A^{-1} veya A^{-1}·A çarpımının birim matris I olduğunu gösterirsin.'}
+  ]
+ },
+ {
+  eq:'Ax=b;  rank(A)=rank([A|b])',
+  eq_title:'Lineer sistemin matris gösterimi ve tutarlılık koşulu',
+  eq_note:'Tutarlı sistemde rank(A)=rank([A|b]) olur. Ortak rank bilinmeyen sayısına eşitse tek çözüm; daha küçükse serbest değişkenli sonsuz çözüm vardır.',
+  example_title:'İki bilinmeyenli sistemin çözümü',
+  example:'2x+y=5 ve x−y=1 denklemlerinden x=y+1 yazılır. İlk denklemde yerine koyunca 3y=3, y=1 ve x=2 bulunur. Çözüm (x,y)=(2,1)’dir.',
+  steps:['Denklemleri aynı bilinmeyen sırasıyla yaz ve Ax=b biçimine getir.','Katsayı matrisi A ile genişletilmiş [A|b] matrisini oluştur.','Satır indirgeme veya uygun cebirsel yöntemle rank ve çözümü belirle.','Çözüm sayısını rank koşuluyla sınıflandır.','Bulduğun bilinmeyenleri başlangıç denklemlerinde yerine koy.'],
+  examples:[
+   {title:'Çözümlü örnek — Sonsuz çözüm',text:'2x+2y=4 ve x+y=2 denklemleri aynı doğruyu tanımlar. İkinci denklem birincinin yarısıdır; sistem tutarlıdır ancak tek bir çözüm değil, x+y=2 koşulunu sağlayan sonsuz sayıda çözüm vardır.'},
+   {title:'Çözümlü örnek — Çözümsüz sistem',text:'2x+2y=4 ve x+y=3 denklemlerinin sol tarafları orantılı, sağ tarafları uyumsuzdur. İlk denklem x+y=2 derken ikincisi x+y=3 ister; aynı anda sağlanamaz ve sistem tutarsızdır.'}
+  ],
+  practice:[
+   {q:'rank(A) ile rank([A|b]) farklıysa sistemin durumu nedir?',a:'Sistem tutarsızdır; çözümü yoktur.'},
+   {q:'Tutarlı sistemde ortak rank bilinmeyen sayısına eşitse kaç çözüm vardır?',a:'Tek çözüm vardır.'},
+   {q:'İki doğrusal denklem aynı doğruyu temsil ediyorsa çözüm sayısı nedir?',a:'Sonsuz sayıda çözüm vardır.'},
+   {q:'Bulduğun çözümün doğruluğunu en temel nasıl kontrol edersin?',a:'Bilinmeyenleri başlangıçtaki bütün denklemlerde yerine koyarsın.'}
+  ]
+ },
+ {
+  eq:'R_i↔R_j;  R_i←kR_i (k≠0);  R_i←R_i+kR_j',
+  eq_title:'Temel satır işlemleri',
+  eq_note:'Satır değiştirme, sıfırdan farklı sayıyla satır çarpma ve bir satıra diğer satırın katını ekleme, lineer sistemin çözüm kümesini değiştirmez.',
+  example_title:'Gauss eliminasyonuyla çözüm',
+  example:'x+y=3 ve 2x−y=0 sistemi için genişletilmiş matris [[1,1,3],[2,-1,0]] yazılır. R₂←R₂−2R₁ işleminden sonra [[1,1,3],[0,-3,-6]] elde edilir. Buradan y=2 ve x=1 bulunur.',
+  steps:['Denklem sistemini genişletilmiş matrise dönüştür.','İlk pivotu seç; gerekirse satır değiştirerek sıfır olmayan pivotu yukarı al.','Pivotun altındaki elemanları temel satır işlemleriyle sıfırla.','Basamaklı biçimden son satırdan başlayarak geri yerine koyma yap.','Çözümü özgün denklemlere koy; sayısal işlemde küçük pivotlara dikkat et.'],
+  examples:[
+   {title:'Çözümlü örnek — İkinci sistem',text:'x−y=1 ve 2x+y=5 için genişletilmiş matris [[1,-1,1],[2,1,5]] olur. R₂←R₂−2R₁ işlemi [[1,-1,1],[0,3,3]] verir. Buradan y=1, x=2 bulunur.'},
+   {title:'Çözümlü örnek — Pivot ve serbest değişken',text:'[[1,2,3],[0,0,0]] indirgenmiş biçiminde ikinci satır yeni bir koşul getirmez. x₃ serbest seçilirse ilk satır x₁=3−2x₂ biçiminde yazılır; tek çözüm değil, parametreli çözüm ailesi vardır.'}
+  ],
+  practice:[
+   {q:'Gauss eliminasyonunda hangi üç temel satır işlemi kullanılabilir?',a:'İki satırı değiştirmek; bir satırı sıfırdan farklı sayıyla çarpmak; bir satıra başka satırın katını eklemek.'},
+   {q:'Pivot eleman neyi ifade eder?',a:'Basamaklı biçimde satırın ilk sıfır olmayan temel elemanını ifade eder.'},
+   {q:'Sıfır satırı oluşması tek başına sistemin çözümsüz olduğu anlamına gelir mi?',a:'Hayır. Diğer satırlar tutarlıysa serbest değişkenler nedeniyle sonsuz çözüm olabilir.'},
+   {q:'R₂←R₂−2R₁ işleminde sağ taraf sütunu da değişir mi?',a:'Evet. İşlem genişletilmiş matrisin satırının tamamına uygulanır.'}
+  ]
+ },
+ {
+  eq:'u,v∈W ⇒ u+v∈W;  αu∈W;  0∈W',
+  eq_title:'Alt uzay olma koşulları',
+  eq_note:'W boş olmayan bir alt küme olmalı; toplama ve skaler çarpma altında kapalı olmalıdır. Bu koşullar sıfır vektörün W içinde olmasını da gerektirir.',
+  example_title:'Bir doğrunun alt uzay olduğunu gösterme',
+  example:'W={(x,y)∈R² : y=2x} olsun. W içindeki iki vektör (a,2a) ve (b,2b) toplamda (a+b,2(a+b)) verir. Skaler kat da aynı biçimdedir; dolayısıyla W alt uzaydır.',
+  steps:['Kümenin hangi vektörlerden oluştuğunu açıkça yaz.','Sıfır vektörün kümeye ait olup olmadığını kontrol et.','Kümeden iki genel vektör al ve toplamlarının kümede kaldığını göster.','Genel bir skalerle çarpımın kümeyi terk etmediğini göster.','Koşullardan biri bozuluyorsa alt uzay olmadığını belirt.'],
+  examples:[
+   {title:'Çözümlü örnek — Alt uzay olmayan küme',text:'W={(x,y)∈R² : x+y=1} olsun. (0,0) bu koşulu sağlamaz; sıfır vektör kümede değildir. Bu nedenle W bir alt uzay değildir.'},
+   {title:'Çözümlü örnek — R³ içinde bir alt uzay',text:'W={(x,y,z): z=0} kümesi, xy-düzlemidir. İki elemanın toplamı yine z=0 koşulunu sağlar ve her skaler kat da z=0’dır; ayrıca sıfır vektör içeridedir. Bu nedenle W, R³’ün alt uzayıdır.'}
+  ],
+  practice:[
+   {q:'Bir alt uzay mutlaka hangi vektörü içermelidir?',a:'Sıfır vektörünü.'},
+   {q:'x+y=1 doğrusu R²’nin alt uzayı mıdır?',a:'Hayır; (0,0) noktası üzerinde olmadığı için sıfır vektörü içermez.'},
+   {q:'Alt uzayda toplama kapalılığı ne demektir?',a:'Kümeden seçilen herhangi iki vektörün toplamının yine kümede olmasıdır.'},
+   {q:'Alt uzayda skaler çarpma kapalılığı ne demektir?',a:'Kümedeki her vektörün her skalerle çarpımının yine kümede kalmasıdır.'}
+  ]
+ },
+ {
+  eq:'c_1v_1+⋯+c_kv_k=0 ⇒ c_1=⋯=c_k=0',
+  eq_title:'Doğrusal bağımsızlık ve baz',
+  eq_note:'Yalnızca tüm katsayıların sıfır olduğu çözüm varsa vektörler bağımsızdır. Baz, hem bağımsız hem de uzayı geren vektör kümesidir.',
+  example_title:'İki vektörün bağımlılığını inceleme',
+  example:'v₁=(1,2), v₂=(2,4) için v₂=2v₁ olduğundan vektörler doğrusal bağımlıdır. Buna karşılık (1,0) ve (0,1), R²’nin standart bazını oluşturur.',
+  steps:['Vektörleri sütunlar hâlinde bir matrise yerleştir.','c₁v₁+…+cₖvₖ=0 homojen sistemini kur.','Sistemin yalnız sıfır çözümü olup olmadığını incele.','Bağımsızlık yanında uzayı germe koşulunu da kontrol et.','Bağımsız ve geren kümenin baz olduğunu, vektör sayısının boyutu verdiğini belirt.'],
+  examples:[
+   {title:'Çözümlü örnek — Bağımlılık katsayıları',text:'c₁(1,2)+c₂(2,4)=(0,0) için c₁+2c₂=0 ve 2c₁+4c₂=0 elde edilir. c₂=1, c₁=−2 seçimi sıfır olmayan katsayılarla eşitliği sağladığı için küme bağımlıdır.'},
+   {title:'Çözümlü örnek — R² standart bazı',text:'e₁=(1,0), e₂=(0,1) için c₁e₁+c₂e₂=(0,0) eşitliği c₁=0 ve c₂=0 gerektirir. Her (x,y) vektörü x e₁+y e₂ biçiminde yazılır. Dolayısıyla bu iki vektör R²’nin bazıdır.'}
+  ],
+  practice:[
+   {q:'Bir vektör kümesinin doğrusal bağımsız olması için homojen kombinasyonun hangi çözümü olmalıdır?',a:'Yalnızca trivial çözüm; tüm katsayılar sıfır olmalıdır.'},
+   {q:'v₂=3v₁ ise {v₁,v₂} bağımsız mıdır?',a:'Hayır. Bir vektör diğerinin katı olduğu için bağımlıdır.'},
+   {q:'Bir bazın iki temel özelliği nedir?',a:'Doğrusal bağımsız olması ve uzayı germesi.'},
+   {q:'R³’ün herhangi bir bazında kaç vektör bulunur?',a:'Üç vektör bulunur.'}
+  ]
+ },
+ {
+  eq:'det(A−λI)=0;  Av=λv,  v≠0',
+  eq_title:'Karakteristik denklem ve özvektör',
+  eq_note:'Özdeğerler det(A−λI)=0 denkleminin kökleridir. Her özdeğer için (A−λI)v=0 sistemi çözülerek sıfır olmayan özvektör bulunur.',
+  example_title:'2×2 matrisin özdeğer ve özvektörleri',
+  example:'A=[[2,1],[1,2]] için det(A−λI)=(2−λ)²−1=0 olur. Buradan λ₁=3 ve λ₂=1 bulunur. λ=3 için v₁=(1,1), λ=1 için v₂=(1,−1) özvektörleri seçilebilir.',
+  steps:['A matrisinin kare olduğunu doğrula.','A−λI matrisini oluştur.','det(A−λI)=0 karakteristik denklemini çöz.','Her λ değeri için (A−λI)v=0 sisteminden özvektör bul.','Av=λv eşitliğini doğrudan çarparak doğrula.'],
+  examples:[
+   {title:'Çözümlü örnek — Köşegen matris',text:'A=[[4,0],[0,2]] köşegen matrisinin özdeğerleri köşegen elemanları olan 4 ve 2’dir. λ=4 için (1,0), λ=2 için (0,1) özvektörleri seçilebilir.'},
+   {title:'Çözümlü örnek — Özvektör doğrulaması',text:'A=[[2,1],[1,2]] ve v=(1,1) için Av=(3,3)=3v olur. Böylece λ=3 ve v=(1,1) özdeğer-özvektör çifti doğrudan doğrulanır.'}
+  ],
+  practice:[
+   {q:'Özvektör neden sıfır vektör olamaz?',a:'Av=λv eşitliği sıfır vektör için her λ’da sağlanır; özvektör tanımı sıfırdan farklı vektör gerektirir.'},
+   {q:'Özdeğerleri hangi denklemden bulursun?',a:'det(A−λI)=0 karakteristik denkleminden.'},
+   {q:'Bir özvektörü doğrulamanın doğrudan yolu nedir?',a:'A ile çarpıp sonucun λv’ye eşit olduğunu göstermek.'},
+   {q:'2×2 köşegen matrisin özdeğerleri nereden okunur?',a:'Köşegen elemanlarından okunur.'}
+  ]
+ },
+ {
+  eq:'T(x)=Ax;  A=[[0,-1],[1,0]]  (90° dönme)',
+  eq_title:'Doğrusal dönüşümün matrisle gösterimi',
+  eq_note:'Doğrusal dönüşüm toplama ve skaler çarpma işlemlerini korur. T(0)=0 koşulu zorunludur; dönüşümün matrisi seçilen bazlara bağlıdır.',
+  example_title:'Düzlemde 90° saat yönünün tersine dönme',
+  example:'A=[[0,-1],[1,0]] ve v=(2,1) için Av=(-1,2) bulunur. Dönüşüm vektörü 90° saat yönünün tersine döndürür; uzunluk √5 olarak korunur.',
+  steps:['Dönüşümün girdi ve çıktı uzaylarını belirle.','T(u+v)=T(u)+T(v) ve T(αu)=αT(u) koşullarını incele.','Standart baz vektörlerinin görüntülerini sütunlara yerleştirerek A matrisini kur.','T(x)=Ax çarpımını uygula.','Çıktıyı geometrik olarak yorumla; gerekiyorsa determinant ve uzunluk korunumu kontrolü yap.'],
+  examples:[
+   {title:'Çözümlü örnek — Doğrusal ölçekleme',text:'T(x,y)=(2x,3y) dönüşümünün matrisi A=[[2,0],[0,3]]’tür. T(u+v)=T(u)+T(v) ve T(αu)=αT(u) olduğundan dönüşüm doğrusaldır.'},
+   {title:'Çözümlü örnek — Doğrusal olmayan öteleme',text:'S(x,y)=(x+1,y) için S(0,0)=(1,0) olur. Doğrusal dönüşüm sıfır vektörünü sıfır vektörüne göndermelidir; bu nedenle S doğrusal değildir.'}
+  ],
+  practice:[
+   {q:'Doğrusal dönüşümün sıfır vektörüne etkisi nedir?',a:'T(0)=0 olmalıdır.'},
+   {q:'Standart bazda dönüşüm matrisinin sütunları neyi gösterir?',a:'Sırasıyla baz vektörlerinin dönüşüm altındaki görüntülerini gösterir.'},
+   {q:'T(x,y)=(2x,3y) dönüşümü doğrusal mıdır?',a:'Evet; toplama ve skaler çarpma özelliklerini korur.'},
+   {q:'S(x,y)=(x+1,y) neden doğrusal değildir?',a:'S(0,0)=(1,0)≠(0,0) olduğu için.'}
+  ]
+ }
+];
+lineerTextbookContent.forEach((d,i)=>{
+ const target=deepLessonData['lineer_'+i];
+ if(!target)return;
+ Object.assign(target,{
+  eq:d.eq,eq_title:d.eq_title,eq_note:d.eq_note,
+  example_title:d.example_title,example:d.example,
+  steps:d.steps,examples:d.examples,practice:d.practice
+ });
+});
+
 function deepLessonHTML(c,i){
  const d=deepLessonData[c.id+'_'+i];
  if(!d)return '';
@@ -3255,12 +3423,38 @@ function masteryHTML(c,i){
  <section class="learn-section"><div class="learning-kicker">Kendini sına</div><h3>Kontrol soruları</h3>${d.checks.map((x,j)=>`<details class="checkpoint"><summary>${j+1}. ${textbookMathLine(x[0])}</summary><p><b>Açıklamalı cevap:</b> ${textbookMathLine(x[1])}</p></details>`).join('')}</section>
  <div class="callout"><b>Çalışma yöntemi:</b> Anlatımı okuduktan sonra formülü ve çözüm adımlarını boş kâğıda yeniden yaz. Ardından bu konuya ait test sorularını çöz; yanlışlarını açıklamayla karşılaştır ve birim/yön kontrolünü tekrarla.</div>`;
 }
-function textbookMathLine(value){
+function textbookScalarHTML(value){
  let x=String(value??'').replace(/<=/g,'≤').replace(/>=/g,'≥').replace(/!=/g,'≠').replace(/->/g,'→');
  x=x.replace(/Σ\s*F_?([xyz])/g,'SUM_F_$1').replace(/ΣF([xyz])/g,'SUM_F_$1').replace(/ΣM/g,'SUM_M').replace(/Σ/g,'SUM');
  x=masteryEscape(x).replace(/SUM_F_([xyz])/g,'∑ F<sub>$1</sub>').replace(/SUM_M/g,'∑ M').replace(/SUM/g,'∑');
- x=x.replace(/\b([A-Za-z])_([A-Za-z0-9]+)\b/g,'$1<sub>$2</sub>').replace(/\^([0-9]+)/g,'<sup>$1</sup>');
+ // Kitap gösterimi: A_(m×n), A_{ij}, x_1 ve kuvvetler.
+ x=x.replace(/([A-Za-zΑ-Ωα-ω]+)_\(([^()]+)\)/g,'$1<sub>$2</sub>')
+    .replace(/([A-Za-zΑ-Ωα-ω]+)_\{([^{}]+)\}/g,'$1<sub>$2</sub>')
+    .replace(/\b([A-Za-zΑ-Ωα-ω])_([A-Za-z0-9]+)/g,'$1<sub>$2</sub>')
+    .replace(/\^([0-9]+)/g,'<sup>$1</sup>');
  return x;
+}
+function textbookMatrixHTML(raw){
+ const rowMatches=raw.slice(1,-1).match(/\[[^\[\]]*\]/g)||[];
+ if(!rowMatches.length)return masteryEscape(raw);
+ const rows=rowMatches.map(row=>{
+  const cells=row.slice(1,-1).split(',');
+  return '<tr>'+cells.map(cell=>'<td>'+textbookScalarHTML(cell.trim())+'</td>').join('')+'</tr>';
+ }).join('');
+ const cols=(rowMatches[0].slice(1,-1).split(',')).length;
+ return '<span class="math-matrix" role="math" aria-label="Matris, '+rowMatches.length+' satır ve '+cols+' sütun"><span class="matrix-bracket matrix-left" aria-hidden="true"></span><table class="matrix-table"><tbody>'+rows+'</tbody></table><span class="matrix-bracket matrix-right" aria-hidden="true"></span></span>';
+}
+function textbookMathLine(value){
+ const raw=String(value??'');
+ const matrixPattern=/\[\s*\[[^\[\]]*\](?:\s*,\s*\[[^\[\]]*\])+\s*\]/g;
+ let out='',last=0,match;
+ while((match=matrixPattern.exec(raw))!==null){
+  out+=textbookScalarHTML(raw.slice(last,match.index));
+  out+=textbookMatrixHTML(match[0].replace(/\s+/g,''));
+  last=match.index+match[0].length;
+ }
+ out+=textbookScalarHTML(raw.slice(last));
+ return out;
 }
 function textbookEquationHTML(value){
  const raw=String(value??'').trim();
