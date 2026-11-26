@@ -104,6 +104,15 @@
 .video-course-link a{font-weight:800}
 @media(max-width:720px){.topic-masterclass{padding:14px}.masterclass-grid{grid-template-columns:1fr}}
 
+
+/* 2026-11-26: Book-style mathematical typography */
+.lessonbox .equation-card{background:linear-gradient(135deg,#f5f9fc,#edf4fa);border:1px solid #cfdce8;border-left:5px solid #197d78;padding:18px 20px;border-radius:13px;margin:14px 0}
+.lessonbox .equation-card .eq{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:clamp(21px,2.3vw,28px);font-weight:500;line-height:1.8;color:#142f4b;white-space:normal;overflow-wrap:anywhere}
+.textbook-equation{display:grid;gap:5px;padding:2px 0}
+.textbook-equation .math-line{display:block;font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:clamp(20px,2.2vw,27px);font-weight:500;line-height:1.65;color:#142f4b;white-space:normal;overflow-wrap:anywhere}
+.textbook-equation sub{font-size:.67em;vertical-align:-.28em;line-height:0}
+.textbook-equation sup{font-size:.68em;vertical-align:.5em;line-height:0}
+.lessonbox .symbol-note{margin:12px 0 0;padding:12px 14px;background:#fff;border:1px solid #dbe5ed;border-radius:10px;color:#40566c;font-size:13px;line-height:1.8}
 </style></head>
 <body><div class="shell">
 <aside class="side" id="sidebar"><div class="brand"><div class="logo">ÇA</div><div><strong>Çalışma Atölyem</strong><small>EBYÜ · İnşaat Mühendisliği</small></div></div>
@@ -2551,7 +2560,7 @@ function deepLessonHTML(c,i){
  <section class="learn-section"><div class="learning-kicker">Kavramsal anlatım</div><h3>Konuyu adım adım anlayalım</h3>${paragraphs}</section>
  ${extra}
  ${vocab}
- <section class="learn-section"><div class="learning-kicker">Formülün / yöntemin anlamı</div><h3>${safe(d.eq_title)}</h3><div class="equation-card"><div class="eq">${safe(d.eq)}</div><p>${safe(d.eq_note)}</p></div></section>
+ <section class="learn-section"><div class="learning-kicker">Formülün / yöntemin anlamı</div><h3>${safe(d.eq_title)}</h3><div class="equation-card"><div class="eq">${textbookEquationHTML(d.eq)}</div><p class="symbol-note">${safe(d.eq_note)}</p></div></section>
  <section class="learn-section"><div class="learning-kicker">Çözümlü uygulama · 1</div><div class="example-card"><h4>${safe(d.example_title)}</h4><p>${safe(d.example)}</p></div></section>
  ${examples}
  <section class="learn-section"><div class="learning-kicker">Problem çözme yöntemi</div><h3>Bu tip soruyu nasıl çözmelisin?</h3><ol class="steps-list">${(d.steps||[]).map(x=>`<li>${safe(x)}</li>`).join('')}</ol></section>
@@ -2989,13 +2998,23 @@ function masteryHTML(c,i){
  <section class="learn-section"><div class="learning-kicker">Öğrenme hedefleri</div><h3>Bu konuyu bitirdiğinde yapabilmelisin</h3><ul class="pitfall-list">${guide.out.map(x=>`<li>${masteryEscape(x)}</li>`).join("")}</ul></section>
  ${masteryDiagram(d.diagram)}
  ${d.sections.map((x,k)=>`<section class="learn-section"><div class="learning-kicker">Konu anlatımı · ${k+1}. bölüm</div><h3>${masteryEscape(x[0])}</h3><p>${masteryEscape(x[1])}</p></section>`).join('')}
- <section class="learn-section"><div class="learning-kicker">Temel bağıntı</div><h3>Formül ve semboller</h3><div class="equation-card"><div class="eq">${masteryEscape(d.formula)}</div><p>${masteryEscape(d.meaning)}</p></div></section>
+ <section class="learn-section"><div class="learning-kicker">Temel bağıntı</div><h3>Formül ve semboller</h3><div class="equation-card"><div class="eq">${textbookEquationHTML(d.formula)}</div><p class="symbol-note">${masteryEscape(d.meaning)}</p></div></section>
  <section class="learn-section"><div class="learning-kicker">Formülün nereden geldiği</div><h3>Fiziksel/matematiksel dayanak</h3><p>${masteryEscape(d.derivation)}</p></section>
  ${d.examples.map((e,j)=>`<section class="learn-section"><div class="learning-kicker">Çözümlü örnek ${j+1}</div><div class="example-card"><h4>${masteryEscape(e[0])}</h4><p>${masteryEscape(e[1])}</p><ol class="steps-list">${e[2].map(st=>`<li>${masteryEscape(st)}</li>`).join('')}</ol><p><b>${masteryEscape(e[3])}</b></p></div></section>`).join('')}
  <section class="learn-section"><div class="learning-kicker">Saha ve proje bağlantısı</div><h3>İnşaat mühendisliğinde nerede kullanılır?</h3><p>${masteryEscape(d.engineering)}</p></section>
  <section class="learn-section"><div class="learning-kicker">Hata önleme</div><h3>En sık yapılan hatalar</h3><ul class="pitfall-list">${d.pitfalls.map(x=>`<li>${masteryEscape(x)}</li>`).join('')}</ul></section>
  <section class="learn-section"><div class="learning-kicker">Kendini sına</div><h3>Kontrol soruları</h3>${d.checks.map((x,j)=>`<details class="checkpoint"><summary>${j+1}. ${masteryEscape(x[0])}</summary><p><b>Açıklamalı cevap:</b> ${masteryEscape(x[1])}</p></details>`).join('')}</section>
  <div class="callout"><b>Çalışma yöntemi:</b> Anlatımı okuduktan sonra formülü ve çözüm adımlarını boş kâğıda yeniden yaz. Ardından bu konuya ait test sorularını çöz; yanlışlarını açıklamayla karşılaştır ve birim/yön kontrolünü tekrarla.</div>`;
+}
+function textbookMathLine(value){
+ let x=String(value??'').replace(/Σ\s*F_?([xyz])/g,'SUM_F_$1').replace(/ΣF([xyz])/g,'SUM_F_$1').replace(/ΣM/g,'SUM_M').replace(/Σ/g,'SUM');
+ x=masteryEscape(x).replace(/SUM_F_([xyz])/g,'∑ F<sub>$1</sub>').replace(/SUM_M/g,'∑ M').replace(/SUM/g,'∑');
+ x=x.replace(/\b([A-Za-z])_([A-Za-z0-9]+)\b/g,'$1<sub>$2</sub>').replace(/\^([0-9]+)/g,'<sup>$1</sup>');
+ return x.replace(/<=/g,'≤').replace(/>=/g,'≥').replace(/!=/g,'≠').replace(/->/g,'→');
+}
+function textbookEquationHTML(value){
+ const lines=String(value??'').trim().split(/\n+/).map(x=>x.trim()).filter(Boolean);
+ return '<div class="textbook-equation">'+lines.map(x=>'<span class="math-line">'+textbookMathLine(x)+'</span>').join('')+'</div>';
 }
 function lessonHTML(c,i){
  const t=c.topics[i],formula=null; // Her konu kendi ders notunda doğru bağıntıyı gösterir; rastgele formül kartı gösterilmez.
